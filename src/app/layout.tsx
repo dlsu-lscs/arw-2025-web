@@ -25,9 +25,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`relative min-h-screen bg-[url('/bg/st-lasalle-bg.webp')] bg-cover bg-center bg-no-repeat ${geistSans.variable} ${geistMono.variable} antialiased `}
       >
-        {children}
+        <div className="absolute w-full h-full bg-black/50 z-0" />
+        <div className="relative z-50">{children}</div>
       </body>
     </html>
   );
