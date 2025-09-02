@@ -116,6 +116,20 @@
   --sidebar-ring: oklch(0.556 0 0);
 }
 
+html,
+body {
+  min-height: 100vh;
+}
+
+body {
+  color: var(--foreground);
+  font-family: var(--font-press-start);
+}
+
+.font-pixel {
+  font-family: "Press Start 2P", fantasy;
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
