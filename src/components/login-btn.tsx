@@ -16,9 +16,9 @@ export default function LoginBtn() {
           width={42}
           height={42}
         />
-        <h1 className="sm:text-2xl text-base [text-shadow:4px_4px_0px_#000000] tracking-widest">
+        <h2 className="sm:text-2xl text-base [text-shadow:4px_4px_0px_#000000] text-white tracking-widest">
           Click anywhere to continue...
-        </h1>
+        </h2>
       </motion.div>
     </>
   );

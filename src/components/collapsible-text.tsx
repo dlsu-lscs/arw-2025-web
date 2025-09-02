@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 interface CollapsibleTextProps {
   text: string;
@@ -42,7 +43,20 @@ export default function CollapsibleText({
 
   return (
     <div className="mx-auto">
-      <p ref={textRef} className={expanded ? "" : `line-clamp-${maxLines}`}>
+      <p
+        ref={textRef}
+        className={cn(className)}
+        style={
+          expanded
+            ? {}
+            : {
+                display: "-webkit-box",
+                WebkitLineClamp: maxLines,
+                WebkitBoxOrient: "vertical",
+                overflow: "hidden",
+              }
+        }
+      >
         {text}
       </p>
 
@@ -51,7 +65,7 @@ export default function CollapsibleText({
         <Button
           variant="ghost"
           size="sm"
-          className="mt-1 text-blue-600"
+          className="mt-1 text-blue-600 text-xs font-space-mono"
           onClick={() => setExpanded(!expanded)}
         >
           {expanded ? "Show less" : "Show more"}

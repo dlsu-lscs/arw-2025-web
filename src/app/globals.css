@@ -138,3 +138,221 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+.pixel-corners,
+.pixel-corners--wrapper {
+  clip-path: polygon(
+    0px 0px,
+    calc(100% - 15px) 0px,
+    calc(100% - 15px) 3px,
+    calc(100% - 9px) 3px,
+    calc(100% - 9px) 6px,
+    calc(100% - 6px) 6px,
+    calc(100% - 6px) 9px,
+    calc(100% - 3px) 9px,
+    calc(100% - 3px) 15px,
+    100% 15px,
+    100% 100%,
+    15px 100%,
+    15px calc(100% - 3px),
+    9px calc(100% - 3px),
+    9px calc(100% - 6px),
+    6px calc(100% - 6px),
+    6px calc(100% - 9px),
+    3px calc(100% - 9px),
+    3px calc(100% - 15px),
+    0px calc(100% - 15px)
+  );
+  position: relative;
+  box-sizing: border-box;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+  .pixel-corners,
+  .pixel-corners--wrapper {
+    clip-path: polygon(
+      0px 0px,
+      calc(100% - 8px) 0px,
+      calc(100% - 8px) 2px,
+      calc(100% - 6px) 2px,
+      calc(100% - 6px) 4px,
+      calc(100% - 4px) 4px,
+      calc(100% - 4px) 6px,
+      calc(100% - 2px) 6px,
+      calc(100% - 2px) 8px,
+      100% 8px,
+      100% 100%,
+      8px 100%,
+      8px calc(100% - 2px),
+      6px calc(100% - 2px),
+      6px calc(100% - 4px),
+      4px calc(100% - 4px),
+      4px calc(100% - 6px),
+      2px calc(100% - 6px),
+      2px calc(100% - 8px),
+      0px calc(100% - 8px)
+    );
+  }
+}
+
+/* Mobile-first: Simplify pixel corners on small screens */
+@media (max-width: 768px) {
+  .pixel-corners,
+  .pixel-corners--wrapper {
+    clip-path: polygon(
+      0px 0px,
+      calc(100% - 8px) 0px,
+      calc(100% - 8px) 2px,
+      calc(100% - 6px) 2px,
+      calc(100% - 6px) 4px,
+      calc(100% - 4px) 4px,
+      calc(100% - 4px) 6px,
+      calc(100% - 2px) 6px,
+      calc(100% - 2px) 8px,
+      100% 8px,
+      100% 100%,
+      8px 100%,
+      8px calc(100% - 2px),
+      6px calc(100% - 2px),
+      6px calc(100% - 4px),
+      4px calc(100% - 4px),
+      4px calc(100% - 6px),
+      2px calc(100% - 6px),
+      2px calc(100% - 8px),
+      0px calc(100% - 8px)
+    );
+  }
+}
+.pixel-corners {
+  border: 9px solid transparent;
+}
+
+/* Mobile: Smaller border for mobile */
+@media (max-width: 768px) {
+  .pixel-corners {
+    border: 6px solid transparent;
+  }
+}
+.pixel-corners--wrapper {
+  width: fit-content;
+  height: fit-content;
+}
+.pixel-corners--wrapper .pixel-corners {
+  display: block;
+  clip-path: polygon(
+    9px 18px,
+    12px 18px,
+    12px 12px,
+    18px 12px,
+    18px 9px,
+    calc(100% - 18px) 9px,
+    calc(100% - 18px) 12px,
+    calc(100% - 12px) 12px,
+    calc(100% - 12px) 18px,
+    calc(100% - 9px) 18px,
+    calc(100% - 9px) calc(100% - 18px),
+    calc(100% - 12px) calc(100% - 18px),
+    calc(100% - 12px) calc(100% - 12px),
+    calc(100% - 18px) calc(100% - 12px),
+    calc(100% - 18px) calc(100% - 9px),
+    18px calc(100% - 9px),
+    18px calc(100% - 12px),
+    12px calc(100% - 12px),
+    12px calc(100% - 18px),
+    9px calc(100% - 18px)
+  );
+}
+.pixel-corners--wrapper .pixel-corners {
+  display: block;
+  clip-path: polygon(
+    9px 18px,
+    12px 18px,
+    12px 12px,
+    18px 12px,
+    18px 9px,
+    calc(100% - 18px) 9px,
+    calc(100% - 18px) 12px,
+    calc(100% - 12px) 12px,
+    calc(100% - 12px) 18px,
+    calc(100% - 9px) 18px,
+    calc(100% - 9px) calc(100% - 18px),
+    calc(100% - 12px) calc(100% - 18px),
+    calc(100% - 12px) calc(100% - 12px),
+    calc(100% - 18px) calc(100% - 12px),
+    calc(100% - 18px) calc(100% - 9px),
+    18px calc(100% - 9px),
+    18px calc(100% - 12px),
+    12px calc(100% - 12px),
+    12px calc(100% - 18px),
+    9px calc(100% - 18px)
+  );
+}
+.pixel-corners::after,
+.pixel-corners--wrapper::after {
+  content: "";
+  position: absolute;
+  clip-path: polygon(
+    evenodd,
+    /* === OUTER BORDER (clockwise from top-left) === */ 0px 0px,
+    /* TOP-LEFT: Sharp corner start */ calc(100% - 15px) 0px,
+    /* TOP EDGE: Moving right to start of top-right pixel corner */
+      calc(100% - 15px) 3px,
+    /* TOP-RIGHT: Pixel corner step 1 */ calc(100% - 9px) 3px,
+    /* TOP-RIGHT: Pixel corner step 2 */ calc(100% - 9px) 6px,
+    /* TOP-RIGHT: Pixel corner step 3 */ calc(100% - 6px) 6px,
+    /* TOP-RIGHT: Pixel corner step 4 */ calc(100% - 6px) 9px,
+    /* TOP-RIGHT: Pixel corner step 5 */ calc(100% - 3px) 9px,
+    /* TOP-RIGHT: Pixel corner step 6 */ calc(100% - 3px) 15px,
+    /* TOP-RIGHT: Pixel corner step 7 */ 100% 15px,
+    /* TOP-RIGHT: Pixel corner end */ 100% 100%,
+    /* RIGHT EDGE: Moving down to bottom-right sharp corner */ 15px 100%,
+    /* BOTTOM EDGE: Moving left from bottom-right sharp corner */ 15px
+      calc(100% - 3px),
+    /* BOTTOM-LEFT: Pixel corner step 1 */ 9px calc(100% - 3px),
+    /* BOTTOM-LEFT: Pixel corner step 2 */ 9px calc(100% - 6px),
+    /* BOTTOM-LEFT: Pixel corner step 3 */ 6px calc(100% - 6px),
+    /* BOTTOM-LEFT: Pixel corner step 4 */ 6px calc(100% - 9px),
+    /* BOTTOM-LEFT: Pixel corner step 5 */ 3px calc(100% - 9px),
+    /* BOTTOM-LEFT: Pixel corner step 6 */ 3px calc(100% - 15px),
+    /* BOTTOM-LEFT: Pixel corner step 7 */ 0px calc(100% - 15px),
+    /* BOTTOM-LEFT: Pixel corner end */ 0px 0px,
+
+    /* LEFT EDGE: Back to top-left sharp corner */
+      /* === INNER CUTOUT (clockwise from bottom-left) === */ 9px
+      calc(100% - 18px),
+    /* INNER BOTTOM-LEFT: Start of content area cutout */ 12px calc(100% - 18px),
+    /* INNER BOTTOM: Pixel step 1 */ 12px calc(100% - 12px),
+    /* INNER BOTTOM: Pixel step 2 */ 18px calc(100% - 12px),
+    /* INNER BOTTOM: Pixel step 3 */ 18px calc(100% - 9px),
+    /* INNER BOTTOM: Pixel step 4 */ calc(100% - 18px) calc(100% - 9px),
+    /* INNER BOTTOM-RIGHT: Moving right */ calc(100% - 18px) calc(100% - 12px),
+    /* INNER RIGHT: Pixel step 1 */ calc(100% - 12px) calc(100% - 12px),
+    /* INNER RIGHT: Pixel step 2 */ calc(100% - 12px) calc(100% - 18px),
+    /* INNER RIGHT: Pixel step 3 */ calc(100% - 9px) calc(100% - 18px),
+    /* INNER RIGHT: Pixel step 4 */ calc(100% - 9px) 18px,
+    /* INNER TOP-RIGHT: Moving up */ calc(100% - 12px) 18px,
+    /* INNER TOP: Pixel step 1 */ calc(100% - 12px) 12px,
+    /* INNER TOP: Pixel step 2 */ calc(100% - 18px) 12px,
+    /* INNER TOP: Pixel step 3 */ calc(100% - 18px) 9px,
+    /* INNER TOP: Pixel step 4 */ 18px 9px,
+    /* INNER TOP-LEFT: Moving left */ 18px 12px,
+    /* INNER LEFT: Pixel step 1 */ 12px 12px,
+    /* INNER LEFT: Pixel step 2 */ 12px 18px,
+    /* INNER LEFT: Pixel step 3 */ 9px 18px,
+    /* INNER LEFT: Pixel step 4 */ 9px calc(100% - 18px)
+      /* INNER LEFT: Back to start (closing the cutout) */
+  );
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #000000;
+  display: block;
+  pointer-events: none;
+}
+.pixel-corners::after {
+  margin: -9px;
+}
