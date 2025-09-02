@@ -16,6 +16,8 @@ import ExpandableText from "@/components/collapsible-text";
 import CollapsibleText from "@/components/collapsible-text";
 import { SearchBar } from "@/components/search-bar";
 
+const dummyData = {};
+
 export default function HomePage() {
   return (
     <>
