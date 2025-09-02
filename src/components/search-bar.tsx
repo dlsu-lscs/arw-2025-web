@@ -45,37 +45,38 @@ export function SearchBar() {
   return (
     <>
       <Popover>
-        <PopoverTrigger className="w-full">
-          <Form {...form}>
-            <form
-              onSubmit={form.handleSubmit(onSubmit)}
-              className="w-full space-y-6"
-            >
-              <FormField
-                control={form.control}
-                name="search"
-                render={({ field }) => (
-                  <FormItem className="relative">
-                    <FormControl>
+        <Form {...form}>
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="w-full space-y-6"
+          >
+            <FormField
+              control={form.control}
+              name="search"
+              render={({ field }) => (
+                <FormItem className="relative">
+                  <FormControl>
+                    <PopoverTrigger className="w-full">
                       <Input
                         className="font-space-mono border-black border-[1.5px] rounded-none pr-6 focus-visible:ring-0 focus-visible:border-black"
                         placeholder="Search all organizations..."
                         {...field}
-                      />
-                    </FormControl>
-                    <button
-                      className="absolute right-0 top-1/2 -translate-1/2"
-                      type="submit"
-                    >
-                      <IoSearch />
-                    </button>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </form>
-          </Form>
-        </PopoverTrigger>
+                      />{" "}
+                    </PopoverTrigger>
+                  </FormControl>
+                  <button
+                    className="absolute right-0 top-1/2 -translate-1/2"
+                    type="submit"
+                  >
+                    <IoSearch />
+                  </button>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </form>
+        </Form>
+
         <PopoverContent
           align="start"
           className=""
