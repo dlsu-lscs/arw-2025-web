@@ -14,6 +14,7 @@ import {
 import { Button } from "@/components/ui/button";
 import ExpandableText from "@/components/collapsible-text";
 import CollapsibleText from "@/components/collapsible-text";
+import { SearchBar } from "@/components/search-bar";
 
 export default function HomePage() {
   return (
@@ -64,11 +65,13 @@ export default function HomePage() {
         </Carousel>
 
         <Button
-          className="font-space-mono bg-[#D8E6FF] rounded-none border-black text-base font-bold self-center"
+          className="font-space-mono bg-[#D8E6FF] rounded-none border-black text-base font-bold self-center mt-4 mb-8"
           variant="outline"
         >
           DISCOVER THE CLUSTERS
         </Button>
+
+        <SearchBar />
       </div>
     </>
   );
