@@ -6,7 +6,7 @@ export default function CloseModal() {
     <>
       <button className="flex gap-3" onClick={closeOrgModal}>
         <span>&lt;</span>
-        <div>back to organizations</div>
+        <h1>back to organizations</h1>
       </button>
     </>
   );
