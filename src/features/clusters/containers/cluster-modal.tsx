@@ -19,10 +19,12 @@ export default function ClusterModal() {
               <CloseModal />
             </DialogTitle>
           </DialogHeader>
-          <main className="grid grid-cols2 gap-4">
+          <main className="grid grid-cols-2 gap-4 p-10">
+            {/* First Row, Clusters Title, Engage Card, Cap13 Card */}
             <section className="grid grid-cols-2 gap-2">
               <section className="grid grid-cols-1 gap-4">
-                <div>
+                {/* Clusters Title */}
+                <div className="flex flex-col gap-2">
                   <h1 className="text-2xl">Clusters!?</h1>
                   <p className="font-space-mono">
                     Clusters are alliances or groups of CSO-accredited
@@ -30,20 +32,37 @@ export default function ClusterModal() {
                     that catches your eye, and find where you belong!
                   </p>
                 </div>
+                {/* Engage Card */}
                 <div>
-                  <div className="w-full h-[200px] bg-gray-300 flex justify-start p-6 items-center rounded-lg text-white">
+                  <div className="w-full h-[200px] bg-[url('/bg/st-lasalle-bg.webp')] bg-center bg-cover bg-[#010F56]/70 bg-blend-multiply flex justify-start p-6 items-center rounded-lg text-white ">
                     <div className="flex flex-col gap-2">
-                      <h1 className="text-left text-4xl [text-shadow:_4px_4px_0px_rgba(0,0,0,1)]">
+                      <h1 className="text-left  text-3xl [text-shadow:_4px_4px_0px_rgba(0,0,0,1)]">
                         ENGAGE
                       </h1>
-                      <p className="text-3xl font-space-grotesk font-bold">
+                      <p className="text-xl font-space-grotesk font-bold">
                         Engineering Alliance Geared Towards Excellence
                       </p>
                     </div>
                   </div>
                 </div>
               </section>
+              <section className="grid grid-cols-1 gap-4">
+                {/* CAP13 Card */}
+                <div>
+                  <div className="w-[200px] h-full bg-[url('/bg/st-lasalle-bg.webp')] bg-center bg-cover bg-[#564C01]/70 bg-blend-multiply flex justify-start p-6 items-center rounded-lg text-white">
+                    <div className="flex flex-col gap-2">
+                      <h1 className="text-left text-3xl [text-shadow:_4px_4px_0px_rgba(0,0,0,1)]">
+                        CAP13
+                      </h1>
+                      <p className="text-xl font-space-grotesk font-bold">
+                        College of Liberal Arts Organizations
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </section>
             </section>
+            <section></section>
           </main>
           <footer className="flex justify-center">
             <h3 className="font-tiny5 opacity-50">
