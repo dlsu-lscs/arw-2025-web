@@ -31,12 +31,12 @@ export default function ClusterModal() {
                   </p>
                 </div>
                 <div>
-                  <div className="w-full h-[200px] bg-gray-300 flex justify-center items-center rounded-lg text-white">
+                  <div className="w-full h-[200px] bg-gray-300 flex justify-start p-6 items-center rounded-lg text-white">
                     <div className="flex flex-col gap-2">
                       <h1 className="text-left text-4xl [text-shadow:_4px_4px_0px_rgba(0,0,0,1)]">
                         ENGAGE
                       </h1>
-                      <p className="text-md">
+                      <p className="text-3xl font-space-grotesk font-bold">
                         Engineering Alliance Geared Towards Excellence
                       </p>
                     </div>
