@@ -20,7 +20,7 @@ export default function ClusterModal() {
               <CloseModal />
             </DialogTitle>
           </DialogHeader>
-          <main className="grid grid-cols-1 md:grid-cols-2 p-12 gap-4">
+          <main className="grid grid-cols-1 md:grid-cols-2 p-16 gap-4">
             {/* First Main Column (Left Side) with nested rows */}
             <section className="grid grid-cols-1 gap-4">
               {/* First Row: Clusters, Engage, and CAP13 Cards side by side */}
@@ -36,7 +36,12 @@ export default function ClusterModal() {
                     </p>
                   </div>
                   <div>
-                    <button className="w-full h-[200px] bg-[url('/bg/st-lasalle-bg.webp')] bg-center bg-cover bg-[#010F56]/70 bg-blend-multiply flex justify-start p-6 items-center rounded-lg text-white">
+                    <button
+                      className="w-full h-[200px] bg-[url('/bg/st-lasalle-bg.webp')] bg-center bg-cover bg-[#010F56]/70 hover:opacity-90 transition duration-100 bg-blend-multiply flex justify-start p-6 items-center rounded-lg text-white"
+                      onClick={() => {
+                        closeOrgModal()
+                      }}
+                    >
                       <div className="flex flex-col gap-2">
                         <h1 className="text-left text-3xl [text-shadow:_4px_4px_0px_rgba(0,0,0,1)]">
                           ENGAGE
@@ -50,8 +55,13 @@ export default function ClusterModal() {
                 </div>
                 {/* CAP13 Card */}
                 <div>
-                  <div className="w-full h-full bg-[url('/bg/st-lasalle-bg.webp')] bg-center bg-cover bg-[#564C01]/70 bg-blend-multiply flex justify-start p-6 items-center rounded-lg text-white">
-                    <button className="w-[85%] mx-auto flex flex-col gap-2">
+                  <div className="w-full h-full bg-[url('/bg/st-lasalle-bg.webp')] bg-center bg-cover bg-[#564C01]/70 hover:opacity-90 transition duration-100 bg-blend-multiply flex justify-start p-6 items-center rounded-lg text-white">
+                    <button
+                      className="w-[85%] mx-auto flex flex-col gap-2"
+                      onClick={() => {
+                        closeOrgModal()
+                      }}
+                    >
                       <h1 className="text-left text-3xl [text-shadow:_4px_4px_0px_rgba(0,0,0,1)]">
                         CAP13
                       </h1>
@@ -76,8 +86,13 @@ export default function ClusterModal() {
                   />
                 </div>
                 <div>
-                  <div className="w-full h-[200px] bg-[url('/bg/st-lasalle-bg.webp')] bg-center bg-cover bg-[#8D0094]/70 bg-blend-multiply flex justify-start p-6 items-center rounded-lg text-white">
-                    <button className="flex flex-col gap-2">
+                  <div className="w-full h-[200px] bg-[url('/bg/st-lasalle-bg.webp')] bg-center bg-cover bg-[#8D0094]/70 hover:opacity-90 transition duration-100 bg-blend-multiply flex justify-start p-6 items-center rounded-lg text-white">
+                    <button
+                      className="flex flex-col gap-2"
+                      onClick={() => {
+                        closeOrgModal()
+                      }}
+                    >
                       <h1 className="text-left text-3xl [text-shadow:_4px_4px_0px_rgba(0,0,0,1)]">
                         ASPIRE
                       </h1>
@@ -95,8 +110,13 @@ export default function ClusterModal() {
             <section className="grid grid-cols-1 md:grid-cols-2 grid-rows-2 gap-4">
               {/* PROBE Card spanning two columns */}
               <div className="col-span-1 md:col-span-2">
-                <div className="w-full h-full bg-[url('/bg/st-lasalle-bg.webp')] bg-center bg-cover bg-[#940000]/70 bg-blend-multiply flex justify-start items-center rounded-lg text-white">
-                  <button className="w-[85%] mx-auto flex flex-col gap-2">
+                <div className="w-full h-full bg-[url('/bg/st-lasalle-bg.webp')] bg-center bg-cover bg-[#940000]/70 hover:opacity-90 transition duration-100  bg-blend-multiply flex justify-start items-center rounded-lg text-white">
+                  <button
+                    className="w-[85%] mx-auto flex flex-col gap-2"
+                    onClick={() => {
+                      closeOrgModal()
+                    }}
+                  >
                     <h1 className="text-left text-3xl [text-shadow:_4px_4px_0px_rgba(0,0,0,1)]">
                       PROBE
                     </h1>
@@ -108,8 +128,13 @@ export default function ClusterModal() {
               </div>
               {/* ASO Card */}
               <div>
-                <div className="w-full h-full bg-[url('/bg/st-lasalle-bg.webp')] bg-center bg-cover bg-[#3FA300]/70 bg-blend-multiply flex justify-start p-6 items-center rounded-lg text-white">
-                  <button className="flex flex-col gap-2">
+                <div className="w-full h-full bg-[url('/bg/st-lasalle-bg.webp')] bg-center bg-cover bg-[#3FA300]/70 hover:opacity-90 transition duration-100  bg-blend-multiply flex justify-start p-6 items-center rounded-lg text-white">
+                  <button
+                    className="flex flex-col gap-2"
+                    onClick={() => {
+                      closeOrgModal()
+                    }}
+                  >
                     <h1 className="text-left text-3xl [text-shadow:_4px_4px_0px_rgba(0,0,0,1)]">
                       ASO
                     </h1>
