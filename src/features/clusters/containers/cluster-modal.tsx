@@ -20,32 +20,50 @@ export default function ClusterModal() {
               <CloseModal />
             </DialogTitle>
           </DialogHeader>
-          <main className="grid grid-cols-2 p-10 gap-4">
-            {/* Left Column: Clusters, Engage, Macky & Aspire */}
+          <main className="grid grid-cols-2 p-12 gap-4">
+            {/* First Main Column (Left Side) with nested rows */}
             <section className="grid grid-cols-1 gap-4">
-              {/* Clusters Title & Description */}
-              <div className="flex flex-col gap-2">
-                <h1 className="text-2xl">Clusters!?</h1>
-                <p className="font-space-mono">
-                  Clusters are alliances or groups of CSO-accredited
-                  organizations that share similar themes or goals. Select one
-                  that catches your eye, and find where you belong!
-                </p>
-              </div>
-              {/* Engage Card */}
-              <div>
-                <div className="w-full h-[200px] bg-[url('/bg/st-lasalle-bg.webp')] bg-center bg-cover bg-[#010F56]/70 bg-blend-multiply flex justify-start p-6 items-center rounded-lg text-white">
+              {/* First Row: Clusters, Engage, and CAP13 Cards side by side */}
+              <div className="grid grid-cols-2 gap-4">
+                {/* Clusters Title & Engage Card */}
+                <div className="flex flex-col gap-4">
                   <div className="flex flex-col gap-2">
-                    <h1 className="text-left text-3xl [text-shadow:_4px_4px_0px_rgba(0,0,0,1)]">
-                      ENGAGE
-                    </h1>
-                    <p className="text-xl font-space-grotesk font-bold">
-                      Engineering Alliance Geared Towards Excellence
+                    <h1 className="text-2xl">Clusters!?</h1>
+                    <p className="font-space-mono">
+                      Clusters are alliances or groups of CSO-accredited
+                      organizations that share similar themes or goals. Select
+                      one that catches your eye, and find where you belong!
                     </p>
+                  </div>
+                  <div>
+                    <div className="w-full h-[200px] bg-[url('/bg/st-lasalle-bg.webp')] bg-center bg-cover bg-[#010F56]/70 bg-blend-multiply flex justify-start p-6 items-center rounded-lg text-white">
+                      <div className="flex flex-col gap-2">
+                        <h1 className="text-left text-3xl [text-shadow:_4px_4px_0px_rgba(0,0,0,1)]">
+                          ENGAGE
+                        </h1>
+                        <p className="text-xl font-space-mono font-bold">
+                          Engineering Alliance Geared Towards Excellence
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {/* CAP13 Card */}
+                <div>
+                  <div className="w-full h-full bg-[url('/bg/st-lasalle-bg.webp')] bg-center bg-cover bg-[#564C01]/70 bg-blend-multiply flex justify-start p-6 items-center rounded-lg text-white">
+                    <div className="flex flex-col gap-2">
+                      <h1 className="text-left text-3xl [text-shadow:_4px_4px_0px_rgba(0,0,0,1)]">
+                        CAP13
+                      </h1>
+                      <p className="text-xl font-space-mono font-bold">
+                        College of Liberal Arts Organizations
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
-              {/* Macky Logo & Aspire Card */}
+
+              {/* Second Row: Macky Logo & Aspire Card */}
               <div className="grid grid-cols-2 gap-4">
                 <div className="flex justify-end w-full">
                   <Image
@@ -63,7 +81,7 @@ export default function ClusterModal() {
                       <h1 className="text-left text-3xl [text-shadow:_4px_4px_0px_rgba(0,0,0,1)]">
                         ASPIRE
                       </h1>
-                      <p className="text-xl font-space-grotesk font-bold">
+                      <p className="text-xl font-space-mono font-bold">
                         College of Education and Special Interest and
                         Socio-Civic Organizations
                       </p>
@@ -73,50 +91,36 @@ export default function ClusterModal() {
               </div>
             </section>
 
-            {/* Right Column: CAP13 & PROBE, then ASO */}
-            <section className="grid grid-cols-1 gap-4">
-              {/* CAP13 and PROBE in the same row, in their own two-column grid */}
-              <div className="grid grid-cols-2 gap-4">
-                {/* CAP13 Card */}
-                <div>
-                  <div className="w-full h-full bg-[url('/bg/st-lasalle-bg.webp')] bg-center bg-cover bg-[#564C01]/70 bg-blend-multiply flex justify-start p-6 items-center rounded-lg text-white">
-                    <div className="flex flex-col gap-2">
-                      <h1 className="text-left text-3xl [text-shadow:_4px_4px_0px_rgba(0,0,0,1)]">
-                        CAP13
-                      </h1>
-                      <p className="text-xl font-space-grotesk font-bold">
-                        College of Liberal Arts Organizations
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                {/* PROBE Card */}
-                <div>
-                  <div className="w-full h-full bg-[url('/bg/st-lasalle-bg.webp')] bg-center bg-cover bg-[#940000]/70 bg-blend-multiply flex justify-start p-6 items-center rounded-lg text-white">
-                    <div className="flex flex-col gap-2">
-                      <h1 className="text-left text-3xl [text-shadow:_4px_4px_0px_rgba(0,0,0,1)]">
-                        PROBE
-                      </h1>
-                      <p className="text-xl font-space-grotesk font-bold">
-                        Professional Organizations of Business and Economics
-                      </p>
-                    </div>
+            {/* Second Main Column (Right Side) */}
+            <section className="grid grid-cols-2 grid-rows-2 gap-4">
+              {/* PROBE Card spanning two columns */}
+              <div className="col-span-2">
+                <div className="w-full h-full bg-[url('/bg/st-lasalle-bg.webp')] bg-center bg-cover bg-[#940000]/70 bg-blend-multiply flex justify-start p-6 items-center rounded-lg text-white">
+                  <div className="flex flex-col gap-2">
+                    <h1 className="text-left text-3xl [text-shadow:_4px_4px_0px_rgba(0,0,0,1)]">
+                      PROBE
+                    </h1>
+                    <p className="text-xl font-space-mono font-bold">
+                      Professional Organizations of Business and Economics
+                    </p>
                   </div>
                 </div>
               </div>
-              {/* ASO Card below PROBE */}
+              {/* ASO Card */}
               <div>
                 <div className="w-full h-full bg-[url('/bg/st-lasalle-bg.webp')] bg-center bg-cover bg-[#3FA300]/70 bg-blend-multiply flex justify-start p-6 items-center rounded-lg text-white">
                   <div className="flex flex-col gap-2">
                     <h1 className="text-left text-3xl [text-shadow:_4px_4px_0px_rgba(0,0,0,1)]">
                       ASO
                     </h1>
-                    <p className="text-xl font-space-grotesk font-bold">
+                    <p className="text-xl font-space-mono font-bold">
                       Alliance of Science Organizations
                     </p>
                   </div>
                 </div>
               </div>
+              {/* Empty div for the second col of the second row */}
+              <div></div>
             </section>
           </main>
           <footer className="flex justify-center">
