@@ -1,33 +1,34 @@
-"use client";
-import HighlightCard from "@/components/highlight-card";
-import NavBar from "../components/navbar";
-import Image from "next/image";
+'use client'
+import HighlightCard from '@/components/highlight-card'
+import NavBar from '../components/navbar'
+import Image from 'next/image'
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselPreviousPixel,
   CarouselNextPixel,
-} from "@/components/ui/carousel";
-import { Button } from "@/components/ui/button";
-import ExpandableText from "@/components/collapsible-text";
-import CollapsibleText from "@/components/collapsible-text";
-import { SearchBar } from "@/components/search-bar";
-import { useState } from "react";
+} from '@/components/ui/carousel'
+import { Button } from '@/components/ui/button'
+import ExpandableText from '@/components/collapsible-text'
+import CollapsibleText from '@/components/collapsible-text'
+import { SearchBar } from '@/components/search-bar'
+import { useState } from 'react'
+import ClusterModal from '@/features/clusters/containers/cluster-modal'
 
 const dummyData = [
   {
-    acronym: "All organizations",
-    name: "All organizations among the 5 clusters in CSO.",
+    acronym: 'All organizations',
+    name: 'All organizations among the 5 clusters in CSO.',
   },
   {
-    acronym: "ENGAGE",
-    name: "Engineering Alliance Geared Towards Excellence (ENGAGE).",
+    acronym: 'ENGAGE',
+    name: 'Engineering Alliance Geared Towards Excellence (ENGAGE).',
   },
-];
+]
 
 export default function HomePage() {
-  const [selectedCluster, setSelectedCluster] = useState("");
+  const [selectedCluster, setSelectedCluster] = useState('')
 
   return (
     <>
@@ -36,7 +37,7 @@ export default function HomePage() {
           <NavBar />
           <HighlightCard className="flex gap-4 mt-4">
             <Image
-              src={"/assets/macky.svg"}
+              src={'/assets/macky.svg'}
               width={96}
               height={96}
               alt="macky"
@@ -45,7 +46,7 @@ export default function HomePage() {
             <div>
               <div className="flex items-center gap-2">
                 <Image
-                  src={"/assets/macky.svg"}
+                  src={'/assets/macky.svg'}
                   width={64}
                   height={64}
                   alt="macky"
@@ -91,8 +92,9 @@ export default function HomePage() {
           </Button>
 
           <SearchBar />
+          <ClusterModal />
         </div>
       </div>
     </>
-  );
+  )
 }
