@@ -1,19 +1,18 @@
-'use client'
+"use client";
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
-} from '@/components/ui/dialog'
-import { useClusterModalStore } from '../store/useClusterModalStore'
-import CloseModal from '@/components/modal/close-modal'
-import Image from 'next/image'
-import { useSelectClusterStore } from '@/store/useSelectClusterStore'
-import { set } from 'zod'
+} from "@/components/ui/dialog";
+import { useClusterModalStore } from "../store/useClusterModalStore";
+import CloseModal from "@/components/modal/close-modal";
+import Image from "next/image";
+import { useSelectClusterStore } from "@/store/useSelectClusterStore";
 
 export default function ClusterModal() {
-  const { isOrgModalOpen, closeOrgModal } = useClusterModalStore()
-  const { selectedCluster, setSelectedCluster } = useSelectClusterStore()
+  const { isOrgModalOpen, closeOrgModal } = useClusterModalStore();
+  const { setSelectedCluster } = useSelectClusterStore();
   return (
     <>
       <Dialog open={isOrgModalOpen} onOpenChange={closeOrgModal}>
@@ -31,8 +30,10 @@ export default function ClusterModal() {
                 {/* Clusters Title & Engage Card */}
                 <div className="flex flex-col gap-4">
                   <div className="flex flex-col gap-2">
-                    <h1 className="text-3xl">Clusters!?</h1>
-                    <p className="font-space-mono">
+                    <h1 className="text-[clamp(1.5rem,4vw,1.875rem)]">
+                      Clusters!?
+                    </h1>
+                    <p className="font-space-mono text-[clamp(0.875rem,2.5vw,1rem)]">
                       Clusters are alliances or groups of CSO-accredited
                       organizations that share similar themes or goals. Select
                       one that catches your eye, and find where you belong!
@@ -42,15 +43,15 @@ export default function ClusterModal() {
                     <button
                       className="w-full h-[200px] bg-[url('/bg/st-lasalle-bg.webp')] bg-center bg-cover bg-[#010F56]/70 hover:opacity-90 transition duration-100 bg-blend-multiply flex justify-start p-6 items-center rounded-lg text-white"
                       onClick={() => {
-                        closeOrgModal()
-                        setSelectedCluster('engage')
+                        closeOrgModal();
+                        setSelectedCluster("engage");
                       }}
                     >
                       <div className="flex flex-col gap-2">
-                        <h1 className="text-left text-3xl [text-shadow:_4px_4px_0px_rgba(0,0,0,1)]">
+                        <h1 className="text-left text-[clamp(1.25rem,4vw,1.875rem)] [text-shadow:_4px_4px_0px_rgba(0,0,0,1)]">
                           ENGAGE
                         </h1>
-                        <p className="text-xl text-left font-space-mono font-bold">
+                        <p className="text-[clamp(0.75rem,2vw,1.25rem)] text-left font-space-mono font-bold">
                           Engineering Alliance Geared Towards Excellence
                         </p>
                       </div>
@@ -62,15 +63,15 @@ export default function ClusterModal() {
                   <div
                     className="w-full h-full bg-[url('/bg/st-lasalle-bg.webp')] bg-center bg-cover bg-[#564C01]/70 hover:opacity-90 transition duration-100 bg-blend-multiply flex justify-start p-6 items-center rounded-lg text-white"
                     onClick={() => {
-                      closeOrgModal()
-                      setSelectedCluster('cap13')
+                      closeOrgModal();
+                      setSelectedCluster("cap13");
                     }}
                   >
                     <button className="w-[85%] mx-auto flex flex-col gap-2">
-                      <h1 className="text-left text-3xl [text-shadow:_4px_4px_0px_rgba(0,0,0,1)]">
+                      <h1 className="text-left text-[clamp(1.25rem,4vw,1.875rem)] [text-shadow:_4px_4px_0px_rgba(0,0,0,1)]">
                         CAP13
                       </h1>
-                      <p className="text-xl text-left font-space-mono font-bold">
+                      <p className="text-[clamp(0.75rem,2vw,1.25rem)] text-left font-space-mono font-bold">
                         College of Liberal Arts Organizations
                       </p>
                     </button>
@@ -95,14 +96,14 @@ export default function ClusterModal() {
                     <button
                       className="flex flex-col gap-2"
                       onClick={() => {
-                        closeOrgModal()
-                        setSelectedCluster('aspire')
+                        closeOrgModal();
+                        setSelectedCluster("aspire");
                       }}
                     >
-                      <h1 className="text-left text-3xl [text-shadow:_4px_4px_0px_rgba(0,0,0,1)]">
+                      <h1 className="text-left text-[clamp(1.25rem,4vw,1.875rem)] [text-shadow:_4px_4px_0px_rgba(0,0,0,1)]">
                         ASPIRE
                       </h1>
-                      <p className="text-xl text-left font-space-mono font-bold">
+                      <p className="text-[clamp(0.75rem,2vw,1.25rem)] text-left font-space-mono font-bold">
                         College of Education and Special Interest and
                         Socio-Civic Organizations
                       </p>
@@ -119,15 +120,15 @@ export default function ClusterModal() {
                 <div
                   className="w-full h-full bg-[url('/bg/st-lasalle-bg.webp')] bg-center bg-cover bg-[#940000]/70 hover:opacity-90 transition duration-100  bg-blend-multiply flex justify-start items-center rounded-lg text-white"
                   onClick={() => {
-                    closeOrgModal()
-                    setSelectedCluster('probe')
+                    closeOrgModal();
+                    setSelectedCluster("probe");
                   }}
                 >
                   <button className="w-[85%] mx-auto flex flex-col gap-2">
-                    <h1 className="text-left text-3xl [text-shadow:_4px_4px_0px_rgba(0,0,0,1)]">
+                    <h1 className="text-left text-[clamp(1.25rem,4vw,1.875rem)] [text-shadow:_4px_4px_0px_rgba(0,0,0,1)]">
                       PROBE
                     </h1>
-                    <p className="text-xl text-left font-space-mono font-bold">
+                    <p className="text-[clamp(0.75rem,2vw,1.25rem)] text-left font-space-mono font-bold">
                       Professional Organizations of Business and Economics
                     </p>
                   </button>
@@ -139,14 +140,14 @@ export default function ClusterModal() {
                   <button
                     className="flex flex-col gap-2"
                     onClick={() => {
-                      closeOrgModal()
-                      setSelectedCluster('aso')
+                      closeOrgModal();
+                      setSelectedCluster("aso");
                     }}
                   >
-                    <h1 className="text-left text-3xl [text-shadow:_4px_4px_0px_rgba(0,0,0,1)]">
+                    <h1 className="text-left text-[clamp(1.25rem,4vw,1.875rem)] [text-shadow:_4px_4px_0px_rgba(0,0,0,1)]">
                       ASO
                     </h1>
-                    <p className="text-xl text-left font-space-mono font-bold">
+                    <p className="text-[clamp(0.75rem,2vw,1.25rem)] text-left font-space-mono font-bold">
                       Alliance of Science Organizations
                     </p>
                   </button>
@@ -164,5 +165,5 @@ export default function ClusterModal() {
         </DialogContent>
       </Dialog>
     </>
-  )
+  );
 }
