@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Tiny5&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap");
 @import "tailwindcss";
 @import "tw-animate-css";
 
@@ -13,7 +14,8 @@
   --font-mono: var(--font-geist-mono);
   --font-press-start: "Press Start 2P", fantasy;
   --font-space-mono: "Space Mono", monospace;
-  --font-tiny-5: "Tiny5", sans-serif;
+  --font-tiny5: "Tiny5", sans-serif;
+  --font-space-grotesk: "Space Grotesk", sans-serif;
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -169,6 +171,48 @@ body {
   box-sizing: border-box;
   max-width: 100%;
   overflow: hidden;
+}
+
+.pixel-corner--modal {
+  max-width: 90vw;
+  max-height: 90vh;
+  overflow-y: auto;
+
+  background: white;
+
+  /* Make padding responsive based on viewport size */
+  padding: clamp(1rem, 5vw, 2rem);
+
+  /* Define a responsive pixel unit that scales with the viewport */
+  /* This ensures the corner design looks consistent on all screens */
+  --pixel-unit: clamp(2px, 0.5vw, 6px);
+
+  clip-path: polygon(
+    0px 0px,
+    calc(100% - calc(5 * var(--pixel-unit))) 0px,
+    calc(100% - calc(5 * var(--pixel-unit))) var(--pixel-unit),
+    calc(100% - calc(3 * var(--pixel-unit))) var(--pixel-unit),
+    calc(100% - calc(3 * var(--pixel-unit))) calc(2 * var(--pixel-unit)),
+    calc(100% - calc(2 * var(--pixel-unit))) calc(2 * var(--pixel-unit)),
+    calc(100% - calc(2 * var(--pixel-unit))) calc(3 * var(--pixel-unit)),
+    calc(100% - var(--pixel-unit)) calc(3 * var(--pixel-unit)),
+    calc(100% - var(--pixel-unit)) calc(5 * var(--pixel-unit)),
+    100% calc(5 * var(--pixel-unit)),
+    100% 100%,
+    calc(5 * var(--pixel-unit)) 100%,
+    calc(5 * var(--pixel-unit)) calc(100% - var(--pixel-unit)),
+    calc(3 * var(--pixel-unit)) calc(100% - var(--pixel-unit)),
+    calc(3 * var(--pixel-unit)) calc(100% - calc(2 * var(--pixel-unit))),
+    calc(2 * var(--pixel-unit)) calc(100% - calc(2 * var(--pixel-unit))),
+    calc(2 * var(--pixel-unit)) calc(100% - calc(3 * var(--pixel-unit))),
+    var(--pixel-unit) calc(100% - calc(3 * var(--pixel-unit))),
+    var(--pixel-unit) calc(100% - calc(5 * var(--pixel-unit))),
+    0px calc(100% - calc(5 * var(--pixel-unit)))
+  );
+
+  /* Make the outline and offset responsive too */
+  outline: var(--pixel-unit) solid black;
+  outline-offset: calc(-1 * var(--pixel-unit));
 }
 
 /* Mobile responsive adjustments */
