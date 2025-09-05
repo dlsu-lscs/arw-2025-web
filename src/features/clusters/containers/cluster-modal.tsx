@@ -8,9 +8,12 @@ import {
 import { useClusterModalStore } from '../store/useClusterModalStore'
 import CloseModal from '@/components/modal/close-modal'
 import Image from 'next/image'
+import { useSelectClusterStore } from '@/store/useSelectClusterStore'
+import { set } from 'zod'
 
 export default function ClusterModal() {
   const { isOrgModalOpen, closeOrgModal } = useClusterModalStore()
+  const { selectedCluster, setSelectedCluster } = useSelectClusterStore()
   return (
     <>
       <Dialog open={isOrgModalOpen} onOpenChange={closeOrgModal}>
@@ -40,6 +43,7 @@ export default function ClusterModal() {
                       className="w-full h-[200px] bg-[url('/bg/st-lasalle-bg.webp')] bg-center bg-cover bg-[#010F56]/70 hover:opacity-90 transition duration-100 bg-blend-multiply flex justify-start p-6 items-center rounded-lg text-white"
                       onClick={() => {
                         closeOrgModal()
+                        setSelectedCluster('engage')
                       }}
                     >
                       <div className="flex flex-col gap-2">
@@ -55,13 +59,14 @@ export default function ClusterModal() {
                 </div>
                 {/* CAP13 Card */}
                 <div>
-                  <div className="w-full h-full bg-[url('/bg/st-lasalle-bg.webp')] bg-center bg-cover bg-[#564C01]/70 hover:opacity-90 transition duration-100 bg-blend-multiply flex justify-start p-6 items-center rounded-lg text-white">
-                    <button
-                      className="w-[85%] mx-auto flex flex-col gap-2"
-                      onClick={() => {
-                        closeOrgModal()
-                      }}
-                    >
+                  <div
+                    className="w-full h-full bg-[url('/bg/st-lasalle-bg.webp')] bg-center bg-cover bg-[#564C01]/70 hover:opacity-90 transition duration-100 bg-blend-multiply flex justify-start p-6 items-center rounded-lg text-white"
+                    onClick={() => {
+                      closeOrgModal()
+                      setSelectedCluster('cap13')
+                    }}
+                  >
+                    <button className="w-[85%] mx-auto flex flex-col gap-2">
                       <h1 className="text-left text-3xl [text-shadow:_4px_4px_0px_rgba(0,0,0,1)]">
                         CAP13
                       </h1>
@@ -91,6 +96,7 @@ export default function ClusterModal() {
                       className="flex flex-col gap-2"
                       onClick={() => {
                         closeOrgModal()
+                        setSelectedCluster('aspire')
                       }}
                     >
                       <h1 className="text-left text-3xl [text-shadow:_4px_4px_0px_rgba(0,0,0,1)]">
@@ -110,13 +116,14 @@ export default function ClusterModal() {
             <section className="grid grid-cols-1 md:grid-cols-2 grid-rows-2 gap-4">
               {/* PROBE Card spanning two columns */}
               <div className="col-span-1 md:col-span-2">
-                <div className="w-full h-full bg-[url('/bg/st-lasalle-bg.webp')] bg-center bg-cover bg-[#940000]/70 hover:opacity-90 transition duration-100  bg-blend-multiply flex justify-start items-center rounded-lg text-white">
-                  <button
-                    className="w-[85%] mx-auto flex flex-col gap-2"
-                    onClick={() => {
-                      closeOrgModal()
-                    }}
-                  >
+                <div
+                  className="w-full h-full bg-[url('/bg/st-lasalle-bg.webp')] bg-center bg-cover bg-[#940000]/70 hover:opacity-90 transition duration-100  bg-blend-multiply flex justify-start items-center rounded-lg text-white"
+                  onClick={() => {
+                    closeOrgModal()
+                    setSelectedCluster('probe')
+                  }}
+                >
+                  <button className="w-[85%] mx-auto flex flex-col gap-2">
                     <h1 className="text-left text-3xl [text-shadow:_4px_4px_0px_rgba(0,0,0,1)]">
                       PROBE
                     </h1>
@@ -133,6 +140,7 @@ export default function ClusterModal() {
                     className="flex flex-col gap-2"
                     onClick={() => {
                       closeOrgModal()
+                      setSelectedCluster('aso')
                     }}
                   >
                     <h1 className="text-left text-3xl [text-shadow:_4px_4px_0px_rgba(0,0,0,1)]">
