@@ -1,3 +1,4 @@
+import { useUserStore } from '@/features/auth/store/use-user-store';
 import axios from 'axios';
 
 const api = axios.create({
@@ -18,7 +19,10 @@ api.interceptors.response.use(
 
         return api(originalRequest);
       } catch (refreshError) {
+        useUserStore.getState().setUser(null);
+        localStorage.removeItem('user-storage');
         console.error('Session expired, redirecting to login...');
+
         window.location.href = '/login';
       }
     }
