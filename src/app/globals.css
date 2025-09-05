@@ -1,9 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Tiny5&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap');
-@import 'tailwindcss';
-@import 'tw-animate-css';
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Tiny5&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap");
+@import "tailwindcss";
+@import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -12,10 +12,10 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-  --font-press-start: 'Press Start 2P', fantasy;
-  --font-space-mono: 'Space Mono', monospace;
-  --font-tiny5: 'Tiny5', sans-serif;
-  --font-space-grotesk: 'Space Grotesk', sans-serif;
+  --font-press-start: "Press Start 2P", fantasy;
+  --font-space-mono: "Space Mono", monospace;
+  --font-tiny5: "Tiny5", sans-serif;
+  --font-space-grotesk: "Space Grotesk", sans-serif;
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -131,7 +131,7 @@ body {
 }
 
 .font-pixel {
-  font-family: 'Press Start 2P', fantasy;
+  font-family: "Press Start 2P", fantasy;
 }
 
 @layer base {
@@ -175,6 +175,9 @@ body {
 
 .pixel-corner--modal {
   max-width: 90vw;
+  max-height: 90vh;
+  overflow-y: auto;
+
   background: white;
 
   /* Make padding responsive based on viewport size */
@@ -210,7 +213,6 @@ body {
   /* Make the outline and offset responsive too */
   outline: var(--pixel-unit) solid black;
   outline-offset: calc(-1 * var(--pixel-unit));
-  overflow: hidden;
 }
 
 /* Mobile responsive adjustments */
@@ -336,7 +338,7 @@ body {
 }
 .pixel-corners::after,
 .pixel-corners--wrapper::after {
-  content: '';
+  content: "";
   position: absolute;
   clip-path: polygon(
     evenodd,
