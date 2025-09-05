@@ -22,11 +22,11 @@ export default function ClusterModal() {
               <CloseModal />
             </DialogTitle>
           </DialogHeader>
-          <main className="grid grid-cols-1 md:grid-cols-2 p-16 gap-4">
+          <main className="grid grid-cols-1 lg:grid-cols-2 p-16 gap-4">
             {/* First Main Column (Left Side) with nested rows */}
             <section className="grid grid-cols-1 gap-4">
               {/* First Row: Clusters, Engage, and CAP13 Cards side by side */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                 {/* Clusters Title & Engage Card */}
                 <div className="flex flex-col gap-4">
                   <div className="flex flex-col gap-2">
@@ -80,7 +80,7 @@ export default function ClusterModal() {
               </div>
 
               {/* Second Row: Macky Logo & Aspire Card */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                 <div className="flex justify-end w-full">
                   <Image
                     src="/logos/macky_logo.webp"
@@ -100,10 +100,10 @@ export default function ClusterModal() {
                         setSelectedCluster("aspire");
                       }}
                     >
-                      <h1 className="text-left text-[clamp(1.25rem,4vw,1.875rem)] [text-shadow:_4px_4px_0px_rgba(0,0,0,1)]">
+                      <h1 className="text-left text-[clamp(1rem,2.5vw,1.5rem)] [text-shadow:_4px_4px_0px_rgba(0,0,0,1)]">
                         ASPIRE
                       </h1>
-                      <p className="text-[clamp(0.75rem,2vw,1.25rem)] text-left font-space-mono font-bold">
+                      <p className="text-[clamp(0.65rem,1.5vw,1rem)] text-left font-space-mono font-bold leading-snug">
                         College of Education and Special Interest and
                         Socio-Civic Organizations
                       </p>
@@ -114,9 +114,9 @@ export default function ClusterModal() {
             </section>
 
             {/* Second Main Column (Right Side) */}
-            <section className="grid grid-cols-1 md:grid-cols-2 grid-rows-2 gap-4">
+            <section className="grid grid-cols-1 lg:grid-cols-2 grid-rows-2 gap-4">
               {/* PROBE Card spanning two columns */}
-              <div className="col-span-1 md:col-span-2">
+              <div className="col-span-1 lg:col-span-2">
                 <div
                   className="w-full h-full bg-[url('/bg/st-lasalle-bg.webp')] bg-center bg-cover bg-[#940000]/70 hover:opacity-90 transition duration-100  bg-blend-multiply flex justify-start items-center rounded-lg text-white"
                   onClick={() => {
