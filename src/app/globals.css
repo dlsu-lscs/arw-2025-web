@@ -1,9 +1,15 @@
-@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Tiny5&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap");
-@import "tailwindcss";
-@import "tw-animate-css";
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@font-face {
+  font-family: 'Tiny5';
+  src:
+    url('/fonts/Tiny5/Tiny5-Regular.woff2') format('woff2'),
+    url('/fonts/Tiny5/Tiny5-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
 
 @custom-variant dark (&:is(.dark *));
 
@@ -12,10 +18,12 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-  --font-press-start: "Press Start 2P", fantasy;
-  --font-space-mono: "Space Mono", monospace;
-  --font-tiny5: "Tiny5", sans-serif;
-  --font-space-grotesk: "Space Grotesk", sans-serif;
+  /* Next.js fonts (from layout.tsx) */
+  --font-press-start: 'Press Start 2P', fantasy;
+  --font-space-mono: 'Space Mono', monospace;
+  --font-space-grotesk: 'Space Grotesk', sans-serif;
+  /* Local font */
+  --font-tiny5: 'Tiny5', sans-serif;
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -131,7 +139,7 @@ body {
 }
 
 .font-pixel {
-  font-family: "Press Start 2P", fantasy;
+  font-family: 'Press Start 2P', fantasy;
 }
 
 @layer base {
@@ -338,14 +346,13 @@ body {
 }
 .pixel-corners::after,
 .pixel-corners--wrapper::after {
-  content: "";
+  content: '';
   position: absolute;
   clip-path: polygon(
     evenodd,
     /* === OUTER BORDER (clockwise from top-left) === */ 0px 0px,
     /* TOP-LEFT: Sharp corner start */ calc(100% - 15px) 0px,
-    /* TOP EDGE: Moving right to start of top-right pixel corner */
-      calc(100% - 15px) 3px,
+    /* TOP EDGE: Moving right to start of top-right pixel corner */ calc(100% - 15px) 3px,
     /* TOP-RIGHT: Pixel corner step 1 */ calc(100% - 9px) 3px,
     /* TOP-RIGHT: Pixel corner step 2 */ calc(100% - 9px) 6px,
     /* TOP-RIGHT: Pixel corner step 3 */ calc(100% - 6px) 6px,
@@ -355,8 +362,7 @@ body {
     /* TOP-RIGHT: Pixel corner step 7 */ 100% 15px,
     /* TOP-RIGHT: Pixel corner end */ 100% 100%,
     /* RIGHT EDGE: Moving down to bottom-right sharp corner */ 15px 100%,
-    /* BOTTOM EDGE: Moving left from bottom-right sharp corner */ 15px
-      calc(100% - 3px),
+    /* BOTTOM EDGE: Moving left from bottom-right sharp corner */ 15px calc(100% - 3px),
     /* BOTTOM-LEFT: Pixel corner step 1 */ 9px calc(100% - 3px),
     /* BOTTOM-LEFT: Pixel corner step 2 */ 9px calc(100% - 6px),
     /* BOTTOM-LEFT: Pixel corner step 3 */ 6px calc(100% - 6px),
@@ -367,8 +373,7 @@ body {
     /* BOTTOM-LEFT: Pixel corner end */ 0px 0px,
 
     /* LEFT EDGE: Back to top-left sharp corner */
-      /* === INNER CUTOUT (clockwise from bottom-left) === */ 9px
-      calc(100% - 18px),
+      /* === INNER CUTOUT (clockwise from bottom-left) === */ 9px calc(100% - 18px),
     /* INNER BOTTOM-LEFT: Start of content area cutout */ 12px calc(100% - 18px),
     /* INNER BOTTOM: Pixel step 1 */ 12px calc(100% - 12px),
     /* INNER BOTTOM: Pixel step 2 */ 18px calc(100% - 12px),
