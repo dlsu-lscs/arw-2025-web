@@ -1,18 +1,13 @@
-"use client";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
-import { useClusterModalStore } from "../store/useClusterModalStore";
-import CloseModal from "@/components/modal/close-modal";
-import Image from "next/image";
-import { useSelectClusterStore } from "@/store/useSelectClusterStore";
+'use client';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { useClusterModalStore } from '../store/useClusterModalStore';
+import CloseModal from '@/components/modal/close-modal';
+import Image from 'next/image';
+import { useSelectClusterStore } from '@/store/useSelectClusterStore';
 
 export default function ClusterModal() {
   const { isOrgModalOpen, closeOrgModal } = useClusterModalStore();
-  const { setSelectedCluster } = useSelectClusterStore();
+  const { selectedCluster, setSelectedCluster } = useSelectClusterStore();
   return (
     <>
       <Dialog open={isOrgModalOpen} onOpenChange={closeOrgModal}>
@@ -30,13 +25,11 @@ export default function ClusterModal() {
                 {/* Clusters Title & Engage Card */}
                 <div className="flex flex-col gap-4">
                   <div className="flex flex-col gap-2">
-                    <h1 className="text-[clamp(1.5rem,4vw,1.875rem)]">
-                      Clusters!?
-                    </h1>
+                    <h1 className="text-[clamp(1.5rem,4vw,1.875rem)]">Clusters!?</h1>
                     <p className="font-space-mono text-[clamp(0.875rem,2.5vw,1rem)]">
-                      Clusters are alliances or groups of CSO-accredited
-                      organizations that share similar themes or goals. Select
-                      one that catches your eye, and find where you belong!
+                      Clusters are alliances or groups of CSO-accredited organizations that share
+                      similar themes or goals. Select one that catches your eye, and find where you
+                      belong!
                     </p>
                   </div>
                   <div>
@@ -44,7 +37,7 @@ export default function ClusterModal() {
                       className="w-full h-[200px] bg-[url('/bg/st-lasalle-bg.webp')] bg-center bg-cover bg-[#010F56]/70 hover:opacity-90 transition duration-100 bg-blend-multiply flex justify-start p-6 items-center rounded-lg text-white"
                       onClick={() => {
                         closeOrgModal();
-                        setSelectedCluster("engage");
+                        setSelectedCluster('engage');
                       }}
                     >
                       <div className="flex flex-col gap-2">
@@ -64,7 +57,7 @@ export default function ClusterModal() {
                     className="w-full h-full bg-[url('/bg/st-lasalle-bg.webp')] bg-center bg-cover bg-[#564C01]/70 hover:opacity-90 transition duration-100 bg-blend-multiply flex justify-start p-6 items-center rounded-lg text-white"
                     onClick={() => {
                       closeOrgModal();
-                      setSelectedCluster("cap13");
+                      setSelectedCluster('cap13');
                     }}
                   >
                     <button className="w-[85%] mx-auto flex flex-col gap-2">
@@ -97,15 +90,14 @@ export default function ClusterModal() {
                       className="flex flex-col gap-2"
                       onClick={() => {
                         closeOrgModal();
-                        setSelectedCluster("aspire");
+                        setSelectedCluster('aspire');
                       }}
                     >
                       <h1 className="text-left text-[clamp(1rem,2.5vw,1.5rem)] [text-shadow:_4px_4px_0px_rgba(0,0,0,1)]">
                         ASPIRE
                       </h1>
                       <p className="text-[clamp(0.65rem,1.5vw,1rem)] text-left font-space-mono font-bold leading-snug">
-                        College of Education and Special Interest and
-                        Socio-Civic Organizations
+                        College of Education and Special Interest and Socio-Civic Organizations
                       </p>
                     </button>
                   </div>
@@ -121,7 +113,7 @@ export default function ClusterModal() {
                   className="w-full h-full bg-[url('/bg/st-lasalle-bg.webp')] bg-center bg-cover bg-[#940000]/70 hover:opacity-90 transition duration-100  bg-blend-multiply flex justify-start items-center rounded-lg text-white"
                   onClick={() => {
                     closeOrgModal();
-                    setSelectedCluster("probe");
+                    setSelectedCluster('probe');
                   }}
                 >
                   <button className="w-[85%] mx-auto flex flex-col gap-2">
@@ -136,14 +128,14 @@ export default function ClusterModal() {
               </div>
               {/* ASO Card */}
               <div>
-                <div className="w-full h-full bg-[url('/bg/st-lasalle-bg.webp')] bg-center bg-cover bg-[#3FA300]/70 hover:opacity-90 transition duration-100  bg-blend-multiply flex justify-start p-6 items-center rounded-lg text-white">
-                  <button
-                    className="flex flex-col gap-2"
-                    onClick={() => {
-                      closeOrgModal();
-                      setSelectedCluster("aso");
-                    }}
-                  >
+                <div
+                  className="w-full h-full bg-[url('/bg/st-lasalle-bg.webp')] bg-center bg-cover bg-[#3FA300]/70 hover:opacity-90 transition duration-100  bg-blend-multiply flex justify-start p-6 items-center rounded-lg text-white"
+                  onClick={() => {
+                    closeOrgModal();
+                    setSelectedCluster('aso');
+                  }}
+                >
+                  <button className="flex flex-col gap-2">
                     <h1 className="text-left text-[clamp(1.25rem,4vw,1.875rem)] [text-shadow:_4px_4px_0px_rgba(0,0,0,1)]">
                       ASO
                     </h1>
@@ -158,9 +150,7 @@ export default function ClusterModal() {
             </section>
           </main>
           <footer className="flex justify-center">
-            <h3 className="font-tiny5 opacity-50">
-              Powered by La Salle Computer Society.
-            </h3>
+            <h3 className="font-tiny5 opacity-50">Powered by La Salle Computer Society.</h3>
           </footer>
         </DialogContent>
       </Dialog>
