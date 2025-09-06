@@ -69,18 +69,20 @@ export async function getServerUser(): Promise<AuthUser> {
     const accessToken = cookieStore.get('access_token');
     const refreshToken = cookieStore.get('refresh_token');
 
-    console.log('=== Token Debug Info ===');
-    console.log('Access token exists:', !!accessToken);
-    console.log('Refresh token exists:', !!refreshToken);
+    if (process.env.NODE_ENV !== 'production') {
+      console.log('=== Token Debug Info ===');
+      console.log('Access token exists:', !!accessToken);
+      console.log('Refresh token exists:', !!refreshToken);
 
-    if (accessToken) {
-      console.log('Access token length:', accessToken.value.length);
-      console.log('Access token preview:', accessToken.value.substring(0, 50) + '...');
-    }
+      if (accessToken) {
+        console.log('Access token length:', accessToken.value.length);
+        console.log('Access token preview:', accessToken.value.substring(0, 50) + '...');
+      }
 
-    if (refreshToken) {
-      console.log('Refresh token length:', refreshToken.value.length);
-      console.log('Refresh token preview:', refreshToken.value.substring(0, 50) + '...');
+      if (refreshToken) {
+        console.log('Refresh token length:', refreshToken.value.length);
+        console.log('Refresh token preview:', refreshToken.value.substring(0, 50) + '...');
+      }
     }
 
     // If no tokens at all, user needs to login
