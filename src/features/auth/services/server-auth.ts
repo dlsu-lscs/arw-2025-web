@@ -3,6 +3,17 @@ import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 import * as jose from 'jose';
 
+// User type to match HomeProps interface
+export interface User {
+  sub: string;
+  name: string;
+  picture: string;
+  needsRefresh?: boolean;
+}
+
+// Return type for auth functions that may need refresh
+export type AuthUser = User | null;
+
 // Verify and decode JWT with signature validation
 async function verifyAndDecodeJWT(token: string) {
   try {
@@ -32,6 +43,7 @@ async function verifyAndDecodeJWT(token: string) {
 
     // Verify signature and decode payload
     const { payload } = await jose.jwtVerify(token, secret);
+    console.log(payload);
     return payload;
   } catch (error) {
     console.log('JWT verification failed:', (error as Error).message || error);
@@ -59,7 +71,7 @@ function isPayloadExpired(payload: jose.JWTPayload | null) {
   return payload.exp < currentTime;
 }
 
-export async function getServerUser() {
+export async function getServerUser(): Promise<AuthUser> {
   try {
     const cookieStore = await cookies();
     const accessToken = cookieStore.get('access_token');
@@ -93,9 +105,9 @@ export async function getServerUser() {
       if (payload && !isPayloadExpired(payload)) {
         console.log('Access token is valid');
         return {
-          email: payload.sub,
-          name: payload.name,
-          // Add other fields from JWT as needed
+          sub: payload.sub as string,
+          name: payload.name as string,
+          picture: payload.picture as string,
         };
       } else {
         console.log('Access token is expired or invalid');
@@ -109,13 +121,23 @@ export async function getServerUser() {
       // Check if refresh token is a UUID (opaque token) or JWT
       if (isUUIDFormat(refreshToken.value)) {
         console.log('Refresh token is UUID format - valid for refresh');
-        return { needsRefresh: true };
+        return {
+          sub: '',
+          name: '',
+          picture: '',
+          needsRefresh: true,
+        };
       } else if (isJWTFormat(refreshToken.value)) {
         console.log('Refresh token is JWT format - verifying');
         const refreshPayload = await verifyAndDecodeJWT(refreshToken.value);
         if (refreshPayload && !isPayloadExpired(refreshPayload)) {
           console.log('Refresh token JWT is valid - needs refresh');
-          return { needsRefresh: true };
+          return {
+            sub: '',
+            name: '',
+            picture: '',
+            needsRefresh: true,
+          };
         } else {
           console.log('Refresh token JWT is expired or invalid');
         }
@@ -135,7 +157,7 @@ export async function getServerUser() {
   }
 }
 
-export async function requireAuth() {
+export async function requireAuth(): Promise<User> {
   const user = await getServerUser();
 
   if (!user) {
@@ -151,18 +173,18 @@ export async function requireAuth() {
 }
 
 // Helper function to get just the email from JWT
-export async function getServerUserEmail() {
+export async function getServerUserEmail(): Promise<string | null> {
   const user = await getServerUser();
 
   if (!user || user.needsRefresh) {
     return null;
   }
 
-  return user.email;
+  return user.sub;
 }
 
 // Helper function to check if user is authenticated (boolean)
-export async function isServerAuthenticated() {
+export async function isServerAuthenticated(): Promise<boolean> {
   const user = await getServerUser();
   return !!user && !user.needsRefresh;
 }

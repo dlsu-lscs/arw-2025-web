@@ -10,13 +10,13 @@ import {
   CarouselNextPixel,
 } from '@/components/ui/carousel';
 import { Button } from '@/components/ui/button';
-import ExpandableText from '@/components/collapsible-text';
 import CollapsibleText from '@/components/collapsible-text';
+import { useState } from 'react';
 import { SearchBar } from '@/components/search-bar';
-import { useEffect, useState } from 'react';
 import ClusterModal from '@/features/clusters/containers/cluster-modal';
 import { useClusterModalStore } from '@/features/clusters/store/useClusterModalStore';
-import api from '@/lib/axios';
+
+import { User } from '@/features/auth/services/server-auth';
 
 const dummyData = [
   {
@@ -29,7 +29,11 @@ const dummyData = [
   },
 ];
 
-export default function HomePage() {
+interface HomeProps {
+  user: User;
+}
+
+export default function HomePage({ user }: HomeProps) {
   const [selectedCluster, setSelectedCluster] = useState('');
   const { isOrgModalOpen, openOrgModal } = useClusterModalStore();
 
@@ -37,7 +41,7 @@ export default function HomePage() {
     <>
       <div className="pixel-corners--wrapper mx-auto">
         <div className="!max-w-7xl border-2 bg-white border-black p-4 !flex flex-col pixel-corners">
-          <NavBar />
+          <NavBar user={user} />
           <HighlightCard className="flex gap-4 mt-4">
             <Image
               src={'/assets/macky.svg'}

@@ -7,10 +7,11 @@ export default async function Home() {
 
   if (!user) redirect('/auth/login');
   if (user.needsRefresh) redirect('/auth/refresh');
+
   return (
     <>
       <div className="min-h-screen p-8">
-        <HomePage />
+        <HomePage user={user} />
       </div>
     </>
   );
