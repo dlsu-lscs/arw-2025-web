@@ -1,21 +1,22 @@
-'use client'
-import HighlightCard from '@/components/highlight-card'
-import NavBar from '../components/navbar'
-import Image from 'next/image'
+'use client';
+import HighlightCard from '@/components/highlight-card';
+import NavBar from '../components/navbar';
+import Image from 'next/image';
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselPreviousPixel,
   CarouselNextPixel,
-} from '@/components/ui/carousel'
-import { Button } from '@/components/ui/button'
-import ExpandableText from '@/components/collapsible-text'
-import CollapsibleText from '@/components/collapsible-text'
-import { SearchBar } from '@/components/search-bar'
-import { useEffect, useState } from 'react'
-import ClusterModal from '@/features/clusters/containers/cluster-modal'
-import { useClusterModalStore } from '@/features/clusters/store/useClusterModalStore'
+} from '@/components/ui/carousel';
+import { Button } from '@/components/ui/button';
+import ExpandableText from '@/components/collapsible-text';
+import CollapsibleText from '@/components/collapsible-text';
+import { SearchBar } from '@/components/search-bar';
+import { useEffect, useState } from 'react';
+import ClusterModal from '@/features/clusters/containers/cluster-modal';
+import { useClusterModalStore } from '@/features/clusters/store/useClusterModalStore';
+import api from '@/lib/axios';
 
 const dummyData = [
   {
@@ -26,11 +27,11 @@ const dummyData = [
     acronym: 'ENGAGE',
     name: 'Engineering Alliance Geared Towards Excellence (ENGAGE).',
   },
-]
+];
 
 export default function HomePage() {
-  const [selectedCluster, setSelectedCluster] = useState('')
-  const { isOrgModalOpen, openOrgModal } = useClusterModalStore()
+  const [selectedCluster, setSelectedCluster] = useState('');
+  const { isOrgModalOpen, openOrgModal } = useClusterModalStore();
 
   return (
     <>
@@ -73,12 +74,8 @@ export default function HomePage() {
             <CarouselContent>
               {dummyData.map(({ acronym, name }, index) => (
                 <CarouselItem key={index} className="pr-10 pl-14">
-                  <h2 className="text-center text-blue-700 text-sm sm:text-2xl">
-                    {acronym}
-                  </h2>
-                  <h4 className="text-center font-space-mono text-xs sm:text-lg">
-                    {name}
-                  </h4>
+                  <h2 className="text-center text-blue-700 text-sm sm:text-2xl">{acronym}</h2>
+                  <h4 className="text-center font-space-mono text-xs sm:text-lg">{name}</h4>
                 </CarouselItem>
               ))}
             </CarouselContent>
@@ -99,5 +96,5 @@ export default function HomePage() {
         </div>
       </div>
     </>
-  )
+  );
 }
