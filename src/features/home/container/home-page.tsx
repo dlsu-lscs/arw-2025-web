@@ -11,12 +11,15 @@ import { SearchBar } from '@/components/search-bar';
 import ClusterModal from '@/features/clusters/containers/cluster-modal';
 import { useClusterModalStore } from '@/features/clusters/store/useClusterModalStore';
 import { User } from '@/features/auth/types/user';
+import OrgsContainer from '@/features/orgs/container/orgs-container';
+import { OrgsResponse } from '@/features/orgs/types/orgs.types';
 
 interface HomeProps {
   user: User;
+  initialOrgs: OrgsResponse;
 }
 
-export default function HomePage({ user }: HomeProps) {
+export default function HomePage({ user, initialOrgs }: HomeProps) {
   const { openOrgModal } = useClusterModalStore();
 
   return (
@@ -68,6 +71,7 @@ export default function HomePage({ user }: HomeProps) {
 
           <SearchBar />
           <ClusterModal />
+          <OrgsContainer orgs={initialOrgs.content} />
         </div>
       </div>
     </>

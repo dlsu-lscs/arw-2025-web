@@ -22,15 +22,15 @@ export async function POST() {
       return NextResponse.json({ error: 'Refresh failed' }, { status: 401 });
     }
 
-    // Extract new cookies from backend response
-    const setCookieHeaders = response.headers.getSetCookie();
+    // Extract Set-Cookie headers (string)
+    const setCookieHeader = response.headers.get('set-cookie');
 
     const nextResponse = NextResponse.json({ success: true });
 
-    // Forward the new cookies to the browser
-    setCookieHeaders.forEach((cookie) => {
-      nextResponse.headers.append('Set-Cookie', cookie);
-    });
+    if (setCookieHeader) {
+      // Forward the cookie to the client
+      nextResponse.headers.append('Set-Cookie', setCookieHeader);
+    }
 
     return nextResponse;
   } catch (error) {
