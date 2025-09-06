@@ -1,19 +1,46 @@
-import api from '@/lib/axios';
+import { getCookieHeader } from '@/lib/auth-cookies';
+import axios from 'axios';
+
+const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export async function getAllClusters() {
-  const { data } = await api.get('/clusters');
+  const cookieHeader = await getCookieHeader();
 
-  return data;
+  try {
+    const { data } = await axios.get(`${BASE_URL}/api/clusters`, {
+      headers: { cookie: cookieHeader },
+    });
+    return data;
+  } catch (error) {
+    console.error('Error in getAllClusters:', error);
+    throw error;
+  }
 }
 
 export async function getClusterByID(id: number) {
-  const { data } = await api.get(`/clusters/${id}`);
+  const cookieHeader = await getCookieHeader();
 
-  return data;
+  try {
+    const { data } = await axios.get(`${BASE_URL}/api/clusters/${id}`, {
+      headers: { cookie: cookieHeader },
+    });
+    return data;
+  } catch (error) {
+    console.error('Error in getClusterByID:', error);
+    throw error;
+  }
 }
 
 export async function getClusterByName(name: string) {
-  const { data } = await api.get(`/clusters/name/${name}`);
+  const cookieHeader = await getCookieHeader();
 
-  return data;
+  try {
+    const { data } = await axios.get(`${BASE_URL}/api/clusters/name/${name}`, {
+      headers: { cookie: cookieHeader },
+    });
+    return data;
+  } catch (error) {
+    console.error('Error in getClusterByName:', error);
+    throw error;
+  }
 }
