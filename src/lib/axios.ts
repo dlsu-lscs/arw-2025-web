@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000/api',
+  baseURL: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080',
   withCredentials: true,
 });
 
@@ -14,12 +14,17 @@ api.interceptors.response.use(
       originalRequest._retry = true;
 
       try {
-        await api.post('/auth/refresh');
+        // Use your Next.js API route for refresh
+        await fetch('/api/auth/refresh', {
+          method: 'POST',
+          credentials: 'include',
+        });
 
+        // Retry the original request
         return api(originalRequest);
-      } catch (refreshError) {
+      } catch {
         console.error('Session expired, redirecting to login...');
-        window.location.href = '/login';
+        window.location.href = '/auth/login';
       }
     }
     return Promise.reject(error);

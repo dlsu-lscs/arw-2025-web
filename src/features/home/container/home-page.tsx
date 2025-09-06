@@ -2,21 +2,28 @@
 import HighlightCard from '@/components/highlight-card';
 import NavBar from '../components/navbar';
 import Image from 'next/image';
+import ClusterCarousel from '../components/cluster-carousel';
+
 import { Button } from '@/components/ui/button';
 import CollapsibleText from '@/components/collapsible-text';
+
 import { SearchBar } from '@/components/search-bar';
 import ClusterModal from '@/features/clusters/containers/cluster-modal';
 import { useClusterModalStore } from '@/features/clusters/store/useClusterModalStore';
-import ClusterCarousel from '../components/cluster-carousel';
+import { User } from '@/features/auth/types/user';
 
-export default function HomePage() {
+interface HomeProps {
+  user: User;
+}
+
+export default function HomePage({ user }: HomeProps) {
   const { openOrgModal } = useClusterModalStore();
 
   return (
     <>
       <div className="pixel-corners--wrapper mx-auto">
         <div className="!max-w-7xl border-2 bg-white border-black p-4 !flex flex-col pixel-corners">
-          <NavBar />
+          <NavBar user={user} />
           <HighlightCard className="flex gap-4 mt-4">
             <Image
               src={'/assets/macky.svg'}
