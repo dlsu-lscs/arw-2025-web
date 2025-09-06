@@ -9,7 +9,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { MdMenu } from 'react-icons/md';
-import { User } from '@/features/auth/services/server-auth';
+import { User } from '@/features/auth/types/user';
 import { useRouter } from 'next/navigation';
 import api from '@/lib/axios';
 

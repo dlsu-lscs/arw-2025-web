@@ -2,17 +2,7 @@
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 import * as jose from 'jose';
-
-// User type to match HomeProps interface
-export interface User {
-  sub: string;
-  name: string;
-  picture: string;
-  needsRefresh?: boolean;
-}
-
-// Return type for auth functions that may need refresh
-export type AuthUser = User | null;
+import { User, AuthUser } from '@/features/auth/types/user';
 
 // Verify and decode JWT with signature validation
 async function verifyAndDecodeJWT(token: string) {

@@ -15,8 +15,7 @@ import { useState } from 'react';
 import { SearchBar } from '@/components/search-bar';
 import ClusterModal from '@/features/clusters/containers/cluster-modal';
 import { useClusterModalStore } from '@/features/clusters/store/useClusterModalStore';
-
-import { User } from '@/features/auth/services/server-auth';
+import { User } from '@/features/auth/types/user';
 
 const dummyData = [
   {
