@@ -33,7 +33,9 @@ async function verifyAndDecodeJWT(token: string) {
 
     // Verify signature and decode payload
     const { payload } = await jose.jwtVerify(token, secret);
-    console.log(payload);
+    if (process.env.NODE_ENV !== 'production') {
+      console.log(payload);
+    }
     return payload;
   } catch (error) {
     console.log('JWT verification failed:', (error as Error).message || error);
