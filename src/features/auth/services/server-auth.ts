@@ -27,9 +27,10 @@ async function verifyAndDecodeJWT(token: string) {
       return null;
     }
 
-    const secret = new TextEncoder().encode(
-      process.env.JWT_SECRET || 'your-secret-key' // Should match your backend secret
-    );
+    if (!process.env.JWT_SECRET) {
+      throw new Error('JWT_SECRET environment variable is not set. Refusing to verify JWT with insecure fallback secret.');
+    }
+    const secret = new TextEncoder().encode(process.env.JWT_SECRET);
 
     // Verify signature and decode payload
     const { payload } = await jose.jwtVerify(token, secret);
