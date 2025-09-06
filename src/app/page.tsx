@@ -9,12 +9,11 @@ export default async function Home() {
   if (!user) redirect('/auth/login');
   if (user.needsRefresh) redirect('/auth/refresh');
 
-  const orgs = await getAllOrgs('', 0, 10);
-  console.log(orgs);
+  const orgs = await getAllOrgs('', 0, 5);
   return (
     <>
       <div className="min-h-screen p-8">
-        <HomePage user={user} />
+        <HomePage user={user} initialOrgs={orgs} />
       </div>
     </>
   );
