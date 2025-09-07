@@ -6,7 +6,6 @@ type OrgsContainerProps = {
 };
 
 export default function OrgsContainer({ orgs }: OrgsContainerProps) {
-  console.log(orgs);
   return (
     <>
       <div className="flex flex-col gap-4 mt-8">
