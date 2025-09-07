@@ -1,5 +1,6 @@
 import { cn } from '@/lib/utils';
 import { OrganizationType } from '../types/orgs.types';
+import { returnColorFromCluster } from '@/lib/helpers';
 
 interface OrgCardProps {
   className?: string;
@@ -11,10 +12,12 @@ export default function OrgCard({ className, org }: OrgCardProps) {
     <>
       <div
         className={cn(
-          `flex relative rounded-xl items-center w-full p-4 gap-2 bg-cover bg-center bg-black`,
+          `flex relative rounded-xl items-center w-full p-4 gap-2 bg-cover bg-center ${returnColorFromCluster(org.cluster.name.toLowerCase())}`,
           className
         )}
-        style={{ backgroundImage: `url('${org.publications.mainPubUrl}')` }}
+        style={{
+          backgroundImage: `url('${org.publications.mainPubUrl ?? '/bg/st-lasalle-bg.webp'}')`,
+        }}
       >
         <div
           className="w-full h-full absolute rounded-xl left-0"
