@@ -13,6 +13,11 @@ import { useClusterModalStore } from '@/features/clusters/store/useClusterModalS
 import { User } from '@/features/auth/types/user';
 import OrgsContainer from '@/features/orgs/container/orgs-container';
 import { OrgsResponse } from '@/features/orgs/types/orgs.types';
+import { useInfiniteQuery } from '@tanstack/react-query';
+import { allOrgsQueryOptions } from '@/features/orgs/queries/orgs.query.options';
+import cluster from 'cluster';
+import { useSelectClusterStore } from '@/store/useSelectClusterStore';
+import { useMemo } from 'react';
 
 interface HomeProps {
   user: User;
@@ -21,6 +26,12 @@ interface HomeProps {
 
 export default function HomePage({ user, initialOrgs }: HomeProps) {
   const { openOrgModal } = useClusterModalStore();
+  const { selectedCluster } = useSelectClusterStore();
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, status } = useInfiniteQuery(
+    allOrgsQueryOptions(selectedCluster, 10, selectedCluster === 'all' ? initialOrgs : undefined)
+  );
+
+  const orgs = useMemo(() => data?.pages.flatMap((page) => page.content) ?? [], [data]);
 
   return (
     <>
@@ -71,7 +82,7 @@ export default function HomePage({ user, initialOrgs }: HomeProps) {
 
           <SearchBar />
           <ClusterModal />
-          <OrgsContainer orgs={initialOrgs.content} />
+          <OrgsContainer orgs={orgs} />
         </div>
       </div>
     </>
