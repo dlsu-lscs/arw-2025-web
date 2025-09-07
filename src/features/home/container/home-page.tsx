@@ -13,6 +13,7 @@ import { useClusterModalStore } from '@/features/clusters/store/useClusterModalS
 import { User } from '@/features/auth/types/user';
 import OrgsContainer from '@/features/orgs/container/orgs-container';
 import { OrgsResponse } from '@/features/orgs/types/orgs.types';
+import OrgsModal from '@/features/orgs/container/orgs-modal';
 
 interface HomeProps {
   user: User;
@@ -20,7 +21,7 @@ interface HomeProps {
 }
 
 export default function HomePage({ user, initialOrgs }: HomeProps) {
-  const { openOrgModal } = useClusterModalStore();
+  const { openClusterModal } = useClusterModalStore();
 
   return (
     <>
@@ -64,13 +65,14 @@ export default function HomePage({ user, initialOrgs }: HomeProps) {
           <Button
             className="font-space-mono bg-[#D8E6FF] rounded-none border-black text-sm sm:text-base font-bold self-center mt-4 mb-8"
             variant="outline"
-            onClick={openOrgModal}
+            onClick={openClusterModal}
           >
             DISCOVER THE CLUSTERS
           </Button>
 
           <SearchBar />
           <ClusterModal />
+          <OrgsModal />
           <OrgsContainer orgs={initialOrgs.content} />
         </div>
       </div>

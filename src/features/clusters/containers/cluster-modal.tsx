@@ -6,11 +6,11 @@ import Image from 'next/image';
 import { useSelectClusterStore } from '@/store/useSelectClusterStore';
 
 export default function ClusterModal() {
-  const { isOrgModalOpen, closeOrgModal } = useClusterModalStore();
-  const { selectedCluster, setSelectedCluster } = useSelectClusterStore();
+  const { isClusterModalOpen, closeClusterModal, openClusterModal } = useClusterModalStore();
+  const { setSelectedCluster } = useSelectClusterStore();
   return (
     <>
-      <Dialog open={isOrgModalOpen} onOpenChange={closeOrgModal}>
+      <Dialog open={isClusterModalOpen} onOpenChange={openClusterModal}>
         <DialogContent className="[&>button:last-child]:hidden pixel-corner--modal overflow-y-scroll">
           <DialogHeader>
             <DialogTitle>
@@ -36,7 +36,7 @@ export default function ClusterModal() {
                     <button
                       className="w-full h-[200px] bg-[url('/bg/st-lasalle-bg.webp')] bg-center bg-cover bg-[#010F56]/70 hover:opacity-90 transition duration-100 bg-blend-multiply flex justify-start p-6 items-center rounded-lg text-white"
                       onClick={() => {
-                        closeOrgModal();
+                        closeClusterModal();
                         setSelectedCluster('engage');
                       }}
                     >
@@ -56,7 +56,7 @@ export default function ClusterModal() {
                   <div
                     className="w-full h-full bg-[url('/bg/st-lasalle-bg.webp')] bg-center bg-cover bg-[#564C01]/70 hover:opacity-90 transition duration-100 bg-blend-multiply flex justify-start p-6 items-center rounded-lg text-white"
                     onClick={() => {
-                      closeOrgModal();
+                      closeClusterModal();
                       setSelectedCluster('cap13');
                     }}
                   >
@@ -89,7 +89,7 @@ export default function ClusterModal() {
                     <button
                       className="flex flex-col gap-2"
                       onClick={() => {
-                        closeOrgModal();
+                        closeClusterModal();
                         setSelectedCluster('aspire');
                       }}
                     >
@@ -112,7 +112,7 @@ export default function ClusterModal() {
                 <div
                   className="w-full h-full bg-[url('/bg/st-lasalle-bg.webp')] bg-center bg-cover bg-[#940000]/70 hover:opacity-90 transition duration-100  bg-blend-multiply flex justify-start items-center rounded-lg text-white"
                   onClick={() => {
-                    closeOrgModal();
+                    closeClusterModal();
                     setSelectedCluster('probe');
                   }}
                 >
@@ -131,7 +131,7 @@ export default function ClusterModal() {
                 <div
                   className="w-full h-full bg-[url('/bg/st-lasalle-bg.webp')] bg-center bg-cover bg-[#3FA300]/70 hover:opacity-90 transition duration-100  bg-blend-multiply flex justify-start p-6 items-center rounded-lg text-white"
                   onClick={() => {
-                    closeOrgModal();
+                    closeClusterModal();
                     setSelectedCluster('aso');
                   }}
                 >
