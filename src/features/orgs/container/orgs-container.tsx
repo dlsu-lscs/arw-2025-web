@@ -1,3 +1,4 @@
+import { shuffleArray } from '@/lib/helpers';
 import OrgCard from '../components/org-card';
 import { OrganizationType } from '../types/orgs.types';
 
@@ -6,11 +7,11 @@ type OrgsContainerProps = {
 };
 
 export default function OrgsContainer({ orgs }: OrgsContainerProps) {
-  console.log(orgs);
+  const shuffledOrgs: OrganizationType[] = shuffleArray(orgs);
   return (
     <>
       <div className="flex flex-col gap-4 mt-8">
-        {orgs.map((org, index) => {
+        {shuffledOrgs.map((org, index) => {
           return <OrgCard key={index} org={org} />;
         })}
       </div>
