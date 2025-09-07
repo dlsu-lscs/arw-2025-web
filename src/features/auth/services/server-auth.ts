@@ -28,7 +28,9 @@ async function verifyAndDecodeJWT(token: string) {
     }
 
     if (!process.env.JWT_SECRET) {
-      throw new Error('JWT_SECRET environment variable is not set. Refusing to verify JWT with insecure fallback secret.');
+      throw new Error(
+        'JWT_SECRET environment variable is not set. Refusing to verify JWT with insecure fallback secret.'
+      );
     }
     const secret = new TextEncoder().encode(process.env.JWT_SECRET);
 
@@ -164,6 +166,7 @@ export async function requireAuth(): Promise<User> {
     redirect('/auth/refresh');
   }
 
+  // At this point, we have a valid user without needsRefresh
   return user;
 }
 
