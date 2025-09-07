@@ -7,6 +7,8 @@ import {
 import { getAllOrgs, getSearchOrg } from '../services/client.orgs.services';
 import cluster from 'cluster';
 import { OrgsResponse } from '../types/orgs.types';
+import { queryOptions } from '@tanstack/react-query';
+import { getSearchOrg } from '../services/client.orgs.services';
 
 export const orgSearchQueryOptions = (search: string) =>
   queryOptions({

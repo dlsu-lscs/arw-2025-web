@@ -12,6 +12,7 @@ export const returnColorFromCluster = (cluster: string) => {
       return 'bg-[#3FA300]/70';
   }
 };
+
 export const shuffleArray = <T>(array: T[]): T[] => {
   const shuffledArray = [...array];
   for (let i = shuffledArray.length - 1; i > 0; i--) {
