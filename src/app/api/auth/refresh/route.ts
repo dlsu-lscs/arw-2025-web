@@ -38,36 +38,31 @@ export async function POST() {
     if (!response.ok) {
       console.log('❌ Backend refresh failed');
 
-      // If refresh fails with 401 or 404, clear both tokens from client
-      if (response.status === 401 || response.status === 404) {
-        console.log('🧹 Clearing tokens due to invalid refresh token (401/404)');
+      // If refresh fails , clear both tokens from client
+      console.log('🧹 Clearing tokens due to invalid refresh token (401/404)');
 
-        const nextResponse = NextResponse.json({ error: 'Refresh failed' }, { status: 401 });
+      const nextResponse = NextResponse.json({ error: 'Refresh failed' }, { status: 401 });
 
-        // Clear access_token cookie
-        nextResponse.cookies.set('access_token', '', {
-          httpOnly: true,
-          secure: process.env.NODE_ENV === 'production',
-          sameSite: 'lax',
-          maxAge: 0, // Expire immediately
-          path: '/',
-        });
+      // Clear access_token cookie
+      nextResponse.cookies.set('access_token', '', {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'lax',
+        maxAge: 0, // Expire immediately
+        path: '/',
+      });
 
-        // Clear refresh_token cookie
-        nextResponse.cookies.set('refresh_token', '', {
-          httpOnly: true,
-          secure: process.env.NODE_ENV === 'production',
-          sameSite: 'lax',
-          maxAge: 0, // Expire immediately
-          path: '/',
-        });
+      // Clear refresh_token cookie
+      nextResponse.cookies.set('refresh_token', '', {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'lax',
+        maxAge: 0, // Expire immediately
+        path: '/',
+      });
 
-        console.log('✅ Both access_token and refresh_token cookies cleared');
-        return nextResponse;
-      }
-
-      console.log('❌ Backend refresh failed with status:', response.status);
-      return NextResponse.json({ error: 'Refresh failed' }, { status: 401 });
+      console.log('✅ Both access_token and refresh_token cookies cleared');
+      return nextResponse;
     }
 
     console.log('✅ Backend refresh successful');
