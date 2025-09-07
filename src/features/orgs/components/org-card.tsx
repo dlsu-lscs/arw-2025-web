@@ -1,5 +1,4 @@
 import { cn } from '@/lib/utils';
-import Image from 'next/image';
 import { OrganizationType } from '../types/orgs.types';
 
 interface OrgCardProps {
@@ -40,7 +39,7 @@ export default function OrgCard({ className, org }: OrgCardProps) {
 
           <span>
             <h3 className="hidden sm:block md:text-xl lg:text-2xl font-press-start">{org.name}</h3>
-            <p className="font-tiny-5 lg:text-xl md:text-lg">{org.about}</p>
+            <p className="font-tiny5 lg:text-xl md:text-lg">{org.about}</p>
           </span>
         </div>
       </div>
