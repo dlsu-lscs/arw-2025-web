@@ -43,25 +43,18 @@ export async function POST() {
 
       const nextResponse = NextResponse.json({ error: 'Refresh failed' }, { status: 401 });
 
-      // Clear access_token cookie
-      nextResponse.cookies.set('access_token', '', {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
-        sameSite: 'lax',
-        maxAge: 0, // Expire immediately
-        path: '/',
+      // Clear cookies using Set-Cookie headers for better compatibility
+      const cookieOptions = `HttpOnly; Path=/; SameSite=Lax; Max-Age=0${process.env.NODE_ENV === 'production' ? '; Secure' : ''}`;
+
+      nextResponse.headers.append('Set-Cookie', `access_token=; ${cookieOptions}`);
+      nextResponse.headers.append('Set-Cookie', `refresh_token=; ${cookieOptions}`);
+
+      console.log('✅ Both access_token and refresh_token cookies cleared via Set-Cookie headers');
+      console.log('Cookie clear headers:', {
+        accessToken: `access_token=; ${cookieOptions}`,
+        refreshToken: `refresh_token=; ${cookieOptions}`,
       });
 
-      // Clear refresh_token cookie
-      nextResponse.cookies.set('refresh_token', '', {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
-        sameSite: 'lax',
-        maxAge: 0, // Expire immediately
-        path: '/',
-      });
-
-      console.log('✅ Both access_token and refresh_token cookies cleared');
       return nextResponse;
     }
 
@@ -95,6 +88,19 @@ export async function POST() {
       message: error instanceof Error ? error.message : 'Unknown error',
       stack: error instanceof Error ? error.stack : undefined,
     });
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
+
+    console.log('🧹 Clearing tokens due to unexpected error');
+
+    const nextResponse = NextResponse.json({ error: 'Internal server error' }, { status: 500 });
+
+    // Clear cookies on any error
+    const cookieOptions = `HttpOnly; Path=/; SameSite=Lax; Max-Age=0${process.env.NODE_ENV === 'production' ? '; Secure' : ''}`;
+
+    nextResponse.headers.append('Set-Cookie', `access_token=; ${cookieOptions}`);
+    nextResponse.headers.append('Set-Cookie', `refresh_token=; ${cookieOptions}`);
+
+    console.log('✅ Cookies cleared due to error');
+
+    return nextResponse;
   }
 }
