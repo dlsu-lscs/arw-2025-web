@@ -41,7 +41,7 @@ export default function NavBar({ user }: NavProps) {
           <ul>LSCS</ul>
           <ul>FAQ</ul>
           <ul>
-            <DropdownMenu>
+            <DropdownMenu modal={false}>
               <DropdownMenuTrigger>
                 <Avatar className="hover:cursor-pointer">
                   <AvatarImage src={user.picture} />
