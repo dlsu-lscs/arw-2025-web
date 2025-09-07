@@ -19,6 +19,31 @@ export async function POST() {
     });
 
     if (!response.ok) {
+      // If refresh fails with 401 or 404, clear both tokens from client
+      if (response.status === 401 || response.status === 404) {
+        const nextResponse = NextResponse.json({ error: 'Refresh failed' }, { status: 401 });
+
+        // Clear access_token cookie
+        nextResponse.cookies.set('access_token', '', {
+          httpOnly: true,
+          secure: process.env.NODE_ENV === 'production',
+          sameSite: 'lax',
+          maxAge: 0, // Expire immediately
+          path: '/',
+        });
+
+        // Clear refresh_token cookie
+        nextResponse.cookies.set('refresh_token', '', {
+          httpOnly: true,
+          secure: process.env.NODE_ENV === 'production',
+          sameSite: 'lax',
+          maxAge: 0, // Expire immediately
+          path: '/',
+        });
+
+        return nextResponse;
+      }
+
       return NextResponse.json({ error: 'Refresh failed' }, { status: 401 });
     }
 
