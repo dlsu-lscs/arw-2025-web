@@ -15,9 +15,9 @@ import OrgsContainer from '@/features/orgs/container/orgs-container';
 import { OrgsResponse } from '@/features/orgs/types/orgs.types';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { allOrgsQueryOptions } from '@/features/orgs/queries/orgs.query.options';
+import { usePrefetchOrgClusters } from '@/features/orgs/hooks/use-prefetch-org-clusters';
 import { useSelectClusterStore } from '@/store/useSelectClusterStore';
 import { useMemo } from 'react';
-import { usePrefetchOrgClusters } from '@/features/orgs/hooks/use-prefetch-org-clusters';
 
 interface HomeProps {
   user: User;
