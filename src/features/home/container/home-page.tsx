@@ -18,7 +18,6 @@ import { allOrgsQueryOptions } from '@/features/orgs/queries/orgs.query.options'
 import { usePrefetchOrgClusters } from '@/features/orgs/hooks/use-prefetch-org-clusters';
 import { useSelectClusterStore } from '@/store/useSelectClusterStore';
 import { useMemo } from 'react';
-import OrgsModal from '@/features/orgs/container/orgs-modal';
 
 interface HomeProps {
   user: User;
@@ -97,7 +96,6 @@ export default function HomePage({ user, initialOrgs }: HomeProps) {
 
           <SearchBar />
           <ClusterModal />
-          <OrgsModal />
           <OrgsContainer orgs={orgs} />
           <Button
             className="mt-2 text-xs sm:text-base"

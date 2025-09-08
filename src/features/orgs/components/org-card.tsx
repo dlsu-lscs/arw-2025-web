@@ -6,9 +6,11 @@ import { useOrgsModalStore } from '../store/useOrgsModalStore';
 interface OrgCardProps {
   className?: string;
   org: OrganizationType;
+  onClick?: () => void;
+  onMouseEnter?: () => void;
 }
 
-export default function OrgCard({ className, org }: OrgCardProps) {
+export default function OrgCard({ className, org, onClick, onMouseEnter }: OrgCardProps) {
   const { openOrgsModal } = useOrgsModalStore();
   return (
     <>
@@ -20,7 +22,8 @@ export default function OrgCard({ className, org }: OrgCardProps) {
         style={{
           backgroundImage: `url('${org.publications.mainPubUrl ?? '/bg/st-lasalle-bg.webp'}')`,
         }}
-        onClick={openOrgsModal}
+        onClick={onClick}
+        onMouseEnter={onMouseEnter}
       >
         <div
           className="w-full h-full absolute rounded-xl left-0"
