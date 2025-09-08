@@ -1,4 +1,20 @@
 import api from '@/lib/axios';
+import { OrgsResponse } from '../types/orgs.types';
+
+export async function getAllOrgs(cluster?: string, page = 0, pageSize = 10): Promise<OrgsResponse> {
+  const params: Record<string, string | number> = { page, pageSize };
+  if (cluster && cluster !== 'all') params.cluster = cluster;
+
+  console.log(params);
+
+  try {
+    const { data } = await api.get('/api/orgs', { params });
+    return data;
+  } catch (error) {
+    console.error('Error in getAllOrgs:', error);
+    throw error;
+  }
+}
 
 export async function getSearchOrg(q: string, page = 0, pageSize = 10) {
   const params: Record<string, string | number> = { q, page, pageSize };
