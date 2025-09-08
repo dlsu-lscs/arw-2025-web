@@ -18,7 +18,6 @@ import { allOrgsQueryOptions } from '@/features/orgs/queries/orgs.query.options'
 import { usePrefetchOrgClusters } from '@/features/orgs/hooks/use-prefetch-org-clusters';
 import { useSelectClusterStore } from '@/store/useSelectClusterStore';
 import { useMemo } from 'react';
-
 interface HomeProps {
   user: User;
   initialOrgs: OrgsResponse;
