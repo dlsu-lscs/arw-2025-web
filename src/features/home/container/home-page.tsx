@@ -31,7 +31,14 @@ export default function HomePage({ user, initialOrgs }: HomeProps) {
     allOrgsQueryOptions(selectedCluster, 10, selectedCluster === 'all' ? initialOrgs : undefined)
   );
 
-  const orgs = useMemo(() => data?.pages.flatMap((page) => page.content) ?? [], [data]);
+  const orgs = useMemo(() => {
+    console.log('🔍 Debug - Data structure:', data);
+    console.log('🔍 Debug - Number of pages:', data?.pages.length);
+    data?.pages.forEach((page, index) => {
+      console.log(`🔍 Debug - Page ${index} content length:`, page.content.length);
+    });
+    return data?.pages.flatMap((page) => page.content) ?? [];
+  }, [data]);
 
   return (
     <>
@@ -83,6 +90,18 @@ export default function HomePage({ user, initialOrgs }: HomeProps) {
           <SearchBar />
           <ClusterModal />
           <OrgsContainer orgs={orgs} />
+          <Button
+            className="mt-2 text-xs sm:text-base"
+            onClick={() => {
+              console.log('🔄 Fetching next page...');
+              console.log('🔍 Current pages count:', data?.pages.length);
+              console.log('🔍 Has next page:', hasNextPage);
+              fetchNextPage();
+            }}
+            disabled={!hasNextPage || isFetchingNextPage}
+          >
+            {isFetchingNextPage ? 'Loading...' : 'See More...'}
+          </Button>
         </div>
       </div>
     </>

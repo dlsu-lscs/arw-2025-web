@@ -7,8 +7,6 @@ import {
 import { getAllOrgs, getSearchOrg } from '../services/client.orgs.services';
 import cluster from 'cluster';
 import { OrgsResponse } from '../types/orgs.types';
-import { queryOptions } from '@tanstack/react-query';
-import { getSearchOrg } from '../services/client.orgs.services';
 
 export const orgSearchQueryOptions = (search: string) =>
   queryOptions({
@@ -16,19 +14,23 @@ export const orgSearchQueryOptions = (search: string) =>
     queryFn: () => getSearchOrg(search),
   });
 
-export const allOrgsQueryOptions = (cluster?: string, pageSize = 10, initalOrgs?: OrgsResponse) =>
+export const allOrgsQueryOptions = (cluster?: string, pageSize = 10, initialOrgs?: OrgsResponse) =>
   infiniteQueryOptions({
-    queryKey: ['orgs', cluster],
+    queryKey: ['orgs', { cluster }],
     queryFn: ({ pageParam = 0 }: QueryFunctionContext) =>
       getAllOrgs(cluster, pageParam as number, pageSize),
     initialPageParam: 0,
-    getNextPageParam: (lastPage: any) => {
+    getNextPageParam: (lastPage: OrgsResponse) => {
       const { number, totalPages } = lastPage.page;
       return number + 1 < totalPages ? number + 1 : undefined;
     },
-    initialData: initalOrgs
+    getPreviousPageParam: (firstPage: OrgsResponse) => {
+      const { number } = firstPage.page;
+      return number > 0 ? number - 1 : undefined;
+    },
+    initialData: initialOrgs
       ? {
-          pages: [initalOrgs],
+          pages: [initialOrgs],
           pageParams: [0],
         }
       : undefined,

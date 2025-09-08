@@ -10,23 +10,38 @@ api.interceptors.response.use(
   async (error) => {
     const originalRequest = error.config;
 
-    if (error.response?.status === 401 && !originalRequest._retry) {
+    if (!originalRequest._retry) {
       originalRequest._retry = true;
 
       try {
+        console.log('🔄 401 detected, attempting token refresh...');
+
         // Use your Next.js API route for refresh
-        await fetch('/api/auth/refresh', {
+        const refreshResponse = await fetch('/api/auth/refresh', {
           method: 'POST',
           credentials: 'include',
         });
 
-        // Retry the original request
-        return api(originalRequest);
-      } catch {
-        console.error('Session expired, redirecting to login...');
-        window.location.href = '/auth/login';
+        if (refreshResponse.ok) {
+          console.log('✅ Token refresh successful, retrying original request');
+          // Retry the original request with new tokens
+          return api(originalRequest);
+        } else {
+          console.log('❌ Token refresh failed:', refreshResponse.status);
+          throw new Error('Refresh failed');
+        }
+      } catch (refreshError) {
+        console.error('💥 Session expired, redirecting to login...', refreshError);
+
+        // Use router in client-side, fallback to window.location
+        if (typeof window !== 'undefined') {
+          window.location.href = '/auth/login';
+        }
+
+        return Promise.reject(new Error('Session expired'));
       }
     }
+
     return Promise.reject(error);
   }
 );

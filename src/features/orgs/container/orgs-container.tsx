@@ -7,7 +7,7 @@ type OrgsContainerProps = {
 };
 
 export default function OrgsContainer({ orgs }: OrgsContainerProps) {
-  const shuffledOrgs: OrganizationType[] = shuffleArray(orgs);
+  const shuffledOrgs: OrganizationType[] = orgs;
   return (
     <>
       <div className="flex flex-col gap-4 mt-8">
