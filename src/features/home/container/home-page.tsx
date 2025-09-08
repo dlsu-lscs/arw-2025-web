@@ -15,9 +15,9 @@ import OrgsContainer from '@/features/orgs/container/orgs-container';
 import { OrgsResponse } from '@/features/orgs/types/orgs.types';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { allOrgsQueryOptions } from '@/features/orgs/queries/orgs.query.options';
-import cluster from 'cluster';
 import { useSelectClusterStore } from '@/store/useSelectClusterStore';
 import { useMemo } from 'react';
+import { usePrefetchOrgClusters } from '@/features/orgs/hooks/use-prefetch-org-clusters';
 
 interface HomeProps {
   user: User;
@@ -27,15 +27,22 @@ interface HomeProps {
 export default function HomePage({ user, initialOrgs }: HomeProps) {
   const { openOrgModal } = useClusterModalStore();
   const { selectedCluster } = useSelectClusterStore();
-  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, status } = useInfiniteQuery(
+
+  // Prefetch all cluster types to eliminate loading when switching
+  usePrefetchOrgClusters();
+
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage } = useInfiniteQuery(
     allOrgsQueryOptions(selectedCluster, 10, selectedCluster === 'all' ? initialOrgs : undefined)
   );
 
   const orgs = useMemo(() => {
-    console.log('🔍 Debug - Data structure:', data);
-    console.log('🔍 Debug - Number of pages:', data?.pages.length);
+    if (process.env.NODE_ENV !== 'production') {
+      console.log('🔍 Debug - Data structure:', data);
+      console.log('🔍 Debug - Number of pages:', data?.pages.length);
+    }
     data?.pages.forEach((page, index) => {
-      console.log(`🔍 Debug - Page ${index} content length:`, page.content.length);
+      if (process.env.NODE_ENV !== 'production')
+        console.log(`🔍 Debug - Page ${index} content length:`, page.content.length);
     });
     return data?.pages.flatMap((page) => page.content) ?? [];
   }, [data]);
@@ -104,6 +111,8 @@ export default function HomePage({ user, initialOrgs }: HomeProps) {
           </Button>
         </div>
       </div>
+
+      {/* Debug panel - remove this in production */}
     </>
   );
 }
