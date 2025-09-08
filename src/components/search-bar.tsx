@@ -13,6 +13,7 @@ import { useQuery } from '@tanstack/react-query';
 import { orgSearchQueryOptions } from '@/features/orgs/queries/orgs.query.options';
 import { OrganizationType } from '@/features/orgs/types/orgs.types';
 import OrgCard from '@/features/orgs/components/org-card';
+import OrgsContainer from '@/features/orgs/container/orgs-container';
 
 const FormSchema = z.object({
   search: z.string().min(1, 'Search term is required').trim(),
@@ -111,9 +112,7 @@ export function SearchBar() {
             {searchResults && searchResults.content && searchResults.content.length > 0 ? (
               <div className="space-y-2 p-2">
                 <h3 className="font-semibold text-sm text-gray-700 px-2">Search Results</h3>
-                {searchResults.content.map((org: OrganizationType) => (
-                  <OrgCard key={org.id} org={org}></OrgCard>
-                ))}
+                <OrgsContainer orgs={searchResults.content as OrganizationType[]} />
               </div>
             ) : searchResults && isSearchTriggered ? (
               <div className="p-4 text-center text-gray-500">

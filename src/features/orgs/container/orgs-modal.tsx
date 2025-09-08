@@ -29,7 +29,13 @@ export default function OrgsModal({ org, isLoading, isError }: OrgsModalProps) {
             {/* LEFT SECTION */}
             <section className="flex flex-col gap-8 md:gap-10">
               <div className="mb-4 md:mb-8">
-                <CloseModal className="text-[#0F0092] text-2xl" />
+                <CloseModal
+                  className="
+        text-[#0F0092] 
+        text-xl sm:text-2xl md:text-3xl  
+       
+      "
+                />
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
