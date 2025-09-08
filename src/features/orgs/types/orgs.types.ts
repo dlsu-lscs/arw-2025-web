@@ -1,3 +1,4 @@
+import type { InfiniteData } from '@tanstack/react-query';
 import { ClusterType } from '@/features/clusters/types/cluster.types';
 import { CollegeType } from './colleges.types';
 import { PublicationsType } from './pubs.types';
@@ -30,3 +31,5 @@ export type OrganizationType = {
   college: CollegeType;
   publications: PublicationsType;
 };
+
+export type OrgsInfiniteData = InfiniteData<OrgsResponse>;

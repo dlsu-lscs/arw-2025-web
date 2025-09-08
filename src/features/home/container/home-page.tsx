@@ -13,6 +13,11 @@ import { useClusterModalStore } from '@/features/clusters/store/useClusterModalS
 import { User } from '@/features/auth/types/user';
 import OrgsContainer from '@/features/orgs/container/orgs-container';
 import { OrgsResponse } from '@/features/orgs/types/orgs.types';
+import { useInfiniteQuery } from '@tanstack/react-query';
+import { allOrgsQueryOptions } from '@/features/orgs/queries/orgs.query.options';
+import { usePrefetchOrgClusters } from '@/features/orgs/hooks/use-prefetch-org-clusters';
+import { useSelectClusterStore } from '@/store/useSelectClusterStore';
+import { useMemo } from 'react';
 import OrgsModal from '@/features/orgs/container/orgs-modal';
 
 interface HomeProps {
@@ -22,6 +27,26 @@ interface HomeProps {
 
 export default function HomePage({ user, initialOrgs }: HomeProps) {
   const { openClusterModal } = useClusterModalStore();
+  const { selectedCluster } = useSelectClusterStore();
+
+  // Prefetch all cluster types to eliminate loading when switching
+  usePrefetchOrgClusters();
+
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage } = useInfiniteQuery(
+    allOrgsQueryOptions(selectedCluster, 10, selectedCluster === 'all' ? initialOrgs : undefined)
+  );
+
+  const orgs = useMemo(() => {
+    if (process.env.NODE_ENV !== 'production') {
+      console.log('🔍 Debug - Data structure:', data);
+      console.log('🔍 Debug - Number of pages:', data?.pages.length);
+    }
+    data?.pages.forEach((page, index) => {
+      if (process.env.NODE_ENV !== 'production')
+        console.log(`🔍 Debug - Page ${index} content length:`, page.content.length);
+    });
+    return data?.pages.flatMap((page) => page.content) ?? [];
+  }, [data]);
 
   return (
     <>
@@ -73,9 +98,23 @@ export default function HomePage({ user, initialOrgs }: HomeProps) {
           <SearchBar />
           <ClusterModal />
           <OrgsModal />
-          <OrgsContainer orgs={initialOrgs.content} />
+          <OrgsContainer orgs={orgs} />
+          <Button
+            className="mt-2 text-xs sm:text-base"
+            onClick={() => {
+              console.log('🔄 Fetching next page...');
+              console.log('🔍 Current pages count:', data?.pages.length);
+              console.log('🔍 Has next page:', hasNextPage);
+              fetchNextPage();
+            }}
+            disabled={!hasNextPage || isFetchingNextPage}
+          >
+            {isFetchingNextPage ? 'Loading...' : 'See More...'}
+          </Button>
         </div>
       </div>
+
+      {/* Debug panel - remove this in production */}
     </>
   );
 }

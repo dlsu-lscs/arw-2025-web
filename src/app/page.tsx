@@ -6,7 +6,7 @@ import { serverGetAllOrgs } from '@/features/orgs/services/server.orgs.services'
 export default async function Home() {
   const user = await requireAuth();
 
-  const initialOrgs: OrgsResponse = await serverGetAllOrgs('', 0, 5);
+  const initialOrgs: OrgsResponse = await serverGetAllOrgs('', 0, 10);
   return (
     <>
       <div className="min-h-screen p-8">
