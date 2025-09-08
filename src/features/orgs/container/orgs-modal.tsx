@@ -4,7 +4,6 @@ import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 import { useOrgsModalStore } from '../store/useOrgsModalStore';
 import CloseModal from '@/components/modal/close-modal';
-import { ChevronDown } from 'lucide-react';
 import { OrganizationType } from '../types/orgs.types';
 
 type OrgsModalProps = {
@@ -20,84 +19,94 @@ export default function OrgsModal({ org, isLoading, isError }: OrgsModalProps) {
 
   if (org)
     return (
-      <>
-        <Dialog open={isOrgsModalOpen} onOpenChange={openOrgsModal}>
-          <DialogContent className="[&>button:last-child]:hidden pixel-corner--modal overflow-y-scroll">
-            <DialogHeader>
-              <DialogTitle></DialogTitle>
-            </DialogHeader>
-            <main className="grid grid-cols-2 gap-2 px-4 py-1">
-              <section className="flex flex-col gap-10">
-                <div className="mb-8">
-                  <CloseModal className="text-[#0F0092] text-2xl" />
-                </div>
-                <div className="grid grid-cols-2 gap-2">
-                  <div>
-                    <h1 className="text-3xl">{org.name}</h1>
-                    <p className="text-lg opacity-50">{org.tagline}</p>
-                    <Button
-                      className="font-tiny5 bg-[#D8E6FF] rounded-none border-black text-3xl font-bold self-center mt-4 mb-8 shadow-[4px_4px_0px_rgba(0,0,0,1)] flex items-center"
-                      variant="outline"
-                      onClick={() => window.open(org.gformsUrl, '_blank', 'noopener,noreferrer')}
-                    >
-                      <span className="pr-4 border-r-2 border-black">JOIN NOW - P{org.fee}</span>
-                      <span className="pl-2">
-                        <Image
-                          alt="next"
-                          width={18}
-                          height={18}
-                          src="/assets/next.svg"
-                          className="transform rotate-90 invert-0 brightness-0"
-                        />
-                      </span>
-                    </Button>
-                  </div>
-                  <div>
-                    {org.publications.logoUrl == null ? null : (
+      <Dialog open={isOrgsModalOpen} onOpenChange={openOrgsModal}>
+        <DialogContent className="[&>button:last-child]:hidden pixel-corner--modal overflow-y-scroll p-4 sm:p-6 md:p-8">
+          <DialogHeader>
+            <DialogTitle></DialogTitle>
+          </DialogHeader>
+
+          <main className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10">
+            {/* LEFT SECTION */}
+            <section className="flex flex-col gap-8 md:gap-10">
+              <div className="mb-4 md:mb-8">
+                <CloseModal className="text-[#0F0092] text-2xl" />
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <h1 className="text-2xl md:text-3xl">{org.name}</h1>
+                  <p className="text-base md:text-lg opacity-50">{org.tagline}</p>
+                  <Button
+                    className="font-tiny5 bg-[#D8E6FF] rounded-none border-black text-xl md:text-3xl font-bold self-center mt-4 mb-6 md:mb-8 shadow-[4px_4px_0px_rgba(0,0,0,1)] flex items-center"
+                    variant="outline"
+                    onClick={() => window.open(org.gformsUrl, '_blank', 'noopener,noreferrer')}
+                  >
+                    <span className="pr-4 border-r-2 border-black">JOIN NOW - P{org.fee}</span>
+                    <span className="pl-2">
                       <Image
-                        src={org.publications.logoUrl ?? '/assets/placeholder-image.png'}
-                        alt="org logo"
-                        width={167}
-                        height={157}
-                        loading="lazy"
-                        unoptimized
-                        className="rounded-lg"
+                        alt="next"
+                        width={18}
+                        height={18}
+                        src="/assets/next.svg"
+                        className="transform rotate-90 invert-0 brightness-0"
                       />
-                    )}
-                  </div>
+                    </span>
+                  </Button>
                 </div>
-                <div className="flex flex-col gap-4">
-                  <h1 className="text-3xl">About Us</h1>
-                  <p className="font-space-mono text-md font-regular w-full">{org.about}</p>
+
+                <div className="flex justify-center items-center">
+                  {org.publications.logoUrl && (
+                    <Image
+                      src={org.publications.logoUrl ?? '/assets/placeholder-image.png'}
+                      alt="org logo"
+                      width={167}
+                      height={157}
+                      loading="lazy"
+                      unoptimized
+                      className="rounded-lg max-w-full h-auto"
+                    />
+                  )}
                 </div>
-                <div className="flex flex-col gap-4">
-                  {' '}
-                  <h1 className="text-3xl">Mission</h1>
-                  <p className="font-space-mono text-md font-regular w-full">{org.mission}</p>
-                </div>
-                <div className="flex flex-col gap-4">
-                  {' '}
-                  <h1 className="text-3xl">Vision</h1>
-                  <p className="font-space-mono text-md font-regular w-full">{org.vision}</p>
-                </div>
-              </section>
-              <section className="flex justify-center">
+              </div>
+
+              <div className="flex flex-col gap-4">
+                <h1 className="text-2xl md:text-3xl">About Us</h1>
+                <p className="font-space-mono text-sm md:text-md w-full">{org.about}</p>
+              </div>
+
+              <div className="flex flex-col gap-4">
+                <h1 className="text-2xl md:text-3xl">Mission</h1>
+                <p className="font-space-mono text-sm md:text-md w-full">{org.mission}</p>
+              </div>
+
+              <div className="flex flex-col gap-4">
+                <h1 className="text-2xl md:text-3xl">Vision</h1>
+                <p className="font-space-mono text-sm md:text-md w-full">{org.vision}</p>
+              </div>
+            </section>
+
+            {/* RIGHT SECTION */}
+            <section className="flex justify-center items-start md:items-center">
+              <section className="flex justify-center items-start md:items-center">
                 <Image
-                  src="https://scontent.fmnl4-3.fna.fbcdn.net/v/t39.30808-6/544108095_1074363368196384_2903282524075137468_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeGq2s5J92EgDuT9Rwi-t_uh-ysNYn-4L5r7Kw1if7gvmh13OIx8szvO3ilh4vi0GyhOt5rcGFU9lvHLUq3OI5YL&_nc_ohc=rYRalMRdLUoQ7kNvwGBXEbw&_nc_oc=AdlN5cT12KLCqgav2JqnL8Uu6-N-ZwXTG05yuaby6QUPBGpq9wHh2Px0XYkEl9mbhV3CP3-MNZP1oxFo_S32ycHV&_nc_zt=23&_nc_ht=scontent.fmnl4-3.fna&_nc_gid=v-h2Q6Wxf10tblH76XoEpA&oh=00_Afail3N929v6DMNpRZoqcj3ev102DNfnPBzzm1oat4QNTQ&oe=68C37D6E"
+                  src="https://scontent.fmnl4-7.fna.fbcdn.net/v/t39.30808-6/545580037_1190175683142012_2186304815006449886_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeE4R6AGNKAb_gzcp4YdYAncgMYg3AmRlQWAxiDcCZGVBa3Tn1nvWl7UNzT_inbJdKfTiUxuasJz96VTwyy6Qy8i&_nc_ohc=5slV48eQiBcQ7kNvwFOY6a9&_nc_oc=AdnSkWr-bO0PcBQrkzHKNPU_EuRwApKxsD86t-pTVGvkt5NTDIDlNkA4hBSjljsao2tCOwtb-rf-a7IjNK0_MOIv&_nc_zt=23&_nc_ht=scontent.fmnl4-7.fna&_nc_gid=M5IwpGCD3mZwxtW1HqjIIw&oh=00_AfZsy78J5teokZhe6ewyqvtjGn0z0dh_JJptf4UHc47QAw&oe=68C4D264"
                   alt="org logo"
                   width={646}
                   height={814}
                   unoptimized
-                  className="rounded-lg"
+                  className="rounded-lg w-full h-auto"
                   onClick={() => window.open(org.facebookUrl, '_blank', 'noopener,noreferrer')}
                 />
               </section>
-            </main>
-            <footer className="flex justify-center mt-12">
-              <h3 className="font-tiny5 opacity-50">Powered by La Salle Computer Society.</h3>
-            </footer>
-          </DialogContent>
-        </Dialog>
-      </>
+            </section>
+          </main>
+
+          <footer className="flex justify-center mt-8 md:mt-12">
+            <h3 className="font-tiny5 text-sm md:text-base opacity-50">
+              Powered by La Salle Computer Society.
+            </h3>
+          </footer>
+        </DialogContent>
+      </Dialog>
     );
 }
