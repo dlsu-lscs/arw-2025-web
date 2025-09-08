@@ -1,6 +1,7 @@
 import { cn } from '@/lib/utils';
 import { OrganizationType } from '../types/orgs.types';
 import { returnColorFromCluster } from '@/lib/helpers';
+import { useOrgsModalStore } from '../store/useOrgsModalStore';
 
 interface OrgCardProps {
   className?: string;
@@ -8,6 +9,7 @@ interface OrgCardProps {
 }
 
 export default function OrgCard({ className, org }: OrgCardProps) {
+  const { openOrgsModal } = useOrgsModalStore();
   return (
     <>
       <div
@@ -18,6 +20,7 @@ export default function OrgCard({ className, org }: OrgCardProps) {
         style={{
           backgroundImage: `url('${org.publications.mainPubUrl ?? '/bg/st-lasalle-bg.webp'}')`,
         }}
+        onClick={openOrgsModal}
       >
         <div
           className="w-full h-full absolute rounded-xl left-0"

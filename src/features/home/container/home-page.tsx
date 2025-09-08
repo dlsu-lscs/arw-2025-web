@@ -18,6 +18,7 @@ import { allOrgsQueryOptions } from '@/features/orgs/queries/orgs.query.options'
 import { usePrefetchOrgClusters } from '@/features/orgs/hooks/use-prefetch-org-clusters';
 import { useSelectClusterStore } from '@/store/useSelectClusterStore';
 import { useMemo } from 'react';
+import OrgsModal from '@/features/orgs/container/orgs-modal';
 
 interface HomeProps {
   user: User;
@@ -25,7 +26,7 @@ interface HomeProps {
 }
 
 export default function HomePage({ user, initialOrgs }: HomeProps) {
-  const { openOrgModal } = useClusterModalStore();
+  const { openClusterModal } = useClusterModalStore();
   const { selectedCluster } = useSelectClusterStore();
 
   // Prefetch all cluster types to eliminate loading when switching
@@ -89,13 +90,14 @@ export default function HomePage({ user, initialOrgs }: HomeProps) {
           <Button
             className="font-space-mono bg-[#D8E6FF] rounded-none border-black text-sm sm:text-base font-bold self-center mt-4 mb-8"
             variant="outline"
-            onClick={openOrgModal}
+            onClick={openClusterModal}
           >
             DISCOVER THE CLUSTERS
           </Button>
 
           <SearchBar />
           <ClusterModal />
+          <OrgsModal />
           <OrgsContainer orgs={orgs} />
           <Button
             className="mt-2 text-xs sm:text-base"
