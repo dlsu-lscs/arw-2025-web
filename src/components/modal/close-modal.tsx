@@ -11,14 +11,14 @@ export default function CloseModal({ className }: CloseModalProps) {
   return (
     <>
       <button
-        className={`flex gap-3 ${className}`}
+        className={`flex items-center gap-3 hover:cursor-pointer ${className}`}
         onClick={() => {
           closeClusterModal();
           closeOrgsModal();
         }}
       >
         <span>&lt;</span>
-        <h1>back to organizations</h1>
+        <h1 className="text-sm sm:text-lg">back to organizations</h1>
       </button>
     </>
   );

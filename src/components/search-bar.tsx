@@ -82,7 +82,10 @@ export function SearchBar() {
                       />{' '}
                     </PopoverTrigger>
                   </FormControl>
-                  <button className="absolute right-0 top-1/2 -translate-1/2" type="submit">
+                  <button
+                    className="absolute right-0 top-1/2 -translate-1/2 hover:cursor-pointer"
+                    type="submit"
+                  >
                     <IoSearch />
                   </button>
                 </FormItem>

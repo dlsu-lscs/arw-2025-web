@@ -86,7 +86,7 @@ export default function HomePage({ user, initialOrgs }: HomeProps) {
           <ClusterCarousel />
 
           <Button
-            className="font-space-mono bg-[#D8E6FF] rounded-none border-black text-sm sm:text-base font-bold self-center mt-4 mb-8"
+            className="font-space-mono hover:cursor-pointer bg-[#D8E6FF] rounded-none border-black text-sm sm:text-base font-bold self-center mt-4 mb-8"
             variant="outline"
             onClick={openClusterModal}
           >
@@ -97,7 +97,7 @@ export default function HomePage({ user, initialOrgs }: HomeProps) {
           <ClusterModal />
           <OrgsContainer orgs={orgs} />
           <Button
-            className="mt-2 text-xs sm:text-base"
+            className="mt-2 text-xs sm:text-base hover:cursor-pointer"
             onClick={() => {
               console.log('🔄 Fetching next page...');
               console.log('🔍 Current pages count:', data?.pages.length);
