@@ -4,7 +4,7 @@ import {
   QueryFunctionContext,
   queryOptions,
 } from '@tanstack/react-query';
-import { getAllOrgs, getSearchOrg } from '../services/client.orgs.services';
+import { getAllOrgs, getOrgByID, getSearchOrg } from '../services/client.orgs.services';
 import cluster from 'cluster';
 import { OrgsResponse } from '../types/orgs.types';
 
@@ -34,4 +34,10 @@ export const allOrgsQueryOptions = (cluster?: string, pageSize = 10, initialOrgs
           pageParams: [0],
         }
       : undefined,
+  });
+
+export const orgByIdQueryOptions = (id: number) =>
+  queryOptions({
+    queryKey: ['org', { id }],
+    queryFn: () => getOrgByID(id),
   });

@@ -1,18 +1,22 @@
 import { cn } from '@/lib/utils';
 import { OrganizationType } from '../types/orgs.types';
+import { returnColorFromCluster } from '@/lib/helpers';
+import Image from 'next/image';
 import { returnColorFromCluster70 } from '@/lib/helpers';
 
 interface OrgCardProps {
   className?: string;
   org: OrganizationType;
+  onClick?: () => void;
+  onMouseEnter?: () => void;
 }
 
-export default function OrgCard({ className, org }: OrgCardProps) {
+export default function OrgCard({ className, org, onClick, onMouseEnter }: OrgCardProps) {
   return (
     <>
       <div
         className={cn(
-          'flex relative rounded-xl items-center w-full p-4 gap-2 bg-cover bg-center',
+          `flex relative rounded-xl items-center w-full p-4 gap-2 bg-cover bg-center hover:cursor-pointer ${returnColorFromCluster(org.cluster.name.toLowerCase())}`,
           className
         )}
         style={{
@@ -20,6 +24,8 @@ export default function OrgCard({ className, org }: OrgCardProps) {
           backgroundImage: `url('${org.publications.mainPubUrl ?? '/bg/st-lasalle-bg.webp'}')`,
           backgroundBlendMode: 'multiply',
         }}
+        onClick={onClick}
+        onMouseEnter={onMouseEnter}
       >
         <div
           className="w-full h-full absolute rounded-xl left-0"
@@ -30,15 +36,17 @@ export default function OrgCard({ className, org }: OrgCardProps) {
 
         <div className="z-50 text-white flex flex-col gap-2 sm:flex-row items-center">
           <div className="flex items-center gap-2">
-            {/* {org.publications.logoUrl ? (
+            {org.publications.logoUrl && (
               <Image
-                alt="org logo"
                 src={org.publications.logoUrl}
+                alt="org logo"
                 width={86}
                 height={86}
+                loading="lazy"
+                unoptimized
                 className="z-10"
               />
-            ) : null} */}
+            )}
             <h3 className="sm:hidden block md:text-xl lg:text-2xl font-press-start">{org.name}</h3>
           </div>
 

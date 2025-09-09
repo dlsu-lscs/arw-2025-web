@@ -1,16 +1,16 @@
-import { create } from 'zustand'
+import { create } from 'zustand';
 
 interface ModalState {
-  isOrgModalOpen: boolean
+  isClusterModalOpen: boolean;
 }
 
 interface ModalAction {
-  openOrgModal: () => void
-  closeOrgModal: () => void
+  openClusterModal: () => void;
+  closeClusterModal: () => void;
 }
 
 export const useClusterModalStore = create<ModalState & ModalAction>((set) => ({
-  isOrgModalOpen: false,
-  openOrgModal: () => set({ isOrgModalOpen: true }),
-  closeOrgModal: () => set({ isOrgModalOpen: false }),
-}))
+  isClusterModalOpen: false,
+  openClusterModal: () => set({ isClusterModalOpen: true }),
+  closeClusterModal: () => set({ isClusterModalOpen: false }),
+}));
