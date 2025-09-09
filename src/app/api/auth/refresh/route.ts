@@ -1,5 +1,6 @@
 import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server';
+import { clearAuthCookies, clearAuthCookiesComplete } from '@/lib/clear-auth-cookies';
 
 export async function POST() {
   console.log('🔄 Refresh endpoint called');
@@ -43,17 +44,10 @@ export async function POST() {
 
       const nextResponse = NextResponse.json({ error: 'Refresh failed' }, { status: 401 });
 
-      // Clear cookies using Set-Cookie headers for better compatibility
-      const cookieOptions = `HttpOnly; Path=/; SameSite=Lax; Max-Age=0${process.env.NODE_ENV === 'production' ? '; Secure' : ''}`;
+      // Clear cookies using multiple strategies for production compatibility
+      clearAuthCookiesComplete(nextResponse);
 
-      nextResponse.headers.append('Set-Cookie', `access_token=; ${cookieOptions}`);
-      nextResponse.headers.append('Set-Cookie', `refresh_token=; ${cookieOptions}`);
-
-      console.log('✅ Both access_token and refresh_token cookies cleared via Set-Cookie headers');
-      console.log('Cookie clear headers:', {
-        accessToken: `access_token=; ${cookieOptions}`,
-        refreshToken: `refresh_token=; ${cookieOptions}`,
-      });
+      console.log('✅ Both access_token and refresh_token cookies cleared via multiple strategies');
 
       return nextResponse;
     }
@@ -93,11 +87,8 @@ export async function POST() {
 
     const nextResponse = NextResponse.json({ error: 'Internal server error' }, { status: 500 });
 
-    // Clear cookies on any error
-    const cookieOptions = `HttpOnly; Path=/; SameSite=Lax; Max-Age=0${process.env.NODE_ENV === 'production' ? '; Secure' : ''}`;
-
-    nextResponse.headers.append('Set-Cookie', `access_token=; ${cookieOptions}`);
-    nextResponse.headers.append('Set-Cookie', `refresh_token=; ${cookieOptions}`);
+    // Clear cookies on any error using multiple strategies
+    clearAuthCookies(nextResponse);
 
     console.log('✅ Cookies cleared due to error');
 
