@@ -10,6 +10,7 @@ import {
 import { useSelectClusterStore } from '@/store/useSelectClusterStore';
 import { clusters } from '../data/clusters';
 import { useCallback, useEffect, useRef } from 'react';
+import { returnColorFromCluster } from '@/lib/helpers';
 
 export default function ClusterCarousel() {
   const { selectedCluster, setSelectedCluster } = useSelectClusterStore();
@@ -50,7 +51,13 @@ export default function ClusterCarousel() {
           {clusters.map(({ id, acronym, name }, index) => {
             return (
               <CarouselItem key={index} className="pr-10 pl-14">
-                <h2 className="text-center text-blue-700 text-sm sm:text-2xl">{acronym}</h2>
+                <h2
+                  className="text-center text-sm sm:text-2xl"
+                  style={{ color: returnColorFromCluster(id) }}
+                >
+                  {acronym}
+                </h2>
+
                 <h4 className="text-center font-space-mono text-xs sm:text-lg">{name}</h4>
               </CarouselItem>
             );
