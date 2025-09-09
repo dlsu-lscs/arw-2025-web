@@ -96,18 +96,20 @@ export default function HomePage({ user, initialOrgs }: HomeProps) {
           <SearchBar />
           <ClusterModal />
           <OrgsContainer orgs={orgs} />
-          <Button
-            className="mt-2 text-xs sm:text-base hover:cursor-pointer"
-            onClick={() => {
-              console.log('🔄 Fetching next page...');
-              console.log('🔍 Current pages count:', data?.pages.length);
-              console.log('🔍 Has next page:', hasNextPage);
-              fetchNextPage();
-            }}
-            disabled={!hasNextPage || isFetchingNextPage}
-          >
-            {isFetchingNextPage ? 'Loading...' : 'See More...'}
-          </Button>
+          {hasNextPage && (
+            <Button
+              className="mt-2 text-xs sm:text-base hover:cursor-pointer"
+              onClick={() => {
+                console.log('🔄 Fetching next page...');
+                console.log('🔍 Current pages count:', data?.pages.length);
+                console.log('🔍 Has next page:', hasNextPage);
+                fetchNextPage();
+              }}
+              disabled={!hasNextPage || isFetchingNextPage}
+            >
+              {isFetchingNextPage ? 'Loading...' : 'See More...'}
+            </Button>
+          )}
         </div>
       </div>
 
