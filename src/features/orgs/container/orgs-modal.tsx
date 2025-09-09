@@ -22,24 +22,52 @@ export default function OrgsModal({ org, isLoading, isError }: OrgsModalProps) {
       <Dialog open={isOrgsModalOpen} onOpenChange={openOrgsModal}>
         <DialogContent className="[&>button:last-child]:hidden pixel-corner--modal overflow-y-scroll p-4 sm:p-6 md:p-8">
           <DialogHeader>
-            <DialogTitle></DialogTitle>
+            <DialogTitle>
+              <div className="md:hidden block mb-4 md:mb-8">
+                <CloseModal className="text-[#0F0092] text-xl sm:text-2xl md:text-3xl" />
+              </div>
+            </DialogTitle>
           </DialogHeader>
 
           <main className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10">
-            {/* LEFT SECTION */}
-            <section className="flex flex-col gap-8 md:gap-10">
-              <div className="mb-4 md:mb-8">
-                <CloseModal
-                  className="
-        text-[#0F0092] 
-        text-xl sm:text-2xl md:text-3xl  
-       
-      "
-                />
-              </div>
+            {/* RIGHT SECTION - shows on top for mobile */}
+            <section className="order-1 md:order-2 flex justify-center items-start md:items-center">
+              <Image
+                src="https://scontent.fmnl4-7.fna.fbcdn.net/v/t39.30808-6/545580037_1190175683142012_2186304815006449886_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeE4R6AGNKAb_gzcp4YdYAncgMYg3AmRlQWAxiDcCZGVBa3Tn1nvWl7UNzT_inbJdKfTiUxuasJz96VTwyy6Qy8i&_nc_ohc=5slV48eQiBcQ7kNvwFOY6a9&_nc_oc=AdnSkWr-bO0PcBQrkzHKNPU_EuRwApKxsD86t-pTVGvkt5NTDIDlNkA4hBSjljsao2tCOwtb-rf-a7IjNK0_MOIv&_nc_zt=23&_nc_ht=scontent.fmnl4-7.fna&_nc_gid=M5IwpGCD3mZwxtW1HqjIIw&oh=00_AfZsy78J5teokZhe6ewyqvtjGn0z0dh_JJptf4UHc47QAw&oe=68C4D264"
+                alt="org main"
+                width={646}
+                height={814}
+                unoptimized
+                className="rounded-lg w-full h-auto"
+                onClick={() => window.open(org.facebookUrl, '_blank', 'noopener,noreferrer')}
+              />
+            </section>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
+            {/* LEFT SECTION */}
+            <section className="order-2 md:order-1 flex flex-col gap-8 md:gap-10">
+              <div className="hidden lg:block mb-4 md:mb-8">
+                <CloseModal className="text-[#0F0092] text-xl sm:text-2xl md:text-3xl" />
+              </div>
+              {/* Logo above name/tagline on mobile */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 items-center">
+                {/* Logo first on mobile */}
+                <div className="order-1 sm:order-2 flex justify-center items-center">
+                  {org.publications.logoUrl && (
+                    <Image
+                      // src={org.publications.logoUrl ?? '/assets/placeholder-image.png'}
+                      src="https://researchfair.upalchemes.org/wp-content/uploads/LSCS-1.png"
+                      alt="org logo"
+                      width={167}
+                      height={157}
+                      loading="lazy"
+                      unoptimized
+                      className="rounded-lg max-w-full h-auto"
+                    />
+                  )}
+                </div>
+
+                {/* Name + tagline second on mobile */}
+                <div className="order-2 sm:order-1 text-center sm:text-left">
                   <h1 className="text-2xl md:text-3xl">{org.name}</h1>
                   <p className="text-base md:text-lg opacity-50">{org.tagline}</p>
                   <Button
@@ -59,22 +87,9 @@ export default function OrgsModal({ org, isLoading, isError }: OrgsModalProps) {
                     </span>
                   </Button>
                 </div>
-
-                <div className="flex justify-center items-center">
-                  {org.publications.logoUrl && (
-                    <Image
-                      src={org.publications.logoUrl ?? '/assets/placeholder-image.png'}
-                      alt="org logo"
-                      width={167}
-                      height={157}
-                      loading="lazy"
-                      unoptimized
-                      className="rounded-lg max-w-full h-auto"
-                    />
-                  )}
-                </div>
               </div>
 
+              {/* About, Mission, Vision */}
               <div className="flex flex-col gap-4">
                 <h1 className="text-2xl md:text-3xl">About Us</h1>
                 <p className="font-space-mono text-sm md:text-md w-full">{org.about}</p>
@@ -89,21 +104,6 @@ export default function OrgsModal({ org, isLoading, isError }: OrgsModalProps) {
                 <h1 className="text-2xl md:text-3xl">Vision</h1>
                 <p className="font-space-mono text-sm md:text-md w-full">{org.vision}</p>
               </div>
-            </section>
-
-            {/* RIGHT SECTION */}
-            <section className="flex justify-center items-start md:items-center">
-              <section className="flex justify-center items-start md:items-center">
-                <Image
-                  src="https://scontent.fmnl4-7.fna.fbcdn.net/v/t39.30808-6/545580037_1190175683142012_2186304815006449886_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeE4R6AGNKAb_gzcp4YdYAncgMYg3AmRlQWAxiDcCZGVBa3Tn1nvWl7UNzT_inbJdKfTiUxuasJz96VTwyy6Qy8i&_nc_ohc=5slV48eQiBcQ7kNvwFOY6a9&_nc_oc=AdnSkWr-bO0PcBQrkzHKNPU_EuRwApKxsD86t-pTVGvkt5NTDIDlNkA4hBSjljsao2tCOwtb-rf-a7IjNK0_MOIv&_nc_zt=23&_nc_ht=scontent.fmnl4-7.fna&_nc_gid=M5IwpGCD3mZwxtW1HqjIIw&oh=00_AfZsy78J5teokZhe6ewyqvtjGn0z0dh_JJptf4UHc47QAw&oe=68C4D264"
-                  alt="org logo"
-                  width={646}
-                  height={814}
-                  unoptimized
-                  className="rounded-lg w-full h-auto"
-                  onClick={() => window.open(org.facebookUrl, '_blank', 'noopener,noreferrer')}
-                />
-              </section>
             </section>
           </main>
 
