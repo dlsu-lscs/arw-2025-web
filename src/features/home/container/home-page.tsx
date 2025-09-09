@@ -49,7 +49,7 @@ export default function HomePage({ user, initialOrgs }: HomeProps) {
   return (
     <>
       <div className="pixel-corners--wrapper mx-auto">
-        <div className="!max-w-7xl border-2 bg-white border-black p-4 !flex flex-col pixel-corners">
+        <div className="!max-w-5xl 2xl:!max-w-7xl border-2 bg-white border-black p-4 !flex flex-col pixel-corners">
           <NavBar user={user} />
           <HighlightCard className="flex gap-4 mt-4">
             <Image
