@@ -49,7 +49,7 @@ export default function HomePage({ user, initialOrgs }: HomeProps) {
   return (
     <>
       <div className="pixel-corners--wrapper mx-auto">
-        <div className="!max-w-7xl border-2 bg-white border-black p-4 !flex flex-col pixel-corners">
+        <div className="!max-w-5xl 2xl:!max-w-7xl border-2 bg-white border-black p-4 !flex flex-col pixel-corners">
           <NavBar user={user} />
           <HighlightCard className="flex gap-4 mt-4">
             <Image
@@ -96,18 +96,20 @@ export default function HomePage({ user, initialOrgs }: HomeProps) {
           <SearchBar />
           <ClusterModal />
           <OrgsContainer orgs={orgs} />
-          <Button
-            className="mt-2 text-xs sm:text-base hover:cursor-pointer"
-            onClick={() => {
-              console.log('🔄 Fetching next page...');
-              console.log('🔍 Current pages count:', data?.pages.length);
-              console.log('🔍 Has next page:', hasNextPage);
-              fetchNextPage();
-            }}
-            disabled={!hasNextPage || isFetchingNextPage}
-          >
-            {isFetchingNextPage ? 'Loading...' : 'See More...'}
-          </Button>
+          {hasNextPage && (
+            <Button
+              className="mt-2 text-xs sm:text-base hover:cursor-pointer"
+              onClick={() => {
+                console.log('🔄 Fetching next page...');
+                console.log('🔍 Current pages count:', data?.pages.length);
+                console.log('🔍 Has next page:', hasNextPage);
+                fetchNextPage();
+              }}
+              disabled={!hasNextPage || isFetchingNextPage}
+            >
+              {isFetchingNextPage ? 'Loading...' : 'See More...'}
+            </Button>
+          )}
         </div>
       </div>
 
