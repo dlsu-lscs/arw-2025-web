@@ -7,6 +7,7 @@ import { orgByIdQueryOptions } from '../queries/orgs.query.options';
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import OrgsModal from '@/features/orgs/container/orgs-modal';
+// import { ScrollArea } from '@/components/ui/scroll-area';
 
 type OrgsContainerProps = {
   orgs: OrganizationType[];
@@ -29,10 +30,11 @@ export default function OrgsContainer({ orgs }: OrgsContainerProps) {
 
   return (
     <>
-      <div className="flex flex-col gap-4 mt-8">
+      <div className="overflow-y-auto h-full min-h-0 w-full mt-4 overflow-x-hidden shadcn-scrollbar">
         {orgs.map((org, index) => {
           return (
             <OrgCard
+              className="mb-4"
               key={index}
               org={org}
               onClick={() => {

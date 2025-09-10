@@ -46,7 +46,7 @@ export default function ClusterCarousel() {
 
   return (
     <>
-      <Carousel className="w-full my-4" opts={{ loop: true }} setApi={handleApi}>
+      <Carousel className="w-full mt-2 sm:my-4" opts={{ loop: true }} setApi={handleApi}>
         <CarouselContent>
           {clusters.map(({ id, acronym, name }, index) => {
             return (

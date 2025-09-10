@@ -16,7 +16,7 @@ export default function OrgCard({ className, org, onClick, onMouseEnter }: OrgCa
     <>
       <div
         className={cn(
-          `flex relative rounded-xl items-center w-full p-4 gap-2 bg-cover bg-center hover:cursor-pointer ${returnColorFromCluster(org.cluster.name.toLowerCase())}`,
+          `flex relative rounded-xl items-center p-4 gap-2 bg-cover bg-center hover:cursor-pointer ${returnColorFromCluster(org.cluster.name.toLowerCase())}`,
           className
         )}
         style={{
