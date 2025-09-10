@@ -3,7 +3,7 @@ import HighlightCard from '@/components/highlight-card';
 import NavBar from '../components/navbar';
 import Image from 'next/image';
 import ClusterCarousel from '../components/cluster-carousel';
-
+import { AiOutlineLoading } from 'react-icons/ai';
 import { Button } from '@/components/ui/button';
 import CollapsibleText from '@/components/collapsible-text';
 
@@ -17,7 +17,8 @@ import { useInfiniteQuery } from '@tanstack/react-query';
 import { allOrgsQueryOptions } from '@/features/orgs/queries/orgs.query.options';
 import { usePrefetchOrgClusters } from '@/features/orgs/hooks/use-prefetch-org-clusters';
 import { useSelectClusterStore } from '@/store/useSelectClusterStore';
-import { useMemo } from 'react';
+import { useMemo, useRef } from 'react';
+import useObserver from '@/hooks/useObserver';
 interface HomeProps {
   user: User;
   initialOrgs: OrgsResponse;
@@ -26,9 +27,17 @@ interface HomeProps {
 export default function HomePage({ user, initialOrgs }: HomeProps) {
   const { openClusterModal } = useClusterModalStore();
   const { selectedCluster } = useSelectClusterStore();
+  const ref = useRef<HTMLDivElement>(null);
 
   // Prefetch all cluster types to eliminate loading when switching
   usePrefetchOrgClusters();
+
+  useObserver({
+    ref,
+    callback: () => {
+      if (hasNextPage) fetchNextPage();
+    },
+  });
 
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage } = useInfiniteQuery(
     allOrgsQueryOptions(selectedCluster, 10, selectedCluster === 'all' ? initialOrgs : undefined)
@@ -96,24 +105,12 @@ export default function HomePage({ user, initialOrgs }: HomeProps) {
           <SearchBar />
           <ClusterModal />
           <OrgsContainer orgs={orgs} />
-          {hasNextPage && (
-            <Button
-              className="mt-2 text-xs sm:text-base hover:cursor-pointer"
-              onClick={() => {
-                console.log('🔄 Fetching next page...');
-                console.log('🔍 Current pages count:', data?.pages.length);
-                console.log('🔍 Has next page:', hasNextPage);
-                fetchNextPage();
-              }}
-              disabled={!hasNextPage || isFetchingNextPage}
-            >
-              {isFetchingNextPage ? 'Loading...' : 'See More...'}
-            </Button>
+          <div className="w-2" ref={ref} />
+          {isFetchingNextPage && (
+            <AiOutlineLoading className="mx-auto mt-2 text-2xl animate-spin" />
           )}
         </div>
       </div>
-
-      {/* Debug panel - remove this in production */}
     </>
   );
 }
