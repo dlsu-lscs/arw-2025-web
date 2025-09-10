@@ -1,8 +1,13 @@
 import api from '@/lib/axios';
 import { OrgsResponse } from '../types/orgs.types';
 
-export async function getAllOrgs(cluster?: string, page = 0, pageSize = 10): Promise<OrgsResponse> {
-  const params: Record<string, string | number> = { page, pageSize };
+export async function getAllOrgs(
+  seed: string,
+  cluster?: string,
+  page = 0,
+  pageSize = 10
+): Promise<OrgsResponse> {
+  const params: Record<string, string | number> = { page, pageSize, seed };
   if (cluster && cluster !== 'all') params.cluster = cluster;
 
   console.log(params);

@@ -10,7 +10,7 @@ const CLUSTER_TYPES = ['all', 'engage', 'cap13', 'aspire', 'probe', 'aso'] as co
  * Hook to prefetch organizations for all cluster types
  * This eliminates loading states when switching between clusters
  */
-export function usePrefetchOrgClusters() {
+export function usePrefetchOrgClusters(seed: string) {
   const queryClient = useQueryClient();
 
   useEffect(() => {
@@ -21,7 +21,7 @@ export function usePrefetchOrgClusters() {
     const prefetchPromises = CLUSTER_TYPES.map(async (clusterType) => {
       try {
         await queryClient.prefetchInfiniteQuery({
-          ...allOrgsQueryOptions(clusterType, 10),
+          ...allOrgsQueryOptions(seed, clusterType, 10),
           staleTime: 10 * 60 * 1000, // 10 minutes - keep data fresh longer
         });
         if (process.env.NODE_ENV !== 'production')

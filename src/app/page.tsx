@@ -2,15 +2,19 @@ import HomePage from '@/features/home/container/home-page';
 import { requireAuth } from '@/features/auth/services/server-auth';
 import { OrgsResponse } from '@/features/orgs/types/orgs.types';
 import { serverGetAllOrgs } from '@/features/orgs/services/server.orgs.services';
+import { v4 as uuidv4 } from 'uuid';
 
 export default async function Home() {
   const user = await requireAuth();
+  const seed = uuidv4();
 
-  const initialOrgs: OrgsResponse = await serverGetAllOrgs('', 0, 10);
+  if (process.env.NODE_ENV !== 'production') console.log('Seed:', seed);
+  const initialOrgs: OrgsResponse = await serverGetAllOrgs(seed, undefined, 0, 10);
+  if (process.env.NODE_ENV !== 'production') console.log('Initial Orgs:', initialOrgs);
   return (
     <>
       <div className="min-h-screen sm:p-8 p-4">
-        <HomePage user={user} initialOrgs={initialOrgs} />
+        <HomePage user={user} initialOrgs={initialOrgs} seed={seed} />
       </div>
     </>
   );
