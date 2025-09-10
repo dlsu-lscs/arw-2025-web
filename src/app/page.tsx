@@ -13,7 +13,7 @@ export default async function Home() {
   if (process.env.NODE_ENV !== 'production') console.log('Initial Orgs:', initialOrgs);
   return (
     <>
-      <div className="min-h-screen sm:p-8 p-4">
+      <div className="max-h-screen min-h-screen flex flex-col sm:p-8 p-4">
         <HomePage user={user} initialOrgs={initialOrgs} seed={seed} />
       </div>
     </>

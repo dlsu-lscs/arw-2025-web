@@ -96,7 +96,7 @@ export function SearchBar() {
 
         <PopoverContent
           align="start"
-          className="pixel-corners-wrapper p-0 rounded-0 w-[var(--radix-popover-trigger-width)] max-h-96 overflow-y-auto"
+          className="pixel-corners-wrapper p-0 rounded-0 w-[var(--radix-popover-trigger-width)] max-h-96 overflow-y-auto shadcn-scrollbar"
           onOpenAutoFocus={(event) => {
             // stop Radix from moving focus to the content
             event.preventDefault();

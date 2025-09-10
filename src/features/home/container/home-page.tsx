@@ -64,8 +64,8 @@ export default function HomePage({ user, initialOrgs, seed }: HomeProps) {
 
   return (
     <>
-      <div className="pixel-corners--wrapper mx-auto">
-        <div className="!max-w-5xl 2xl:!max-w-7xl border-2 bg-white border-black p-4 !flex flex-col pixel-corners">
+      <div className="pixel-corners--wrapper mx-auto flex flex-col flex-1">
+        <div className="!max-w-5xl 2xl:!max-w-7xl border-2 flex-1 bg-white border-black p-4 !flex flex-col pixel-corners">
           <NavBar user={user} />
           <HighlightCard className="flex gap-4 mt-4">
             <Image
@@ -102,7 +102,7 @@ export default function HomePage({ user, initialOrgs, seed }: HomeProps) {
           <ClusterCarousel />
 
           <Button
-            className="font-space-mono hover:cursor-pointer bg-[#D8E6FF] rounded-none border-black text-sm sm:text-base font-bold self-center mt-4 mb-8"
+            className="font-space-mono hover:cursor-pointer bg-[#D8E6FF] rounded-none border-black text-sm sm:text-base font-bold self-center sm:mt-4 sm:mb-8 mt-2 mb-4"
             variant="outline"
             onClick={openClusterModal}
           >

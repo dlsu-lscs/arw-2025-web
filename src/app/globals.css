@@ -141,6 +141,32 @@ body {
   }
 }
 
+/* Shadcn-style scrollbar */
+.shadcn-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: hsl(var(--border)) transparent;
+}
+
+.shadcn-scrollbar::-webkit-scrollbar {
+  width: 10px; /* w-2.5 = 10px */
+}
+
+.shadcn-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.shadcn-scrollbar::-webkit-scrollbar-thumb {
+  background: hsl(var(--border));
+  border-radius: 9999px; /* rounded-full */
+  border: 1px solid transparent;
+  background-clip: content-box;
+}
+
+.shadcn-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--border) / 0.8);
+  background-clip: content-box;
+}
+
 .pixel-corners,
 .pixel-corners--wrapper {
   clip-path: polygon(
