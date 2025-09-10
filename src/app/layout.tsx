@@ -3,7 +3,6 @@ import { Press_Start_2P, Space_Mono, Space_Grotesk, Tiny5 } from 'next/font/goog
 import './globals.css';
 import { QueryProvider } from '@/providers/queryProvider';
 import { Toaster } from 'sonner';
-
 const pressStart = Press_Start_2P({
   subsets: ['latin'],
   weight: '400',
@@ -34,6 +33,11 @@ export const metadata: Metadata = {
   title: 'ARW 2025',
   description:
     'Annual Recruitment Week (ARW) is a weeklong University-wide event; Representing all Council of Student Organizations (CSO) accredited organizations where they are given the opportunity to attract and recruit new members from the Lasallian community.',
+  icons: [
+    { rel: 'icon', url: '/logos/arw.webp' },
+    { rel: 'shortcut icon', url: '/logos/arw.webp' },
+    { rel: 'apple-touch-icon', url: '/logos/arw.webp' },
+  ],
 };
 
 export default function RootLayout({
