@@ -1,7 +1,7 @@
-"use client";
-import { useState, useEffect, useRef } from "react";
-import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
+'use client';
+import { useState, useEffect, useRef } from 'react';
+import { Button } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
 
 interface CollapsibleTextProps {
   text: string;
@@ -9,20 +9,14 @@ interface CollapsibleTextProps {
   className?: string;
 }
 
-export default function CollapsibleText({
-  text,
-  maxLines = 3,
-  className,
-}: CollapsibleTextProps) {
+export default function CollapsibleText({ text, maxLines = 3, className }: CollapsibleTextProps) {
   const [expanded, setExpanded] = useState(false);
   const [isClamped, setIsClamped] = useState(false);
   const textRef = useRef<HTMLParagraphElement>(null);
 
   const checkClamping = () => {
     if (textRef.current) {
-      const lineHeight = parseFloat(
-        getComputedStyle(textRef.current).lineHeight
-      );
+      const lineHeight = parseFloat(getComputedStyle(textRef.current).lineHeight);
       const maxHeight = lineHeight * maxLines;
       setIsClamped(textRef.current.scrollHeight > maxHeight);
     }
@@ -33,11 +27,11 @@ export default function CollapsibleText({
     checkClamping();
 
     // Recalculate on window resize
-    window.addEventListener("resize", checkClamping);
+    window.addEventListener('resize', checkClamping);
 
     // Cleanup listener on unmount
     return () => {
-      window.removeEventListener("resize", checkClamping);
+      window.removeEventListener('resize', checkClamping);
     };
   }, [text, maxLines]);
 
@@ -50,10 +44,10 @@ export default function CollapsibleText({
           expanded
             ? {}
             : {
-                display: "-webkit-box",
+                display: '-webkit-box',
                 WebkitLineClamp: maxLines,
-                WebkitBoxOrient: "vertical",
-                overflow: "hidden",
+                WebkitBoxOrient: 'vertical',
+                overflow: 'hidden',
               }
         }
       >
@@ -65,10 +59,10 @@ export default function CollapsibleText({
         <Button
           variant="ghost"
           size="sm"
-          className="mt-1 text-blue-600 text-xs font-space-mono"
+          className="mt-1 text-blue-600 text-xs font-space-mono hover:cursor-pointer"
           onClick={() => setExpanded(!expanded)}
         >
-          {expanded ? "Show less" : "Show more"}
+          {expanded ? 'Show less' : 'Show more'}
         </Button>
       )}
     </div>

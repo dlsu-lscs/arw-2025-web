@@ -9,7 +9,7 @@ export default async function Home() {
   const initialOrgs: OrgsResponse = await serverGetAllOrgs('', 0, 10);
   return (
     <>
-      <div className="min-h-screen p-8">
+      <div className="min-h-screen sm:p-8 p-4">
         <HomePage user={user} initialOrgs={initialOrgs} />
       </div>
     </>
