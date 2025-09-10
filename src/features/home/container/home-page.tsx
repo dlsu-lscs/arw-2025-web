@@ -104,6 +104,7 @@ export default function HomePage({ user, initialOrgs }: HomeProps) {
 
           <SearchBar />
           <ClusterModal />
+          <OrgsModal />
           <OrgsContainer orgs={orgs} />
           <div className="w-2" ref={ref} />
           {isFetchingNextPage && (
