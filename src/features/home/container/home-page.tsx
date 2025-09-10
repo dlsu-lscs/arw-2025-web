@@ -7,7 +7,7 @@ import { AiOutlineLoading } from 'react-icons/ai';
 import { Button } from '@/components/ui/button';
 import CollapsibleText from '@/components/collapsible-text';
 
-import { SearchBar } from '@/components/search-bar';
+import { SearchBar } from '@/features/orgs/components/search-bar';
 import ClusterModal from '@/features/clusters/containers/cluster-modal';
 import { useClusterModalStore } from '@/features/clusters/store/useClusterModalStore';
 import { User } from '@/features/auth/types/user';
@@ -19,6 +19,7 @@ import { usePrefetchOrgClusters } from '@/features/orgs/hooks/use-prefetch-org-c
 import { useSelectClusterStore } from '@/store/useSelectClusterStore';
 import { useMemo, useRef } from 'react';
 import useObserver from '@/hooks/useObserver';
+import { useSearchOrgs } from '@/features/orgs/hooks/useSearchOrgs';
 interface HomeProps {
   user: User;
   seed: string;
@@ -37,7 +38,7 @@ export default function HomePage({ user, initialOrgs, seed }: HomeProps) {
   useObserver({
     ref,
     callback: () => {
-      if (hasNextPage) fetchNextPage();
+      if (hasNextPage && !isSearchActive) fetchNextPage();
     },
   });
 
@@ -50,7 +51,7 @@ export default function HomePage({ user, initialOrgs, seed }: HomeProps) {
     )
   );
 
-  const orgs = useMemo(() => {
+  const baseOrgs = useMemo(() => {
     if (process.env.NODE_ENV !== 'production') {
       console.log('🔍 Debug - Data structure:', data);
       console.log('🔍 Debug - Number of pages:', data?.pages.length);
@@ -61,6 +62,18 @@ export default function HomePage({ user, initialOrgs, seed }: HomeProps) {
     });
     return data?.pages.flatMap((page) => page.content) ?? [];
   }, [data]);
+
+  // Use search results if search is active, otherwise use base orgs
+  const {
+    searchResults,
+    isSearchActive,
+    isLoading,
+    isTyping,
+    searchTerm,
+    isFetching: isSearchFetching,
+    totalResults,
+  } = useSearchOrgs();
+  const orgs = isSearchActive ? searchResults : baseOrgs;
 
   return (
     <>
@@ -110,11 +123,32 @@ export default function HomePage({ user, initialOrgs, seed }: HomeProps) {
           </Button>
 
           <SearchBar />
+
+          {/* Search results indicator */}
+          {isSearchActive && !isTyping && (
+            <div className="text-sm text-gray-600 font-space-mono mb-2 flex items-center gap-2">
+              {(isSearchFetching || isLoading) && (
+                <AiOutlineLoading className="text-sm animate-spin" />
+              )}
+              {isSearchFetching
+                ? `Searching organizations...`
+                : totalResults > 0
+                  ? `Found ${totalResults} organization${totalResults !== 1 ? 's' : ''} matching "${searchTerm}"`
+                  : `No organizations found matching "${searchTerm}"`}
+            </div>
+          )}
+
           <ClusterModal />
           <OrgsContainer orgs={orgs} />
-          <div className="w-2" ref={ref} />
-          {isFetchingNextPage && (
-            <AiOutlineLoading className="mx-auto mt-2 text-2xl animate-spin" />
+
+          {/* Only show infinite scroll when not searching */}
+          {!isSearchActive && (
+            <>
+              <div className="w-2" ref={ref} />
+              {isFetchingNextPage && (
+                <AiOutlineLoading className="mx-auto mt-2 text-2xl animate-spin" />
+              )}
+            </>
           )}
         </div>
       </div>
