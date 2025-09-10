@@ -14,11 +14,16 @@ export const orgSearchQueryOptions = (search: string) =>
     queryFn: () => getSearchOrg(search),
   });
 
-export const allOrgsQueryOptions = (cluster?: string, pageSize = 10, initialOrgs?: OrgsResponse) =>
+export const allOrgsQueryOptions = (
+  seed: string,
+  cluster?: string,
+  pageSize = 10,
+  initialOrgs?: OrgsResponse
+) =>
   infiniteQueryOptions({
     queryKey: ['orgs', { cluster }],
     queryFn: ({ pageParam = 0 }: QueryFunctionContext) =>
-      getAllOrgs(cluster, pageParam as number, pageSize),
+      getAllOrgs(seed, cluster, pageParam as number, pageSize),
     initialPageParam: 0,
     getNextPageParam: (lastPage: OrgsResponse) => {
       const { number, totalPages } = lastPage.page;

@@ -21,16 +21,18 @@ import { useMemo, useRef } from 'react';
 import useObserver from '@/hooks/useObserver';
 interface HomeProps {
   user: User;
+  seed: string;
   initialOrgs: OrgsResponse;
 }
 
-export default function HomePage({ user, initialOrgs }: HomeProps) {
+export default function HomePage({ user, initialOrgs, seed }: HomeProps) {
   const { openClusterModal } = useClusterModalStore();
   const { selectedCluster } = useSelectClusterStore();
   const ref = useRef<HTMLDivElement>(null);
 
   // Prefetch all cluster types to eliminate loading when switching
-  usePrefetchOrgClusters();
+  if (process.env.NODE_ENV !== 'production') console.log('Client Seed:', seed);
+  usePrefetchOrgClusters(seed);
 
   useObserver({
     ref,
@@ -40,7 +42,12 @@ export default function HomePage({ user, initialOrgs }: HomeProps) {
   });
 
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage } = useInfiniteQuery(
-    allOrgsQueryOptions(selectedCluster, 10, selectedCluster === 'all' ? initialOrgs : undefined)
+    allOrgsQueryOptions(
+      seed,
+      selectedCluster,
+      10,
+      selectedCluster === 'all' ? initialOrgs : undefined
+    )
   );
 
   const orgs = useMemo(() => {
