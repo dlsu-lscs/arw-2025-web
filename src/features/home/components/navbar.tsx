@@ -12,6 +12,7 @@ import { MdMenu } from 'react-icons/md';
 import { User } from '@/features/auth/types/user';
 import { useRouter } from 'next/navigation';
 import api from '@/lib/axios';
+import LSCSModal from './lscs-modal';
 
 interface NavProps {
   user: User;
@@ -38,7 +39,9 @@ export default function NavBar({ user }: NavProps) {
         <li className="hidden sm:flex font-press-start text-sm justify-between items-center">
           <ul>Organizations</ul>
           <ul>CSO</ul>
-          <ul>LSCS</ul>
+          <ul>
+            <LSCSModal />
+          </ul>
           <ul>FAQ</ul>
           <ul>
             <DropdownMenu modal={false}>
@@ -77,7 +80,9 @@ export default function NavBar({ user }: NavProps) {
             <li className="font-press-start text-sm sm:text-base flex flex-col p-4 gap-4">
               <ul>Organizations</ul>
               <ul>CSO</ul>
-              <ul>LSCS</ul>
+              <ul>
+                <LSCSModal />
+              </ul>
               <ul>FAQ</ul>
               <ul
                 onClick={handleLogout}
