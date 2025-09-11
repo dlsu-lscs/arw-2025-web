@@ -239,6 +239,63 @@ body {
   outline-offset: calc(-1 * var(--pixel-unit));
 }
 
+.pixel-corner--no-scroll {
+  max-width: 90vw;
+  max-height: 90vh;
+  background: white;
+  padding: clamp(1rem, 5vw, 2rem);
+
+  --pixel-unit: clamp(2px, 0.5vw, 6px);
+
+  clip-path: polygon(
+    0px 0px,
+    calc(100% - calc(5 * var(--pixel-unit))) 0px,
+    calc(100% - calc(5 * var(--pixel-unit))) var(--pixel-unit),
+    calc(100% - calc(3 * var(--pixel-unit))) var(--pixel-unit),
+    calc(100% - calc(3 * var(--pixel-unit))) calc(2 * var(--pixel-unit)),
+    calc(100% - calc(2 * var(--pixel-unit))) calc(2 * var(--pixel-unit)),
+    calc(100% - calc(2 * var(--pixel-unit))) calc(3 * var(--pixel-unit)),
+    calc(100% - var(--pixel-unit)) calc(3 * var(--pixel-unit)),
+    calc(100% - var(--pixel-unit)) calc(5 * var(--pixel-unit)),
+    100% calc(5 * var(--pixel-unit)),
+    100% 100%,
+    calc(5 * var(--pixel-unit)) 100%,
+    calc(5 * var(--pixel-unit)) calc(100% - var(--pixel-unit)),
+    calc(3 * var(--pixel-unit)) calc(100% - var(--pixel-unit)),
+    calc(3 * var(--pixel-unit)) calc(100% - calc(2 * var(--pixel-unit))),
+    calc(2 * var(--pixel-unit)) calc(100% - calc(2 * var(--pixel-unit))),
+    calc(2 * var(--pixel-unit)) calc(100% - calc(3 * var(--pixel-unit))),
+    var(--pixel-unit) calc(100% - calc(3 * var(--pixel-unit))),
+    var(--pixel-unit) calc(100% - calc(5 * var(--pixel-unit))),
+    0px calc(100% - calc(5 * var(--pixel-unit)))
+  );
+
+  outline: var(--pixel-unit) solid black;
+  outline-offset: calc(-1 * var(--pixel-unit));
+
+  display: flex; /* two-column layout */
+  gap: 1rem;
+}
+
+/* Left section scrollable */
+.pixel-left {
+  flex: 1;
+  overflow-y: auto;
+  max-height: 100%; /* makes scroll respect container height */
+  padding-right: 0.5rem; /* optional spacing */
+  @apply overflow-y-auto pr-2;
+}
+
+/* Right section fixed content */
+.pixel-right {
+  flex: 1;
+  overflow: hidden; /* no scroll here */
+  display: flex;
+  align-items: center; /* adjust as needed */
+  justify-content: center;
+  @apply overflow-hidden; /* disable scroll here */
+}
+
 /* Mobile responsive adjustments */
 @media (max-width: 768px) {
   .pixel-corners,
