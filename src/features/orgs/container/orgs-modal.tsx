@@ -23,7 +23,8 @@ export default function OrgsModal({ org, isLoading, isError }: OrgsModalProps) {
       <DialogContent className="[&>button:last-child]:hidden pixel-corner--modal overflow-y-scroll p-4 sm:p-6 md:p-8">
         <DialogHeader>
           <DialogTitle>
-            <div className="md:hidden block mb-4 md:mb-8">
+            {/* Show only on mobile + tablet, hide on PC */}
+            <div className="block lg:hidden mb-4 md:mb-8">
               <CloseModal className="text-[#0F0092] text-xl sm:text-2xl md:text-3xl" />
             </div>
           </DialogTitle>
