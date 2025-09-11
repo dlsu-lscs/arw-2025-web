@@ -79,25 +79,9 @@ export default function OrgsModal({ org, isLoading, isError }: OrgsModalProps) {
                       <CloseModal className="text-[#0F0092] text-xl sm:text-2xl md:text-3xl" />
                     </div>
                     {/* Logo above name/tagline on mobile */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 items-center">
-                      {/* Logo first on mobile */}
-                      <div className="order-1 sm:order-2 flex justify-center items-center">
-                        {org?.publications.logoUrl && (
-                          <Image
-                            // src={org.publications.logoUrl ?? '/assets/placeholder-image.png'}
-                            src="https://researchfair.upalchemes.org/wp-content/uploads/LSCS-1.png"
-                            alt="org logo"
-                            width={167}
-                            height={157}
-                            loading="lazy"
-                            unoptimized
-                            className="rounded-lg max-w-full h-auto"
-                          />
-                        )}
-                      </div>
-
-                      {/* Name + tagline second on mobile */}
-                      <div className="order-2 sm:order-1 text-center sm:text-left">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-center">
+                      {/* Name + tagline first on desktop */}
+                      <div className="order-2 lg:order-1 text-center lg:text-left">
                         <h1 className="text-2xl md:text-3xl">{org?.name}</h1>
                         <p className="text-base md:text-lg opacity-50">{org?.tagline}</p>
                         <Button
@@ -120,6 +104,21 @@ export default function OrgsModal({ org, isLoading, isError }: OrgsModalProps) {
                             />
                           </span>
                         </Button>
+                      </div>
+
+                      {/* Logo second on desktop */}
+                      <div className="order-1 lg:order-2 flex justify-center items-center lg:justify-center">
+                        {org?.publications.logoUrl && (
+                          <Image
+                            src="https://researchfair.upalchemes.org/wp-content/uploads/LSCS-1.png"
+                            alt="org logo"
+                            width={167}
+                            height={157}
+                            loading="lazy"
+                            unoptimized
+                            className="rounded-lg max-w-full h-auto lg:ml-8"
+                          />
+                        )}
                       </div>
                     </div>
 
