@@ -286,14 +286,19 @@ body {
   @apply overflow-y-auto pr-2;
 }
 
-/* Right section fixed content */
 .pixel-right {
   flex: 1;
-  overflow: hidden; /* no scroll here */
   display: flex;
-  align-items: center; /* adjust as needed */
+  align-items: center;
   justify-content: center;
-  @apply overflow-hidden; /* disable scroll here */
+  overflow: hidden;
+  max-height: 100%;
+}
+
+.pixel-right img {
+  max-height: 100%;
+  width: auto; /* preserve aspect ratio */
+  object-fit: contain; /* make sure it fits nicely */
 }
 
 /* Mobile responsive adjustments */
