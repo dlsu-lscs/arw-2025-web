@@ -68,7 +68,7 @@ export default function OrgsModal({ org, isLoading, isError }: OrgsModalProps) {
                       height={814}
                       unoptimized
                       className="rounded-lg w-full h-auto"
-                      onClick={() => window.open(org.facebookUrl, '_blank', 'noopener,noreferrer')}
+                      onClick={() => window.open(org?.facebookUrl, '_blank', 'noopener,noreferrer')}
                     />
                   </section>
 
@@ -81,7 +81,7 @@ export default function OrgsModal({ org, isLoading, isError }: OrgsModalProps) {
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 items-center">
                       {/* Logo first on mobile */}
                       <div className="order-1 sm:order-2 flex justify-center items-center">
-                        {org.publications.logoUrl && (
+                        {org?.publications.logoUrl && (
                           <Image
                             // src={org.publications.logoUrl ?? '/assets/placeholder-image.png'}
                             src="https://researchfair.upalchemes.org/wp-content/uploads/LSCS-1.png"
@@ -97,17 +97,17 @@ export default function OrgsModal({ org, isLoading, isError }: OrgsModalProps) {
 
                       {/* Name + tagline second on mobile */}
                       <div className="order-2 sm:order-1 text-center sm:text-left">
-                        <h1 className="text-2xl md:text-3xl">{org.name}</h1>
-                        <p className="text-base md:text-lg opacity-50">{org.tagline}</p>
+                        <h1 className="text-2xl md:text-3xl">{org?.name}</h1>
+                        <p className="text-base md:text-lg opacity-50">{org?.tagline}</p>
                         <Button
                           className="font-tiny5 bg-[#D8E6FF] rounded-none border-black text-xl md:text-3xl font-bold self-center mt-4 mb-6 md:mb-8 shadow-[4px_4px_0px_rgba(0,0,0,1)] flex items-center"
                           variant="outline"
                           onClick={() =>
-                            window.open(org.gformsUrl, '_blank', 'noopener,noreferrer')
+                            window.open(org?.gformsUrl, '_blank', 'noopener,noreferrer')
                           }
                         >
                           <span className="pr-4 border-r-2 border-black">
-                            JOIN NOW - P{org.fee}
+                            JOIN NOW - P{org?.fee}
                           </span>
                           <span className="pl-2">
                             <Image
@@ -125,17 +125,17 @@ export default function OrgsModal({ org, isLoading, isError }: OrgsModalProps) {
                     {/* About, Mission, Vision */}
                     <div className="flex flex-col gap-4">
                       <h1 className="text-2xl md:text-3xl">About Us</h1>
-                      <p className="font-space-mono text-sm md:text-md w-full">{org.about}</p>
+                      <p className="font-space-mono text-sm md:text-md w-full">{org?.about}</p>
                     </div>
 
                     <div className="flex flex-col gap-4">
                       <h1 className="text-2xl md:text-3xl">Mission</h1>
-                      <p className="font-space-mono text-sm md:text-md w-full">{org.mission}</p>
+                      <p className="font-space-mono text-sm md:text-md w-full">{org?.mission}</p>
                     </div>
 
                     <div className="flex flex-col gap-4">
                       <h1 className="text-2xl md:text-3xl">Vision</h1>
-                      <p className="font-space-mono text-sm md:text-md w-full">{org.vision}</p>
+                      <p className="font-space-mono text-sm md:text-md w-full">{org?.vision}</p>
                     </div>
                   </section>
                 </main>
