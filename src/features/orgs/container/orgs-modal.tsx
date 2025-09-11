@@ -14,13 +14,13 @@ type OrgsModalProps = {
 };
 
 export default function OrgsModal({ org, isLoading, isError }: OrgsModalProps) {
-  const { isOrgsModalOpen, openOrgsModal, closeOrgsModal } = useOrgsModalStore();
+  const { isOrgsModalOpen, closeOrgsModal } = useOrgsModalStore();
 
   if (process.env.NODE_ENV !== 'production') console.log('🔍 Org Modal Debug - org:', org);
 
   return (
-    <Dialog open={isOrgsModalOpen} onOpenChange={openOrgsModal}>
-      <DialogContent className="[&>button:last-child]:hidden pixel-corner--modal overflow-y-scroll p-4 sm:p-6 md:p-8">
+    <Dialog open={isOrgsModalOpen} onOpenChange={closeOrgsModal}>
+      <DialogContent className="[&>button:last-child]:hidden pixel-corner--no-scroll flex flex-col p-4 sm:p-6 md:p-8 overflow-hidden">
         <DialogHeader>
           <DialogTitle>
             {/* Show only on mobile + tablet, hide on PC */}
@@ -59,29 +59,26 @@ export default function OrgsModal({ org, isLoading, isError }: OrgsModalProps) {
               </>
             ) : (
               <>
-                <main className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10">
+                <main className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10 flex-1 overflow-hidden">
                   {/* RIGHT SECTION - shows on top for mobile */}
-                  <section className="order-1 md:order-2 flex justify-center items-start md:items-center">
-                    <Image
+                  <section className="order-1 md:order-2 flex justify-center items-start md:items-center pixel-right">
+                    <img
                       src="https://scontent.fmnl4-7.fna.fbcdn.net/v/t39.30808-6/545580037_1190175683142012_2186304815006449886_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeE4R6AGNKAb_gzcp4YdYAncgMYg3AmRlQWAxiDcCZGVBa3Tn1nvWl7UNzT_inbJdKfTiUxuasJz96VTwyy6Qy8i&_nc_ohc=5slV48eQiBcQ7kNvwFOY6a9&_nc_oc=AdnSkWr-bO0PcBQrkzHKNPU_EuRwApKxsD86t-pTVGvkt5NTDIDlNkA4hBSjljsao2tCOwtb-rf-a7IjNK0_MOIv&_nc_zt=23&_nc_ht=scontent.fmnl4-7.fna&_nc_gid=M5IwpGCD3mZwxtW1HqjIIw&oh=00_AfZsy78J5teokZhe6ewyqvtjGn0z0dh_JJptf4UHc47QAw&oe=68C4D264"
                       alt="org main"
-                      width={646}
-                      height={814}
-                      unoptimized
-                      className="rounded-lg w-full h-auto"
+                      className="rounded-lg max-h-full w-auto object-contain"
                       onClick={() => window.open(org?.facebookUrl, '_blank', 'noopener,noreferrer')}
                     />
                   </section>
 
                   {/* LEFT SECTION */}
-                  <section className="order-2 md:order-1 flex flex-col gap-8 md:gap-10">
+                  <section className="order-2 md:order-1 flex flex-col gap-8 md:gap-10 pixel-left pb-6">
                     <div className="hidden lg:block mb-4 md:mb-8">
                       <CloseModal className="text-[#0F0092] text-xl sm:text-2xl md:text-3xl" />
                     </div>
-                    {/* Logo above name/tagline on mobile */}
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-center">
-                      {/* Name + tagline first on desktop */}
-                      <div className="order-2 lg:order-1 text-center lg:text-left">
+                    {/* Logo above name/tagline until lg, side-by-side only at xl */}
+                    <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 items-center">
+                      {/* Name + tagline first only on xl+ */}
+                      <div className="order-2 xl:order-1 text-center xl:text-left">
                         <h1 className="text-2xl md:text-3xl">{org?.name}</h1>
                         <p className="text-base md:text-lg opacity-50">{org?.tagline}</p>
                         <Button
@@ -106,8 +103,8 @@ export default function OrgsModal({ org, isLoading, isError }: OrgsModalProps) {
                         </Button>
                       </div>
 
-                      {/* Logo second on desktop */}
-                      <div className="order-1 lg:order-2 flex justify-center items-center lg:justify-center">
+                      {/* Logo second on xl+ */}
+                      <div className="order-1 xl:order-2 flex justify-center items-center xl:justify-center">
                         {org?.publications.logoUrl && (
                           <Image
                             src="https://researchfair.upalchemes.org/wp-content/uploads/LSCS-1.png"
@@ -116,7 +113,7 @@ export default function OrgsModal({ org, isLoading, isError }: OrgsModalProps) {
                             height={157}
                             loading="lazy"
                             unoptimized
-                            className="rounded-lg max-w-full h-auto lg:ml-8"
+                            className="rounded-lg max-w-full h-auto xl:ml-8"
                           />
                         )}
                       </div>
