@@ -46,7 +46,7 @@ export default function OrgsContainer({ orgs }: OrgsContainerProps) {
           );
         })}
       </div>
-      <OrgsModal org={orgDetails} isLoading isError />
+      <OrgsModal org={orgDetails} isLoading={isLoading} isError={isError} />
     </>
   );
 }
