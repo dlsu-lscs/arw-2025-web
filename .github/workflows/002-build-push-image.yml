@@ -2,15 +2,14 @@
 name: Build and Push Image
 
 on:
-  # TODO: uncomment if have Dockerfile
-  # workflow_run:
-  #   workflows:
-  #     - "Setup Lint Test Scan"
-  #   branches:
-  #     - main
-  #     - dev
-  #   types:
-  #     - completed
+  workflow_run:
+    workflows:
+      - "Setup Lint Test Scan"
+    branches:
+      - main
+      - dev
+    types:
+      - completed
   workflow_dispatch:
 
 jobs:
