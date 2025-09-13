@@ -37,13 +37,13 @@ export default function NavBar({ user }: NavProps) {
     <header>
       <nav className="relative">
         <li className="hidden sm:flex font-press-start text-sm justify-between items-center">
-          <ul>Organizations</ul>
-          <ul>CSO</ul>
-          <ul>
+          <ul className="hover:text-[#2563EB] transition duration-200">Organizations</ul>
+          <ul className="hover:text-[#2563EB] transition duration-200 cursor-pointer">CSO</ul>
+          <ul className="hover:text-[#2563EB] transition duration-200">
             <LSCSModal />
           </ul>
-          <ul>FAQ</ul>
-          <ul>
+          <ul className="hover:text-[#2563EB] transition duration-200 cursor-pointer">FAQ</ul>
+          <ul className="hover:text-[#2563EB] transition duration-200 cursor-pointer">
             <DropdownMenu modal={false}>
               <DropdownMenuTrigger>
                 <Avatar className="hover:cursor-pointer">
