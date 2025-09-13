@@ -2,29 +2,30 @@
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { useClusterModalStore } from '../store/useClusterModalStore';
 import CloseModal from '@/components/modal/close-modal';
-import Image from 'next/image';
 import { useSelectClusterStore } from '@/store/useSelectClusterStore';
 
 export default function ClusterModal() {
   const { isClusterModalOpen, closeClusterModal, openClusterModal } = useClusterModalStore();
   const { setSelectedCluster } = useSelectClusterStore();
+
   return (
     <>
-      <Dialog open={isClusterModalOpen} onOpenChange={openClusterModal}>
-        <DialogContent className="[&>button:last-child]:hidden pixel-corner--no-scroll-grid ">
+      <Dialog open={isClusterModalOpen} onOpenChange={closeClusterModal}>
+        <DialogContent className="[&>button:last-child]:hidden pixel-corner--no-scroll-grid">
           <DialogHeader>
             <DialogTitle>
               <CloseModal />
             </DialogTitle>
           </DialogHeader>
-          <main className="flex gap-4 p-16 justify-center items-center">
+          {/* Main container with responsive flexbox properties */}
+          <main className="flex flex-col gap-4 p-8 md:p-16 justify-center items-center md:flex-row">
             {/* First Main Column (Left Side) with nested rows */}
-            <section className="flex flex-col gap-4">
+            <section className="flex flex-col gap-4 w-full md:w-auto">
               {/* First Row: Clusters, Engage, and CAP13 Cards side by side */}
-              <div className="flex gap-4">
+              <div className="flex gap-4 flex-col md:flex-row">
                 {/* Clusters Title & Engage Card */}
-                <div className="flex flex-col gap-4">
-                  <div className="flex flex-col gap-2 w-[400px] h-[200px]">
+                <div className="flex flex-col gap-4 w-full md:w-[400px]">
+                  <div className="flex flex-col gap-2 h-auto md:h-[200px]">
                     <h1 className="text-[clamp(1.5rem,4vw,1.875rem)]">Clusters!?</h1>
                     <p className="font-space-mono text-[clamp(0.875rem,2.5vw,1rem)]">
                       Clusters are alliances or groups of CSO-accredited organizations that share
@@ -34,7 +35,7 @@ export default function ClusterModal() {
                   </div>
                   <div>
                     <button
-                      className="w-[400px] h-[200px] bg-[url('/bg/st-lasalle-bg.webp')] hover:cursor-pointer bg-center bg-cover bg-[#010F56]/62 hover:opacity-90 transition duration-100 bg-blend-multiply flex justify-start p-6 items-center rounded-lg text-white"
+                      className="w-full h-[200px] bg-[url('/bg/st-lasalle-bg.webp')] hover:cursor-pointer bg-center bg-cover bg-[#010F56]/62 hover:opacity-90 transition duration-100 bg-blend-multiply flex justify-start p-6 items-center rounded-lg text-white"
                       onClick={() => {
                         closeClusterModal();
                         setSelectedCluster('engage');
@@ -52,15 +53,15 @@ export default function ClusterModal() {
                   </div>
                 </div>
                 {/* CAP13 Card */}
-                <div className="flex justify-center items-center">
+                <div className="flex justify-center items-center w-full md:w-auto">
                   <div
-                    className="w-[200px] h-[400px] bg-[url('/bg/st-lasalle-bg.webp')] hover:cursor-pointer bg-center bg-cover bg-[#564C01]/62 hover:opacity-90 transition duration-100 bg-blend-multiply flex justify-start p-6 items-center rounded-lg text-white"
+                    className="w-full h-[200px] md:w-[200px] md:h-[400px] bg-[url('/bg/st-lasalle-bg.webp')] hover:cursor-pointer bg-center bg-cover bg-[#564C01]/62 hover:opacity-90 transition duration-100 bg-blend-multiply flex justify-start p-6 items-center rounded-lg text-white"
                     onClick={() => {
                       closeClusterModal();
                       setSelectedCluster('cap13');
                     }}
                   >
-                    <button className="w-[85%] hover:cursor-pointer mx-auto flex flex-col gap-2 ">
+                    <button className="w-full hover:cursor-pointer mx-auto flex flex-col gap-2">
                       <h1 className="text-left text-[clamp(1.25rem,4vw,1.875rem)] [text-shadow:_4px_4px_0px_rgba(0,0,0,1)]">
                         CAP13
                       </h1>
@@ -73,14 +74,14 @@ export default function ClusterModal() {
               </div>
 
               {/* Second Row: Macky Logo & Aspire Card */}
-              <div className="flex gap-4">
+              <div className="flex gap-4 flex-col md:flex-row">
                 <div className="flex justify-end w-full">
-                  <div className="w-[200px] hover:cursor-pointer h-[200px] bg-[url('/bg/st-lasalle-bg.webp')] bg-center bg-cover bg-[#004B02]/62 hover:opacity-90 transition duration-100 bg-blend-multiply flex justify-start p-6 items-center rounded-lg text-white">
+                  <div className="w-full h-[200px] md:w-[200px] md:h-[200px] hover:cursor-pointer bg-[url('/bg/st-lasalle-bg.webp')] bg-center bg-cover bg-[#004B02]/62 hover:opacity-90 transition duration-100 bg-blend-multiply flex justify-start p-6 items-center rounded-lg text-white">
                     <button
                       className="flex flex-col gap-2 hover:cursor-pointer"
                       onClick={() => {
                         closeClusterModal();
-                        setSelectedCluster('aspire');
+                        setSelectedCluster('cso');
                       }}
                     >
                       <h1 className="text-left text-[clamp(1rem,2.5vw,1.5rem)] [text-shadow:_4px_4px_0px_rgba(0,0,0,1)]">
@@ -92,8 +93,8 @@ export default function ClusterModal() {
                     </button>
                   </div>
                 </div>
-                <div>
-                  <div className="w-[400px] hover:cursor-pointer h-[200px] bg-[url('/bg/st-lasalle-bg.webp')] bg-center bg-cover bg-[#8D0094]/70 hover:opacity-90 transition duration-100 bg-blend-multiply flex justify-start p-6 items-center rounded-lg text-white">
+                <div className="w-full">
+                  <div className="w-full h-[200px] md:w-[400px] hover:cursor-pointer bg-[url('/bg/st-lasalle-bg.webp')] bg-center bg-cover bg-[#8D0094]/70 hover:opacity-90 transition duration-100 bg-blend-multiply flex justify-start p-6 items-center rounded-lg text-white">
                     <button
                       className="flex flex-col gap-2 hover:cursor-pointer"
                       onClick={() => {
@@ -116,15 +117,15 @@ export default function ClusterModal() {
             {/* Second Main Column (Right Side) */}
             <section className="flex w-full flex-col gap-4">
               {/* PROBE Card spanning two columns */}
-              <div className="flex">
+              <div className="flex w-full">
                 <div
-                  className="w-[400px] h-[200px] hover:cursor-pointer bg-[url('/bg/st-lasalle-bg.webp')] bg-center bg-cover bg-[#940000]/62 hover:opacity-90 transition duration-100  bg-blend-multiply flex justify-start items-center rounded-lg text-white"
+                  className="w-full h-[200px] md:w-[400px] hover:cursor-pointer bg-[url('/bg/st-lasalle-bg.webp')] bg-center bg-cover bg-[#940000]/62 hover:opacity-90 transition duration-100  bg-blend-multiply flex justify-start items-center rounded-lg text-white"
                   onClick={() => {
                     closeClusterModal();
                     setSelectedCluster('probe');
                   }}
                 >
-                  <button className="w-[85%] mx-auto flex flex-col gap-2 hover:cursor-pointer">
+                  <button className="w-full mx-auto flex flex-col gap-2 hover:cursor-pointer p-6">
                     <h1 className="text-left text-[clamp(1.25rem,4vw,1.875rem)] [text-shadow:_4px_4px_0px_rgba(0,0,0,1)]">
                       PROBE
                     </h1>
@@ -134,10 +135,10 @@ export default function ClusterModal() {
                   </button>
                 </div>
               </div>
-              <div className="flex gap-2">
+              <div className="flex gap-4 flex-col md:flex-row">
                 {/* ASO Card */}
                 <div
-                  className="w-[200px] h-[400px] hover:cursor-pointer bg-[url('/bg/st-lasalle-bg.webp')] bg-center bg-cover bg-[#3FA300]/62 hover:opacity-90 transition duration-100  bg-blend-multiply flex justify-start p-6 items-center rounded-lg text-white"
+                  className="w-full h-[200px] md:w-[200px] md:h-[400px] hover:cursor-pointer bg-[url('/bg/st-lasalle-bg.webp')] bg-center bg-cover bg-[#3FA300]/62 hover:opacity-90 transition duration-100 bg-blend-multiply flex justify-start p-6 items-center rounded-lg text-white"
                   onClick={() => {
                     closeClusterModal();
                     setSelectedCluster('aso');
@@ -153,20 +154,20 @@ export default function ClusterModal() {
                   </button>
                 </div>
                 {/* Other Card */}
-                <div>
+                <div className="w-full">
                   <div
-                    className="w-[200px] h-[400px] hover:cursor-pointer bg-[url('/bg/st-lasalle-bg.webp')] bg-center bg-cover bg-[#0078A3]/62 hover:opacity-90 transition duration-100  bg-blend-multiply flex justify-start p-6 items-center rounded-lg text-white"
+                    className="w-full h-[200px] md:w-[200px] md:h-[400px] hover:cursor-pointer bg-[url('/bg/st-lasalle-bg.webp')] bg-center bg-cover bg-[#0078A3]/62 hover:opacity-90 transition duration-100 bg-blend-multiply flex justify-start p-6 items-center rounded-lg text-white"
                     onClick={() => {
                       closeClusterModal();
-                      setSelectedCluster('aso');
+                      setSelectedCluster('special');
                     }}
                   >
                     <button className="flex flex-col gap-2 hover:cursor-pointer">
-                      <h1 className="text-left text-[clamp(1.25rem,4vw,1.875rem)] [text-shadow:_4px_4px_0px_rgba(0,0,0,1)]">
-                        Other
+                      <h1 className="text-left text-[clamp(1rem,3vw,1.5rem)] [text-shadow:_4px_4px_0px_rgba(0,0,0,1)]">
+                        Special
                       </h1>
-                      <p className="text-[clamp(0.75rem,2vw,1.25rem)] text-left font-space-mono font-bold">
-                        Other Organizations
+                      <p className="text-[clamp(0.65rem,1.5vw,1rem)] text-left font-space-mono font-bold">
+                        Special Organizations
                       </p>
                     </button>
                   </div>

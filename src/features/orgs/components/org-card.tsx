@@ -2,7 +2,7 @@ import { cn } from '@/lib/utils';
 import { OrganizationType } from '../types/orgs.types';
 import { returnColorFromCluster } from '@/lib/helpers';
 import Image from 'next/image';
-import { returnColorFromCluster70 } from '@/lib/helpers';
+import { returnColorFromCluster62 } from '@/lib/helpers';
 
 interface OrgCardProps {
   className?: string;
@@ -20,7 +20,7 @@ export default function OrgCard({ className, org, onClick, onMouseEnter }: OrgCa
           className
         )}
         style={{
-          backgroundColor: returnColorFromCluster70(org.cluster.name.toLowerCase()),
+          backgroundColor: returnColorFromCluster62(org.cluster.name.toLowerCase()),
           backgroundImage: `url('${org.publications.mainPubUrl ?? '/bg/st-lasalle-bg.webp'}')`,
           backgroundBlendMode: 'multiply',
         }}
