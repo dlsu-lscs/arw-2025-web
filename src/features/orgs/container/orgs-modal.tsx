@@ -13,6 +13,7 @@ import {
   CarouselNextPixel,
   CarouselPreviousPixel,
 } from '@/components/ui/carousel';
+import { DialogTrigger } from '@radix-ui/react-dialog';
 
 type OrgsModalProps = {
   org?: OrganizationType;
@@ -97,7 +98,15 @@ export default function OrgsModal({ org, isLoading, isError }: OrgsModalProps) {
                         >
                           JOIN NOW
                         </Button>
-                        <p className="font-tiny5 text-black text-lg">{org?.fee}</p>
+                        {org?.fee ? (
+                          <>
+                            {org?.fee == 0 ? null : (
+                              <>
+                                <p className="font-tiny5 text-black text-lg">{org?.fee}</p>
+                              </>
+                            )}
+                          </>
+                        ) : null}
                       </div>
 
                       {/* Logo second on xl+ */}
@@ -124,29 +133,65 @@ export default function OrgsModal({ org, isLoading, isError }: OrgsModalProps) {
                           <div className="flex gap-2 w-full overflow-x-scroll">
                             {org.publications.mainPubUrl ? (
                               <>
-                                <img
-                                  src="https://scontent.fmnl4-7.fna.fbcdn.net/v/t39.30808-6/545580037_1190175683142012_2186304815006449886_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeE4R6AGNKAb_gzcp4YdYAncgMYg3AmRlQWAxiDcCZGVBa3Tn1nvWl7UNzT_inbJdKfTiUxuasJz96VTwyy6Qy8i&_nc_ohc=4hFZC2ITpBsQ7kNvwF-dWOW&_nc_oc=AdnnIuUqe0JHlZmS6QRdEzTJjBF3nSzI5j8yymixzBVjDAYjyDIjbQfR3NWu_-AM_mBQZRDspa3hQswveCC67hIj&_nc_zt=23&_nc_ht=scontent.fmnl4-7.fna&_nc_gid=YYXLJsYLpoz_1x2kJpyFdA&oh=00_AfZXnU5Am6JlVwA5LW4pdj4XXqHShzf_V-jRzBqi7RYIaQ&oe=68CBA224"
-                                  alt="main pub"
-                                  className="w-auto h-[200px] object-contain rounded-lg cursor-pointer flex-shrink-0"
-                                />
+                                <Dialog>
+                                  <DialogTrigger>
+                                    <img
+                                      src="https://scontent.fmnl4-7.fna.fbcdn.net/v/t39.30808-6/545580037_1190175683142012_2186304815006449886_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeE4R6AGNKAb_gzcp4YdYAncgMYg3AmRlQWAxiDcCZGVBa3Tn1nvWl7UNzT_inbJdKfTiUxuasJz96VTwyy6Qy8i&_nc_ohc=4hFZC2ITpBsQ7kNvwF-dWOW&_nc_oc=AdnnIuUqe0JHlZmS6QRdEzTJjBF3nSzI5j8yymixzBVjDAYjyDIjbQfR3NWu_-AM_mBQZRDspa3hQswveCC67hIj&_nc_zt=23&_nc_ht=scontent.fmnl4-7.fna&_nc_gid=YYXLJsYLpoz_1x2kJpyFdA&oh=00_AfZXnU5Am6JlVwA5LW4pdj4XXqHShzf_V-jRzBqi7RYIaQ&oe=68CBA224"
+                                      alt="main pub"
+                                      className="w-auto h-[200px] object-contain rounded-lg cursor-pointer flex-shrink-0"
+                                    />
+                                  </DialogTrigger>
+                                  <DialogTitle></DialogTitle>
+                                  <DialogContent className="bg-transparent border-none p-0">
+                                    <img
+                                      src="https://scontent.fmnl4-7.fna.fbcdn.net/v/t39.30808-6/545580037_1190175683142012_2186304815006449886_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeE4R6AGNKAb_gzcp4YdYAncgMYg3AmRlQWAxiDcCZGVBa3Tn1nvWl7UNzT_inbJdKfTiUxuasJz96VTwyy6Qy8i&_nc_ohc=4hFZC2ITpBsQ7kNvwF-dWOW&_nc_oc=AdnnIuUqe0JHlZmS6QRdEzTJjBF3nSzI5j8yymixzBVjDAYjyDIjbQfR3NWu_-AM_mBQZRDspa3hQswveCC67hIj&_nc_zt=23&_nc_ht=scontent.fmnl4-7.fna&_nc_gid=YYXLJsYLpoz_1x2kJpyFdA&oh=00_AfZXnU5Am6JlVwA5LW4pdj4XXqHShzf_V-jRzBqi7RYIaQ&oe=68CBA224"
+                                      alt="main pub"
+                                      className="w-full h-full object-contain rounded-lg cursor-pointer flex-shrink-0"
+                                    />
+                                  </DialogContent>
+                                </Dialog>
                               </>
                             ) : null}
                             {org.publications.feePubUrl ? (
                               <>
-                                <img
-                                  src="https://scontent.fmnl4-1.fna.fbcdn.net/v/t39.30808-6/547174890_1194235219402725_5628082084578477908_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeFKkxynjLbUiJthqqk2FMbVLej2r5pHM9Yt6Pavmkcz1irMB7DUyc-ONvFbT9xXKvv89vhpyes2LsnMd_gxWDNN&_nc_ohc=zOeOwEixv6oQ7kNvwFLFwsE&_nc_oc=AdmB8CU4wsY5Is14fKCXloL07EExhc9R3dE8-sjjZiZyUBD6mjoFyp7KDKxFJgn_rHcMrumo-OR0712CwmpRtXzl&_nc_zt=23&_nc_ht=scontent.fmnl4-1.fna&_nc_gid=_yQgOyIcHs5FJ3V8cj5JMQ&oh=00_AfYFdy8QQzCyidIEfZq4Djw2cQspVNXWD-k0qCK4Eche4w&oe=68CB84AB"
-                                  alt="fee pub"
-                                  className="w-[200px] h-[200px] object-contain rounded-lg cursor-pointer flex-shrink-0"
-                                />
+                                <Dialog>
+                                  <DialogTrigger>
+                                    <img
+                                      src="https://scontent.fmnl4-1.fna.fbcdn.net/v/t39.30808-6/547174890_1194235219402725_5628082084578477908_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeFKkxynjLbUiJthqqk2FMbVLej2r5pHM9Yt6Pavmkcz1irMB7DUyc-ONvFbT9xXKvv89vhpyes2LsnMd_gxWDNN&_nc_ohc=zOeOwEixv6oQ7kNvwFLFwsE&_nc_oc=AdmB8CU4wsY5Is14fKCXloL07EExhc9R3dE8-sjjZiZyUBD6mjoFyp7KDKxFJgn_rHcMrumo-OR0712CwmpRtXzl&_nc_zt=23&_nc_ht=scontent.fmnl4-1.fna&_nc_gid=_yQgOyIcHs5FJ3V8cj5JMQ&oh=00_AfYFdy8QQzCyidIEfZq4Djw2cQspVNXWD-k0qCK4Eche4w&oe=68CB84AB"
+                                      alt="fee pub"
+                                      className="w-auto h-[200px] object-contain rounded-lg cursor-pointer flex-shrink-0"
+                                    />
+                                  </DialogTrigger>
+                                  <DialogTitle></DialogTitle>
+                                  <DialogContent className="bg-transparent border-none p-0">
+                                    <img
+                                      src="https://scontent.fmnl4-1.fna.fbcdn.net/v/t39.30808-6/547174890_1194235219402725_5628082084578477908_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeFKkxynjLbUiJthqqk2FMbVLej2r5pHM9Yt6Pavmkcz1irMB7DUyc-ONvFbT9xXKvv89vhpyes2LsnMd_gxWDNN&_nc_ohc=zOeOwEixv6oQ7kNvwFLFwsE&_nc_oc=AdmB8CU4wsY5Is14fKCXloL07EExhc9R3dE8-sjjZiZyUBD6mjoFyp7KDKxFJgn_rHcMrumo-OR0712CwmpRtXzl&_nc_zt=23&_nc_ht=scontent.fmnl4-1.fna&_nc_gid=_yQgOyIcHs5FJ3V8cj5JMQ&oh=00_AfYFdy8QQzCyidIEfZq4Djw2cQspVNXWD-k0qCK4Eche4w&oe=68CB84AB"
+                                      alt="fee pub"
+                                      className="w-full h-full object-contain rounded-lg cursor-pointer flex-shrink-0"
+                                    />
+                                  </DialogContent>
+                                </Dialog>
                               </>
                             ) : null}
                             {org.publications.orgVidUrl ? (
                               <>
-                                <img
-                                  src="https://scontent.fmnl4-1.fna.fbcdn.net/v/t39.30808-6/547174890_1194235219402725_5628082084578477908_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeFKkxynjLbUiJthqqk2FMbVLej2r5pHM9Yt6Pavmkcz1irMB7DUyc-ONvFbT9xXKvv89vhpyes2LsnMd_gxWDNN&_nc_ohc=zOeOwEixv6oQ7kNvwFLFwsE&_nc_oc=AdmB8CU4wsY5Is14fKCXloL07EExhc9R3dE8-sjjZiZyUBD6mjoFyp7KDKxFJgn_rHcMrumo-OR0712CwmpRtXzl&_nc_zt=23&_nc_ht=scontent.fmnl4-1.fna&_nc_gid=_yQgOyIcHs5FJ3V8cj5JMQ&oh=00_AfYFdy8QQzCyidIEfZq4Djw2cQspVNXWD-k0qCK4Eche4w&oe=68CB84AB"
-                                  alt="fee pub"
-                                  className="w-[200px] h-[200px] object-contain rounded-lg cursor-pointer flex-shrink-0"
-                                />
+                                <Dialog>
+                                  <DialogTrigger>
+                                    <img
+                                      src="https://scontent.fmnl4-1.fna.fbcdn.net/v/t39.30808-6/547174890_1194235219402725_5628082084578477908_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeFKkxynjLbUiJthqqk2FMbVLej2r5pHM9Yt6Pavmkcz1irMB7DUyc-ONvFbT9xXKvv89vhpyes2LsnMd_gxWDNN&_nc_ohc=zOeOwEixv6oQ7kNvwFLFwsE&_nc_oc=AdmB8CU4wsY5Is14fKCXloL07EExhc9R3dE8-sjjZiZyUBD6mjoFyp7KDKxFJgn_rHcMrumo-OR0712CwmpRtXzl&_nc_zt=23&_nc_ht=scontent.fmnl4-1.fna&_nc_gid=_yQgOyIcHs5FJ3V8cj5JMQ&oh=00_AfYFdy8QQzCyidIEfZq4Djw2cQspVNXWD-k0qCK4Eche4w&oe=68CB84AB"
+                                      alt="fee pub"
+                                      className="w-auto h-[200px] object-contain rounded-lg cursor-pointer flex-shrink-0"
+                                    />
+                                  </DialogTrigger>
+                                  <DialogTitle></DialogTitle>
+                                  <DialogContent className="bg-transparent border-none p-0">
+                                    <img
+                                      src="https://scontent.fmnl4-1.fna.fbcdn.net/v/t39.30808-6/547174890_1194235219402725_5628082084578477908_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeFKkxynjLbUiJthqqk2FMbVLej2r5pHM9Yt6Pavmkcz1irMB7DUyc-ONvFbT9xXKvv89vhpyes2LsnMd_gxWDNN&_nc_ohc=zOeOwEixv6oQ7kNvwFLFwsE&_nc_oc=AdmB8CU4wsY5Is14fKCXloL07EExhc9R3dE8-sjjZiZyUBD6mjoFyp7KDKxFJgn_rHcMrumo-OR0712CwmpRtXzl&_nc_zt=23&_nc_ht=scontent.fmnl4-1.fna&_nc_gid=_yQgOyIcHs5FJ3V8cj5JMQ&oh=00_AfYFdy8QQzCyidIEfZq4Djw2cQspVNXWD-k0qCK4Eche4w&oe=68CB84AB"
+                                      alt="fee pub"
+                                      className="w-full h-full object-contain rounded-lg cursor-pointer flex-shrink-0"
+                                    />
+                                  </DialogContent>
+                                </Dialog>
                               </>
                             ) : null}
                           </div>
