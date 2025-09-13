@@ -279,12 +279,6 @@ body {
   gap: 1rem;
 }
 
-@media (min-width: 768px) {
-  .pixel-corner--no-scroll-grid {
-    max-width: 65vw;
-  }
-}
-
 .pixel-corner--no-scroll {
   max-width: 90vw;
   max-height: 90vh;
