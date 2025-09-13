@@ -29,4 +29,14 @@ export const clusters = [
     acronym: 'ASO',
     name: 'Alliance of Science Organizations',
   },
+  {
+    id: 'cso',
+    acronym: 'CSO',
+    name: 'Council of Student Organizations',
+  },
+  {
+    id: 'special',
+    acronym: 'Special',
+    name: 'Special Organizations',
+  },
 ];
