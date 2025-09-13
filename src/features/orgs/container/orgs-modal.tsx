@@ -69,33 +69,12 @@ export default function OrgsModal({ org, isLoading, isError }: OrgsModalProps) {
                 <main className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10 flex-1 overflow-hidden">
                   {/* RIGHT SECTION - shows on top for mobile */}
                   <section className="order-1 md:order-2 flex justify-center items-start md:items-center pixel-right">
-                    <Carousel className="w-full" opts={{ loop: true }}>
-                      <CarouselContent>
-                        <CarouselItem className="basis-[80%]  flex justify-center items-center">
-                          <img
-                            src="https://scontent.fmnl4-7.fna.fbcdn.net/v/t39.30808-6/545580037_1190175683142012_2186304815006449886_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeE4R6AGNKAb_gzcp4YdYAncgMYg3AmRlQWAxiDcCZGVBa3Tn1nvWl7UNzT_inbJdKfTiUxuasJz96VTwyy6Qy8i&_nc_ohc=4hFZC2ITpBsQ7kNvwF-dWOW&_nc_oc=AdnnIuUqe0JHlZmS6QRdEzTJjBF3nSzI5j8yymixzBVjDAYjyDIjbQfR3NWu_-AM_mBQZRDspa3hQswveCC67hIj&_nc_zt=23&_nc_ht=scontent.fmnl4-7.fna&_nc_gid=9YmXn29-f7dvz8OvoR0DPA&oh=00_AfZHat8hNNEi8gnzSbCF9_3Na_mKj-9lk_HK6D_fFU_nrw&oe=68CB69E4"
-                            alt="org image 1"
-                            className="w-full max-h-[90vh] object-contain rounded-lg cursor-pointer"
-                            onClick={() =>
-                              window.open(org?.facebookUrl, '_blank', 'noopener,noreferrer')
-                            }
-                          />
-                        </CarouselItem>
-                        <CarouselItem className="basis-[80%]  flex justify-center items-center">
-                          <img
-                            src="https://scontent.fmnl4-1.fna.fbcdn.net/v/t39.30808-6/547174890_1194235219402725_5628082084578477908_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeFKkxynjLbUiJthqqk2FMbVLej2r5pHM9Yt6Pavmkcz1irMB7DUyc-ONvFbT9xXKvv89vhpyes2LsnMd_gxWDNN&_nc_ohc=LIPb0-EghFEQ7kNvwFgwBHW&_nc_oc=AdnaKwIMAM2o_8gu25Wh8p4p6kK2i_WXk5DYsDK9VW8rTTgcU3mEJyQeJXcnrZ12iHnNfP69DecZlNgWsiTx2Hml&_nc_zt=23&_nc_ht=scontent.fmnl4-1.fna&_nc_gid=eGbjgLnjOWYOuRgbj2qHuw&oh=00_AfZYmqsgyGs8tPx4gK4ZuQsghTVLI10keiQhXufZkFfJyw&oe=68CB4C6B"
-                            alt="org image 1"
-                            className="w-full min-h-full object-cover rounded-lg cursor-pointer"
-                            onClick={() =>
-                              window.open(org?.facebookUrl, '_blank', 'noopener,noreferrer')
-                            }
-                          />
-                        </CarouselItem>
-                      </CarouselContent>
-
-                      <CarouselPreviousPixel className="left-1" />
-                      <CarouselNextPixel className="right-1" />
-                    </Carousel>
+                    <img
+                      src="https://scontent.fmnl4-7.fna.fbcdn.net/v/t39.30808-6/545580037_1190175683142012_2186304815006449886_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeE4R6AGNKAb_gzcp4YdYAncgMYg3AmRlQWAxiDcCZGVBa3Tn1nvWl7UNzT_inbJdKfTiUxuasJz96VTwyy6Qy8i&_nc_ohc=4hFZC2ITpBsQ7kNvwF-dWOW&_nc_oc=AdnnIuUqe0JHlZmS6QRdEzTJjBF3nSzI5j8yymixzBVjDAYjyDIjbQfR3NWu_-AM_mBQZRDspa3hQswveCC67hIj&_nc_zt=23&_nc_ht=scontent.fmnl4-7.fna&_nc_gid=9YmXn29-f7dvz8OvoR0DPA&oh=00_AfZHat8hNNEi8gnzSbCF9_3Na_mKj-9lk_HK6D_fFU_nrw&oe=68CB69E4"
+                      alt="org image 1"
+                      className="w-full max-h-[90vh] object-contain rounded-lg cursor-pointer"
+                      onClick={() => window.open(org?.facebookUrl, '_blank', 'noopener,noreferrer')}
+                    />
                   </section>
 
                   {/* LEFT SECTION */}
@@ -116,19 +95,9 @@ export default function OrgsModal({ org, isLoading, isError }: OrgsModalProps) {
                             window.open(org?.gformsUrl, '_blank', 'noopener,noreferrer')
                           }
                         >
-                          <span className="pr-4 border-r-2 border-black">
-                            JOIN NOW - P{org?.fee}
-                          </span>
-                          <span className="pl-2">
-                            <Image
-                              alt="next"
-                              width={18}
-                              height={18}
-                              src="/assets/next.svg"
-                              className="transform rotate-90 invert-0 brightness-0"
-                            />
-                          </span>
+                          JOIN NOW
                         </Button>
+                        <p className="font-tiny5 text-black text-lg">{org?.fee}</p>
                       </div>
 
                       {/* Logo second on xl+ */}
@@ -148,20 +117,61 @@ export default function OrgsModal({ org, isLoading, isError }: OrgsModalProps) {
                     </div>
 
                     {/* About, Mission, Vision */}
-                    <div className="flex flex-col gap-4">
-                      <h1 className="text-2xl md:text-3xl">About Us</h1>
-                      <p className="font-space-mono text-sm md:text-md w-full">{org?.about}</p>
-                    </div>
-
-                    <div className="flex flex-col gap-4">
-                      <h1 className="text-2xl md:text-3xl">Mission</h1>
-                      <p className="font-space-mono text-sm md:text-md w-full">{org?.mission}</p>
-                    </div>
-
-                    <div className="flex flex-col gap-4">
-                      <h1 className="text-2xl md:text-3xl">Vision</h1>
-                      <p className="font-space-mono text-sm md:text-md w-full">{org?.vision}</p>
-                    </div>
+                    {org?.about ? (
+                      <>
+                        <div className="flex flex-col gap-4">
+                          <h1 className="text-2xl md:text-3xl">About Us</h1>
+                          <div className="flex gap-2 w-full overflow-x-scroll">
+                            {org.publications.mainPubUrl ? (
+                              <>
+                                <img
+                                  src="https://scontent.fmnl4-7.fna.fbcdn.net/v/t39.30808-6/545580037_1190175683142012_2186304815006449886_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeE4R6AGNKAb_gzcp4YdYAncgMYg3AmRlQWAxiDcCZGVBa3Tn1nvWl7UNzT_inbJdKfTiUxuasJz96VTwyy6Qy8i&_nc_ohc=4hFZC2ITpBsQ7kNvwF-dWOW&_nc_oc=AdnnIuUqe0JHlZmS6QRdEzTJjBF3nSzI5j8yymixzBVjDAYjyDIjbQfR3NWu_-AM_mBQZRDspa3hQswveCC67hIj&_nc_zt=23&_nc_ht=scontent.fmnl4-7.fna&_nc_gid=YYXLJsYLpoz_1x2kJpyFdA&oh=00_AfZXnU5Am6JlVwA5LW4pdj4XXqHShzf_V-jRzBqi7RYIaQ&oe=68CBA224"
+                                  alt="main pub"
+                                  className="w-auto h-[200px] object-contain rounded-lg cursor-pointer flex-shrink-0"
+                                />
+                              </>
+                            ) : null}
+                            {org.publications.feePubUrl ? (
+                              <>
+                                <img
+                                  src="https://scontent.fmnl4-1.fna.fbcdn.net/v/t39.30808-6/547174890_1194235219402725_5628082084578477908_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeFKkxynjLbUiJthqqk2FMbVLej2r5pHM9Yt6Pavmkcz1irMB7DUyc-ONvFbT9xXKvv89vhpyes2LsnMd_gxWDNN&_nc_ohc=zOeOwEixv6oQ7kNvwFLFwsE&_nc_oc=AdmB8CU4wsY5Is14fKCXloL07EExhc9R3dE8-sjjZiZyUBD6mjoFyp7KDKxFJgn_rHcMrumo-OR0712CwmpRtXzl&_nc_zt=23&_nc_ht=scontent.fmnl4-1.fna&_nc_gid=_yQgOyIcHs5FJ3V8cj5JMQ&oh=00_AfYFdy8QQzCyidIEfZq4Djw2cQspVNXWD-k0qCK4Eche4w&oe=68CB84AB"
+                                  alt="fee pub"
+                                  className="w-[200px] h-[200px] object-contain rounded-lg cursor-pointer flex-shrink-0"
+                                />
+                              </>
+                            ) : null}
+                            {org.publications.orgVidUrl ? (
+                              <>
+                                <img
+                                  src="https://scontent.fmnl4-1.fna.fbcdn.net/v/t39.30808-6/547174890_1194235219402725_5628082084578477908_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeFKkxynjLbUiJthqqk2FMbVLej2r5pHM9Yt6Pavmkcz1irMB7DUyc-ONvFbT9xXKvv89vhpyes2LsnMd_gxWDNN&_nc_ohc=zOeOwEixv6oQ7kNvwFLFwsE&_nc_oc=AdmB8CU4wsY5Is14fKCXloL07EExhc9R3dE8-sjjZiZyUBD6mjoFyp7KDKxFJgn_rHcMrumo-OR0712CwmpRtXzl&_nc_zt=23&_nc_ht=scontent.fmnl4-1.fna&_nc_gid=_yQgOyIcHs5FJ3V8cj5JMQ&oh=00_AfYFdy8QQzCyidIEfZq4Djw2cQspVNXWD-k0qCK4Eche4w&oe=68CB84AB"
+                                  alt="fee pub"
+                                  className="w-[200px] h-[200px] object-contain rounded-lg cursor-pointer flex-shrink-0"
+                                />
+                              </>
+                            ) : null}
+                          </div>
+                          <p className="font-space-mono text-sm md:text-md w-full">{org?.about}</p>
+                        </div>
+                      </>
+                    ) : null}
+                    {org?.mission ? (
+                      <>
+                        <div className="flex flex-col gap-4">
+                          <h1 className="text-2xl md:text-3xl">Mission</h1>
+                          <p className="font-space-mono text-sm md:text-md w-full">
+                            {org?.mission}
+                          </p>
+                        </div>
+                      </>
+                    ) : null}
+                    {org?.vision ? (
+                      <>
+                        <div className="flex flex-col gap-4">
+                          <h1 className="text-2xl md:text-3xl">Vision</h1>
+                          <p className="font-space-mono text-sm md:text-md w-full">{org?.vision}</p>
+                        </div>
+                      </>
+                    ) : null}
                     <footer className="flex justify-center mt-8 md:mt-12">
                       <h3 className="font-tiny5 text-sm md:text-base opacity-50">
                         Powered by La Salle Computer Society.
