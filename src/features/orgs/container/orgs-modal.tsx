@@ -100,11 +100,11 @@ export default function OrgsModal({ org, isLoading, isError }: OrgsModalProps) {
                         </Button>
                         {org?.fee ? (
                           <>
-                            {org?.fee == 0 ? null : (
+                            {org?.fee ? (
                               <>
                                 <p className="font-tiny5 text-black text-lg">{org?.fee}</p>
                               </>
-                            )}
+                            ) : null}
                           </>
                         ) : null}
                       </div>
