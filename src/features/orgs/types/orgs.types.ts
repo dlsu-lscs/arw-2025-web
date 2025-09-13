@@ -20,8 +20,7 @@ export type OrganizationType = {
   name: string;
   shortName: string;
   about: string;
-  fee: number;
-  bundleFee: number;
+  fee: string;
   gformsUrl: string;
   facebookUrl: string;
   mission: string;
