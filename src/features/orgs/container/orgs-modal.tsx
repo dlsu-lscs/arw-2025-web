@@ -6,6 +6,13 @@ import { useOrgsModalStore } from '../store/useOrgsModalStore';
 import CloseModal from '@/components/modal/close-modal';
 import { OrganizationType } from '../types/orgs.types';
 import { AiOutlineLoading } from 'react-icons/ai';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNextPixel,
+  CarouselPreviousPixel,
+} from '@/components/ui/carousel';
 
 type OrgsModalProps = {
   org?: OrganizationType;
@@ -62,12 +69,33 @@ export default function OrgsModal({ org, isLoading, isError }: OrgsModalProps) {
                 <main className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10 flex-1 overflow-hidden">
                   {/* RIGHT SECTION - shows on top for mobile */}
                   <section className="order-1 md:order-2 flex justify-center items-start md:items-center pixel-right">
-                    <img
-                      src="https://scontent.fmnl4-7.fna.fbcdn.net/v/t39.30808-6/545580037_1190175683142012_2186304815006449886_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeE4R6AGNKAb_gzcp4YdYAncgMYg3AmRlQWAxiDcCZGVBa3Tn1nvWl7UNzT_inbJdKfTiUxuasJz96VTwyy6Qy8i&_nc_ohc=5slV48eQiBcQ7kNvwFOY6a9&_nc_oc=AdnSkWr-bO0PcBQrkzHKNPU_EuRwApKxsD86t-pTVGvkt5NTDIDlNkA4hBSjljsao2tCOwtb-rf-a7IjNK0_MOIv&_nc_zt=23&_nc_ht=scontent.fmnl4-7.fna&_nc_gid=M5IwpGCD3mZwxtW1HqjIIw&oh=00_AfZsy78J5teokZhe6ewyqvtjGn0z0dh_JJptf4UHc47QAw&oe=68C4D264"
-                      alt="org main"
-                      className="rounded-lg max-h-full w-auto object-contain"
-                      onClick={() => window.open(org?.facebookUrl, '_blank', 'noopener,noreferrer')}
-                    />
+                    <Carousel className="w-full" opts={{ loop: true }}>
+                      <CarouselContent>
+                        <CarouselItem className="basis-[80%]  flex justify-center items-center">
+                          <img
+                            src="https://scontent.fmnl4-7.fna.fbcdn.net/v/t39.30808-6/545580037_1190175683142012_2186304815006449886_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeE4R6AGNKAb_gzcp4YdYAncgMYg3AmRlQWAxiDcCZGVBa3Tn1nvWl7UNzT_inbJdKfTiUxuasJz96VTwyy6Qy8i&_nc_ohc=4hFZC2ITpBsQ7kNvwF-dWOW&_nc_oc=AdnnIuUqe0JHlZmS6QRdEzTJjBF3nSzI5j8yymixzBVjDAYjyDIjbQfR3NWu_-AM_mBQZRDspa3hQswveCC67hIj&_nc_zt=23&_nc_ht=scontent.fmnl4-7.fna&_nc_gid=9YmXn29-f7dvz8OvoR0DPA&oh=00_AfZHat8hNNEi8gnzSbCF9_3Na_mKj-9lk_HK6D_fFU_nrw&oe=68CB69E4"
+                            alt="org image 1"
+                            className="w-full max-h-[90vh] object-contain rounded-lg cursor-pointer"
+                            onClick={() =>
+                              window.open(org?.facebookUrl, '_blank', 'noopener,noreferrer')
+                            }
+                          />
+                        </CarouselItem>
+                        <CarouselItem className="basis-[80%]  flex justify-center items-center">
+                          <img
+                            src="https://scontent.fmnl4-1.fna.fbcdn.net/v/t39.30808-6/547174890_1194235219402725_5628082084578477908_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeFKkxynjLbUiJthqqk2FMbVLej2r5pHM9Yt6Pavmkcz1irMB7DUyc-ONvFbT9xXKvv89vhpyes2LsnMd_gxWDNN&_nc_ohc=LIPb0-EghFEQ7kNvwFgwBHW&_nc_oc=AdnaKwIMAM2o_8gu25Wh8p4p6kK2i_WXk5DYsDK9VW8rTTgcU3mEJyQeJXcnrZ12iHnNfP69DecZlNgWsiTx2Hml&_nc_zt=23&_nc_ht=scontent.fmnl4-1.fna&_nc_gid=eGbjgLnjOWYOuRgbj2qHuw&oh=00_AfZYmqsgyGs8tPx4gK4ZuQsghTVLI10keiQhXufZkFfJyw&oe=68CB4C6B"
+                            alt="org image 1"
+                            className="w-full min-h-full object-cover rounded-lg cursor-pointer"
+                            onClick={() =>
+                              window.open(org?.facebookUrl, '_blank', 'noopener,noreferrer')
+                            }
+                          />
+                        </CarouselItem>
+                      </CarouselContent>
+
+                      <CarouselPreviousPixel className="left-1" />
+                      <CarouselNextPixel className="right-1" />
+                    </Carousel>
                   </section>
 
                   {/* LEFT SECTION */}
@@ -134,17 +162,17 @@ export default function OrgsModal({ org, isLoading, isError }: OrgsModalProps) {
                       <h1 className="text-2xl md:text-3xl">Vision</h1>
                       <p className="font-space-mono text-sm md:text-md w-full">{org?.vision}</p>
                     </div>
+                    <footer className="flex justify-center mt-8 md:mt-12">
+                      <h3 className="font-tiny5 text-sm md:text-base opacity-50">
+                        Powered by La Salle Computer Society.
+                      </h3>
+                    </footer>
                   </section>
                 </main>
               </>
             )}
           </>
         )}
-        <footer className="flex justify-center mt-8 md:mt-12">
-          <h3 className="font-tiny5 text-sm md:text-base opacity-50">
-            Powered by La Salle Computer Society.
-          </h3>
-        </footer>
       </DialogContent>
     </Dialog>
   );
