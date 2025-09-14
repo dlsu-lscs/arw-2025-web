@@ -11,14 +11,14 @@ export default function ClusterModal() {
   return (
     <>
       <Dialog open={isClusterModalOpen} onOpenChange={closeClusterModal}>
-        <DialogContent className="[&>button:last-child]:hidden pixel-corner--no-scroll-grid">
+        <DialogContent className="[&>button:last-child]:hidden pixel-corner--no-scroll-grid w-fit">
           <DialogHeader>
             <DialogTitle>
               <CloseModal />
             </DialogTitle>
           </DialogHeader>
           {/* Main container with responsive flexbox properties */}
-          <main className="flex flex-col gap-4 p-8 md:p-16 justify-center items-center md:flex-row">
+          <main className="flex flex-col gap-4 p-8 md:p-16 justify-center items-center lg:flex-row">
             {/* First Main Column (Left Side) with nested rows */}
             <section className="flex flex-col gap-4 w-full md:w-auto">
               {/* First Row: Clusters, Engage, and CAP13 Cards side by side */}
@@ -115,9 +115,9 @@ export default function ClusterModal() {
             </section>
 
             {/* Second Main Column (Right Side) */}
-            <section className="flex w-full flex-col gap-4">
+            <section className="flex w-full flex-col gap-4  md:items-center lg:items-start">
               {/* PROBE Card spanning two columns */}
-              <div className="flex w-full">
+              <div className="flex w-full lg:justify-start md:justify-center">
                 <div
                   className="w-full h-[200px] md:w-[400px] hover:cursor-pointer bg-[url('/bg/st-lasalle-bg.webp')] bg-center bg-cover bg-[#940000]/62 hover:opacity-90 transition duration-100  bg-blend-multiply flex justify-start items-center rounded-lg text-white"
                   onClick={() => {

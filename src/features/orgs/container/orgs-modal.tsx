@@ -79,7 +79,7 @@ export default function OrgsModal({ org, isLoading, isError }: OrgsModalProps) {
                   </section>
 
                   {/* LEFT SECTION */}
-                  <section className="order-2 md:order-1 flex flex-col gap-8 md:gap-10 pixel-left pb-6">
+                  <section className="order-2 md:order-1 flex flex-col gap-8 md:gap-10 pixel-left pb-6 shadcn-scrollbar">
                     <div className="hidden lg:block mb-4 md:mb-8">
                       <CloseModal className="text-[#0F0092] text-xl sm:text-2xl md:text-3xl" />
                     </div>
@@ -130,7 +130,7 @@ export default function OrgsModal({ org, isLoading, isError }: OrgsModalProps) {
                       <>
                         <div className="flex flex-col gap-4">
                           <h1 className="text-2xl md:text-3xl">About Us</h1>
-                          <div className="flex gap-2 w-full overflow-x-scroll">
+                          <div className="flex gap-2 w-full overflow-x-auto ">
                             {org.publications.mainPubUrl ? (
                               <>
                                 <Dialog>
