@@ -3,6 +3,7 @@ import { Press_Start_2P, Space_Mono, Space_Grotesk, Tiny5 } from 'next/font/goog
 import './globals.css';
 import { QueryProvider } from '@/providers/queryProvider';
 import { Toaster } from 'sonner';
+import LogoutOverlay from '@/components/logout-overlay';
 const pressStart = Press_Start_2P({
   subsets: ['latin'],
   weight: '400',
@@ -52,7 +53,10 @@ export default function RootLayout({
       >
         <div className="absolute w-full h-full bg-black/50 z-0" />
         <div className="relative z-50">
-          <QueryProvider>{children}</QueryProvider>
+          <QueryProvider>
+            {children}
+            <LogoutOverlay />
+          </QueryProvider>
           <Toaster />
         </div>
       </body>

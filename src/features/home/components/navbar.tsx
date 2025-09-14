@@ -14,6 +14,7 @@ import { useRouter } from 'next/navigation';
 import api from '@/lib/axios';
 import LSCSModal from './lscs-modal';
 import CSOModal from './cso-modal';
+import { useLogoutStore } from '@/store/useLogoutStore';
 
 interface NavProps {
   user: User;
@@ -21,8 +22,11 @@ interface NavProps {
 
 export default function NavBar({ user }: NavProps) {
   const router = useRouter();
+  const { isLoggingOut, setIsLoggingOut } = useLogoutStore();
 
   const handleLogout = async () => {
+    setIsLoggingOut(true);
+
     try {
       await api.post('/api/auth/logout');
 
@@ -32,6 +36,8 @@ export default function NavBar({ user }: NavProps) {
       console.error('Logout error:', error);
       // Still redirect to login even if there's an error
       router.push('/auth/login');
+    } finally {
+      setIsLoggingOut(false);
     }
   };
   return (
