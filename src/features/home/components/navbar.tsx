@@ -15,6 +15,7 @@ import api from '@/lib/axios';
 import LSCSModal from './lscs-modal';
 import CSOModal from './cso-modal';
 import { useLogoutStore } from '@/store/useLogoutStore';
+import FAQModal from './faq-modal';
 
 interface NavProps {
   user: User;
@@ -51,7 +52,9 @@ export default function NavBar({ user }: NavProps) {
           <ul className="hover:text-[#2563EB] transition duration-200">
             <LSCSModal />
           </ul>
-          <ul className="hover:text-[#2563EB] transition duration-200 cursor-pointer">FAQ</ul>
+          <ul className="hover:text-[#2563EB] transition duration-200 cursor-pointer">
+            <FAQModal />
+          </ul>
           <ul className="hover:text-[#2563EB] transition duration-200 cursor-pointer">
             <DropdownMenu modal={false}>
               <DropdownMenuTrigger>
