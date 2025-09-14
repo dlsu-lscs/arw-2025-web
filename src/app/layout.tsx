@@ -37,9 +37,9 @@ export const metadata: Metadata = {
   description:
     'Annual Recruitment Week (ARW) is a weeklong University-wide event; Representing all Council of Student Organizations (CSO) accredited organizations where they are given the opportunity to attract and recruit new members from the Lasallian community.',
   icons: [
-    { rel: 'icon', url: '/logos/arw.webp' },
-    { rel: 'shortcut icon', url: '/logos/arw.webp' },
-    { rel: 'apple-touch-icon', url: '/logos/arw.webp' },
+    { rel: 'icon', url: '/logos/arw.ico' },
+    { rel: 'shortcut icon', url: '/logos/arw.ico' },
+    { rel: 'apple-touch-icon', url: '/logos/arw.ico' },
   ],
 };
 
