@@ -4,6 +4,8 @@ import './globals.css';
 import { QueryProvider } from '@/providers/queryProvider';
 import { Toaster } from 'sonner';
 import LogoutOverlay from '@/components/logout-overlay';
+import { GoogleTagManager, GoogleAnalytics } from '@next/third-parties/google';
+
 const pressStart = Press_Start_2P({
   subsets: ['latin'],
   weight: '400',
@@ -56,6 +58,8 @@ export default function RootLayout({
           <QueryProvider>
             {children}
             <LogoutOverlay />
+            <GoogleAnalytics gaId={process.env.GA!} />
+            <GoogleTagManager gtmId={process.env.GT!} />
           </QueryProvider>
           <Toaster />
         </div>
