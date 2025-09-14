@@ -46,13 +46,13 @@ export default function ClusterCarousel() {
 
   return (
     <>
-      <Carousel className="w-full mt-2 sm:my-4" opts={{ loop: true }} setApi={handleApi}>
+      <Carousel className="w-full mt-4" opts={{ loop: true }} setApi={handleApi}>
         <CarouselContent>
           {clusters.map(({ id, acronym, name }, index) => {
             return (
               <CarouselItem key={index} className="pr-10 pl-14">
                 <h2
-                  className="text-center text-sm sm:text-2xl"
+                  className="text-center text-sm sm:text-xl 2xl:text-2xl"
                   style={{ color: returnColorFromCluster(id) }}
                 >
                   {acronym}

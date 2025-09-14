@@ -44,7 +44,9 @@ export default function HighlightCard({
   return (
     <>
       {visible && (
-        <div className={cn('border-[1.5px] border-black flex px-8 py-4 relative', className)}>
+        <div
+          className={cn('border-[1.5px] border-black flex px-8 py-2 2xl:py-4 relative', className)}
+        >
           <span
             role="button"
             aria-label="close-card"

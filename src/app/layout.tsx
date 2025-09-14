@@ -3,6 +3,9 @@ import { Press_Start_2P, Space_Mono, Space_Grotesk, Tiny5 } from 'next/font/goog
 import './globals.css';
 import { QueryProvider } from '@/providers/queryProvider';
 import { Toaster } from 'sonner';
+import LogoutOverlay from '@/components/logout-overlay';
+import { GoogleTagManager, GoogleAnalytics } from '@next/third-parties/google';
+
 const pressStart = Press_Start_2P({
   subsets: ['latin'],
   weight: '400',
@@ -34,9 +37,9 @@ export const metadata: Metadata = {
   description:
     'Annual Recruitment Week (ARW) is a weeklong University-wide event; Representing all Council of Student Organizations (CSO) accredited organizations where they are given the opportunity to attract and recruit new members from the Lasallian community.',
   icons: [
-    { rel: 'icon', url: '/logos/arw.webp' },
-    { rel: 'shortcut icon', url: '/logos/arw.webp' },
-    { rel: 'apple-touch-icon', url: '/logos/arw.webp' },
+    { rel: 'icon', url: '/logos/arw.ico' },
+    { rel: 'shortcut icon', url: '/logos/arw.ico' },
+    { rel: 'apple-touch-icon', url: '/logos/arw.ico' },
   ],
 };
 
@@ -52,7 +55,12 @@ export default function RootLayout({
       >
         <div className="absolute w-full h-full bg-black/50 z-0" />
         <div className="relative z-50">
-          <QueryProvider>{children}</QueryProvider>
+          <QueryProvider>
+            {children}
+            <LogoutOverlay />
+            <GoogleAnalytics gaId={process.env.GA!} />
+            <GoogleTagManager gtmId={process.env.GT!} />
+          </QueryProvider>
           <Toaster />
         </div>
       </body>

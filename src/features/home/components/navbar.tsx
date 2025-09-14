@@ -13,6 +13,9 @@ import { User } from '@/features/auth/types/user';
 import { useRouter } from 'next/navigation';
 import api from '@/lib/axios';
 import LSCSModal from './lscs-modal';
+import CSOModal from './cso-modal';
+import { useLogoutStore } from '@/store/useLogoutStore';
+import FAQModal from './faq-modal';
 
 interface NavProps {
   user: User;
@@ -20,8 +23,11 @@ interface NavProps {
 
 export default function NavBar({ user }: NavProps) {
   const router = useRouter();
+  const { isLoggingOut, setIsLoggingOut } = useLogoutStore();
 
   const handleLogout = async () => {
+    setIsLoggingOut(true);
+
     try {
       await api.post('/api/auth/logout');
 
@@ -31,19 +37,25 @@ export default function NavBar({ user }: NavProps) {
       console.error('Logout error:', error);
       // Still redirect to login even if there's an error
       router.push('/auth/login');
+    } finally {
+      setIsLoggingOut(false);
     }
   };
   return (
     <header>
       <nav className="relative">
         <li className="hidden sm:flex font-press-start text-sm justify-between items-center">
-          <ul>Organizations</ul>
-          <ul>CSO</ul>
-          <ul>
+          <ul className="hover:text-[#2563EB] transition duration-200">Organizations</ul>
+          <ul className="hover:text-[#2563EB] transition duration-200 cursor-pointer">
+            <CSOModal />
+          </ul>
+          <ul className="hover:text-[#2563EB] transition duration-200">
             <LSCSModal />
           </ul>
-          <ul>FAQ</ul>
-          <ul>
+          <ul className="hover:text-[#2563EB] transition duration-200 cursor-pointer">
+            <FAQModal />
+          </ul>
+          <ul className="hover:text-[#2563EB] transition duration-200 cursor-pointer">
             <DropdownMenu modal={false}>
               <DropdownMenuTrigger>
                 <Avatar className="hover:cursor-pointer">
@@ -79,11 +91,15 @@ export default function NavBar({ user }: NavProps) {
             </SheetHeader>
             <li className="font-press-start text-sm sm:text-base flex flex-col p-4 gap-4">
               <ul>Organizations</ul>
-              <ul>CSO</ul>
+              <ul>
+                <CSOModal />
+              </ul>
               <ul>
                 <LSCSModal />
               </ul>
-              <ul>FAQ</ul>
+              <ul>
+                <FAQModal />
+              </ul>
               <ul
                 onClick={handleLogout}
                 className="cursor-pointer hover:text-blue-600 transition-colors"

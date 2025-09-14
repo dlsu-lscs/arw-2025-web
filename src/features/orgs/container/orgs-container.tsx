@@ -30,7 +30,7 @@ export default function OrgsContainer({ orgs }: OrgsContainerProps) {
 
   return (
     <>
-      <div className="overflow-y-auto h-full min-h-0 w-full mt-4 overflow-x-hidden shadcn-scrollbar">
+      <div className="overflow-y-auto flex-1 h-full min-h-0 w-full mt-4 overflow-x-hidden shadcn-scrollbar">
         {orgs.map((org, index) => {
           return (
             <OrgCard

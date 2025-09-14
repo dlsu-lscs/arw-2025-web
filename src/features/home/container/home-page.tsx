@@ -78,9 +78,9 @@ export default function HomePage({ user, initialOrgs, seed }: HomeProps) {
   return (
     <>
       <div className="pixel-corners--wrapper mx-auto flex flex-col flex-1">
-        <div className="!max-w-5xl 2xl:!max-w-7xl border-2 flex-1 bg-white border-black p-4 !flex flex-col pixel-corners">
+        <div className="!max-w-4xl 2xl:!max-w-7xl border-2 flex-1 bg-white border-black p-4 !flex flex-col pixel-corners">
           <NavBar user={user} />
-          <HighlightCard className="flex gap-4 mt-4">
+          <HighlightCard className="flex gap-4 mt-2">
             <Image
               src={'/assets/macky.svg'}
               width={96}
@@ -97,13 +97,13 @@ export default function HomePage({ user, initialOrgs, seed }: HomeProps) {
                   alt="macky"
                   className="block sm:hidden"
                 ></Image>
-                <h2 className="font-press-start text-xl sm:text-2xl lg:text-3xl">
+                <h2 className="font-press-start text-xl sm:text-2xl 2xl:text-3xl">
                   Welcome to ARW 2025!
                 </h2>
               </div>
               <CollapsibleText
                 maxLines={3}
-                className="font-space-mono text-sm sm:text-base"
+                className="font-space-mono text-xs sm:text-sm text-2xl:text-base"
                 text="Annual Recruitment Week (ARW) is THE event sa DLSU where orgs show
               what they’re all about. Basically, it’s your chance to vibe with
               49+ CSO orgs (plus iba pa) para you can find your crowd, explore
@@ -115,7 +115,7 @@ export default function HomePage({ user, initialOrgs, seed }: HomeProps) {
           <ClusterCarousel />
 
           <Button
-            className="font-space-mono hover:cursor-pointer bg-[#D8E6FF] rounded-none border-black text-sm sm:text-base font-bold self-center sm:mt-4 sm:mb-8 mt-2 mb-4"
+            className="font-space-mono hover:cursor-pointer bg-[#D8E6FF] rounded-none border-black text-xm sm:text-base font-bold self-center mt-1 md:-mt-4 2xl:mt-2 mb-4"
             variant="outline"
             onClick={openClusterModal}
           >
@@ -150,6 +150,11 @@ export default function HomePage({ user, initialOrgs, seed }: HomeProps) {
               )}
             </>
           )}
+          <footer className="flex justify-center -mb-2 2xl:mt-2 mt-1">
+            <h3 className="font-tiny5 sm:text-sm text-xs md:text-base opacity-50">
+              Powered by La Salle Computer Society.
+            </h3>
+          </footer>
         </div>
       </div>
     </>
