@@ -91,11 +91,15 @@ export default function NavBar({ user }: NavProps) {
             </SheetHeader>
             <li className="font-press-start text-sm sm:text-base flex flex-col p-4 gap-4">
               <ul>Organizations</ul>
-              <ul>CSO</ul>
+              <ul>
+                <CSOModal />
+              </ul>
               <ul>
                 <LSCSModal />
               </ul>
-              <ul>FAQ</ul>
+              <ul>
+                <FAQModal />
+              </ul>
               <ul
                 onClick={handleLogout}
                 className="cursor-pointer hover:text-blue-600 transition-colors"

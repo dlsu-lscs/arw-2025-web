@@ -50,24 +50,26 @@ export default function FAQModal() {
                 Frequently asked Questions
               </h1>
               <div className="flex flex-col gap-4 mt-6">
-                {faqs.map((faq, index) => {
-                  return (
-                    <>
-                      <Accordion type="single" collapsible key={index}>
-                        <AccordionItem value="item-1">
-                          <AccordionTrigger
-                            className={`font-press-start ${
-                              index % 2 === 0 ? 'text-green-800' : 'text-blue-800'
-                            } hover:bg-black/25 transition duration-200 px-2 py-4`}
-                          >
-                            {faq.question}
-                          </AccordionTrigger>
-                          <AccordionContent className="mt-2">{faq.answer}</AccordionContent>
-                        </AccordionItem>
-                      </Accordion>
-                    </>
-                  );
-                })}
+                <Accordion type="single" collapsible className="w-full">
+                  {faqs.map((faq, index) => (
+                    <AccordionItem
+                      value={`item-${index}`}
+                      key={index}
+                      className="border-b border-gray-400 data-[state=open]:border-b-0 rounded-md"
+                    >
+                      <AccordionTrigger
+                        className={`font-press-start mt-2 text-left ${
+                          index % 2 === 0 ? 'text-green-800' : 'text-blue-800'
+                        } hover:bg-black/25 transition duration-200 px-2 py-4`}
+                      >
+                        {faq.question}
+                      </AccordionTrigger>
+                      <AccordionContent className="pt-2 pb-4 font-space-mono">
+                        {faq.answer}
+                      </AccordionContent>
+                    </AccordionItem>
+                  ))}
+                </Accordion>
               </div>
             </section>
           </div>

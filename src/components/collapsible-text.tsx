@@ -59,7 +59,7 @@ export default function CollapsibleText({ text, maxLines = 3, className }: Colla
         <Button
           variant="ghost"
           size="sm"
-          className="mt-1 text-blue-600 text-xs font-space-mono hover:cursor-pointer"
+          className=" text-blue-600 text-xs font-space-mono hover:cursor-pointer"
           onClick={() => setExpanded(!expanded)}
         >
           {expanded ? 'Show less' : 'Show more'}
