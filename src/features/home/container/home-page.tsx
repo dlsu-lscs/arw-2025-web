@@ -150,8 +150,8 @@ export default function HomePage({ user, initialOrgs, seed }: HomeProps) {
               )}
             </>
           )}
-          <footer className="flex justify-center mt-8 md:mt-12">
-            <h3 className="font-tiny5 text-sm md:text-base opacity-50">
+          <footer className="flex justify-center sm:mt-4 mt-2">
+            <h3 className="font-tiny5 sm:text-sm text-xs md:text-base opacity-50">
               Powered by La Salle Computer Society.
             </h3>
           </footer>

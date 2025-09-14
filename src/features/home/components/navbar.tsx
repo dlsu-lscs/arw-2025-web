@@ -13,6 +13,7 @@ import { User } from '@/features/auth/types/user';
 import { useRouter } from 'next/navigation';
 import api from '@/lib/axios';
 import LSCSModal from './lscs-modal';
+import CSOModal from './cso-modal';
 
 interface NavProps {
   user: User;
@@ -38,7 +39,9 @@ export default function NavBar({ user }: NavProps) {
       <nav className="relative">
         <li className="hidden sm:flex font-press-start text-sm justify-between items-center">
           <ul className="hover:text-[#2563EB] transition duration-200">Organizations</ul>
-          <ul className="hover:text-[#2563EB] transition duration-200 cursor-pointer">CSO</ul>
+          <ul className="hover:text-[#2563EB] transition duration-200 cursor-pointer">
+            <CSOModal />
+          </ul>
           <ul className="hover:text-[#2563EB] transition duration-200">
             <LSCSModal />
           </ul>
