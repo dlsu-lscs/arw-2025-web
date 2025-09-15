@@ -32,15 +32,49 @@ const tiny5 = Tiny5({
   variable: '--font-tiny5',
 });
 
+const rawBaseUrl = process.env.BASE_URL;
+
+if (!rawBaseUrl) {
+  throw new Error('BASE_URL is not defined');
+}
+
+const BASE_URL: string | URL = rawBaseUrl.startsWith('http') ? new URL(rawBaseUrl) : rawBaseUrl;
+
 export const metadata: Metadata = {
   title: 'ARW 2025',
   description:
     'Annual Recruitment Week (ARW) is a weeklong University-wide event; Representing all Council of Student Organizations (CSO) accredited organizations where they are given the opportunity to attract and recruit new members from the Lasallian community.',
+  openGraph: {
+    title: 'ARW 2025',
+    description:
+      'Annual Recruitment Week (ARW) is a weeklong University-wide event; Representing all Council of Student Organizations (CSO) accredited organizations where they are given the opportunity to attract and recruit new members from the Lasallian community.',
+    url: BASE_URL,
+    siteName: 'ARW 2025',
+    type: 'website',
+    images: [
+      {
+        url: `${BASE_URL}/bg/arw-metadata.png`,
+        width: 1200,
+        height: 900,
+        alt: 'ARW 2025 Logo',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'ARW 2025',
+    description:
+      'Annual Recruitment Week (ARW) is a weeklong University-wide event; Representing all Council of Student Organizations (CSO) accredited organizations where they are given the opportunity to attract and recruit new members from the Lasallian community.',
+    images: [`${[BASE_URL]}/bg/arw-metadata.png`],
+    site: '@dlsu_arw',
+    creator: '@dlsu_lscs',
+  },
   icons: [
     { rel: 'icon', url: '/logos/arw.ico' },
     { rel: 'shortcut icon', url: '/logos/arw.ico' },
     { rel: 'apple-touch-icon', url: '/logos/arw.ico' },
   ],
+  metadataBase: new URL(BASE_URL),
 };
 
 export default function RootLayout({
