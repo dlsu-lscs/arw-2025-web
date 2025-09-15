@@ -17,6 +17,7 @@ export function usePrefetchIndivOrgs() {
       if (process.env.NODE_ENV !== 'production')
         console.log(`✅ Prefetched org data for ID: ${id}`);
     } catch (error) {
+      // Keep prefetch errors for production monitoring
       console.error('⚠️ Failed prefetching org by ID:', error);
     }
   }

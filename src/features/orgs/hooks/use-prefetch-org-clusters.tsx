@@ -26,6 +26,7 @@ export function usePrefetchOrgClusters(seed: string) {
         if (process.env.NODE_ENV !== 'production')
           console.log(`✅ Prefetched organizations for cluster: ${clusterType}`);
       } catch (error) {
+        // Keep prefetch errors for production monitoring
         console.warn(`⚠️ Failed to prefetch cluster ${clusterType}:`, error);
       }
     });
