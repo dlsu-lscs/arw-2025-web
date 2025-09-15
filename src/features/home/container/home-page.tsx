@@ -76,6 +76,8 @@ export default function HomePage({ user, initialOrgs, seed }: HomeProps) {
   } = useSearchOrgs();
   const orgs = isSearchActive ? searchResults : baseOrgs;
 
+  if (process.env.NODE_ENV !== 'production') console.log(selectedCluster);
+
   return (
     <>
       <div className="pixel-corners--wrapper mx-auto flex flex-col flex-1">
@@ -105,10 +107,7 @@ export default function HomePage({ user, initialOrgs, seed }: HomeProps) {
               <CollapsibleText
                 maxLines={3}
                 className="font-space-mono text-xs sm:text-sm text-2xl:text-base"
-                text="Annual Recruitment Week (ARW) is THE event sa DLSU where orgs show
-              what they’re all about. Basically, it’s your chance to vibe with
-              49+ CSO orgs (plus iba pa) para you can find your crowd, explore
-              your interests, and go beyond acads."
+                text="The Annual Recruitment Week 2025 is one of the university’s most anticipated institutional events, showcasing a weeklong celebration of the accredited organizations under the Council of Student Organizations (CSO). This initiative serves as a platform for organizations to highlight their core missions and advocacies to the Lasallian community by connecting students with groups that reflect their passions, values, and aspirations. Organizations and also some other organizations outside of CSO in pursuit of being able to meet people of similar interests and hone their skills outside of academic responsibilities."
               />
             </div>
           </HighlightCard>
