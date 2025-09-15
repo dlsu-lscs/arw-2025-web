@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import HomePage from '@/features/home/container/home-page';
 import { requireAuth } from '@/features/auth/services/server-auth';
 import { OrgsResponse } from '@/features/orgs/types/orgs.types';

@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import LoginPage from '@/features/auth/containers/login-page';
 import { getServerUser } from '@/features/auth/services/server-auth';
 import { redirect } from 'next/navigation';
