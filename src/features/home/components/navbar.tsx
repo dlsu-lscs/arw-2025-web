@@ -24,6 +24,7 @@ import CSOModal from './cso-modal';
 import { useLogoutStore } from '@/store/useLogoutStore';
 import FAQModal from './faq-modal';
 import { useSelectClusterStore } from '@/store/useSelectClusterStore';
+import { useSearchStore } from '@/features/orgs/store/useSearchStore';
 
 interface NavProps {
   user: User;
@@ -33,6 +34,7 @@ export default function NavBar({ user }: NavProps) {
   const router = useRouter();
   const { setIsLoggingOut } = useLogoutStore();
   const { setSelectedCluster } = useSelectClusterStore();
+  const { clearSearch } = useSearchStore();
 
   const handleLogout = async () => {
     setIsLoggingOut(true);
@@ -56,7 +58,10 @@ export default function NavBar({ user }: NavProps) {
         <li className="hidden sm:flex font-press-start text-sm justify-between items-center">
           <ul
             className="hover:text-[#2563EB] transition duration-200 cursor-pointer"
-            onClick={() => setSelectedCluster('all')}
+            onClick={() => {
+              clearSearch();
+              setSelectedCluster('all');
+            }}
           >
             Organizations
           </ul>
@@ -104,7 +109,12 @@ export default function NavBar({ user }: NavProps) {
               </div>
             </SheetHeader>
             <li className="font-press-start text-sm sm:text-base flex flex-col p-4 gap-4">
-              <ul onClick={() => setSelectedCluster('all')}>
+              <ul
+                onClick={() => {
+                  setSelectedCluster('all');
+                  clearSearch();
+                }}
+              >
                 <SheetClose>Organizations</SheetClose>
               </ul>
               <ul>

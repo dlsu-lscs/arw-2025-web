@@ -3,10 +3,12 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/u
 import { useClusterModalStore } from '../store/useClusterModalStore';
 import CloseModal from '@/components/modal/close-modal';
 import { useSelectClusterStore } from '@/store/useSelectClusterStore';
+import { useSearchStore } from '@/features/orgs/store/useSearchStore';
 
 export default function ClusterModal() {
   const { isClusterModalOpen, closeClusterModal } = useClusterModalStore();
   const { setSelectedCluster } = useSelectClusterStore();
+  const { clearSearch } = useSearchStore();
 
   return (
     <>
@@ -39,6 +41,7 @@ export default function ClusterModal() {
                       onClick={() => {
                         closeClusterModal();
                         setSelectedCluster('engage');
+                        clearSearch();
                       }}
                     >
                       <div className="flex flex-col gap-2">
@@ -59,6 +62,7 @@ export default function ClusterModal() {
                     onClick={() => {
                       closeClusterModal();
                       setSelectedCluster('cap 13');
+                      clearSearch();
                     }}
                   >
                     <button className="w-full hover:cursor-pointer mx-auto flex flex-col gap-2">
@@ -82,6 +86,7 @@ export default function ClusterModal() {
                       onClick={() => {
                         closeClusterModal();
                         setSelectedCluster('cso');
+                        clearSearch();
                       }}
                     >
                       <h1 className="text-left text-[clamp(1rem,2.5vw,1.5rem)] [text-shadow:_4px_4px_0px_rgba(0,0,0,1)]">
@@ -100,6 +105,7 @@ export default function ClusterModal() {
                       onClick={() => {
                         closeClusterModal();
                         setSelectedCluster('aspire');
+                        clearSearch();
                       }}
                     >
                       <h1 className="text-left text-[clamp(1rem,2.5vw,1.5rem)] [text-shadow:_4px_4px_0px_rgba(0,0,0,1)]">
@@ -123,6 +129,7 @@ export default function ClusterModal() {
                   onClick={() => {
                     closeClusterModal();
                     setSelectedCluster('probe');
+                    clearSearch();
                   }}
                 >
                   <button className="w-full mx-auto flex flex-col gap-2 hover:cursor-pointer p-6">
@@ -142,6 +149,7 @@ export default function ClusterModal() {
                   onClick={() => {
                     closeClusterModal();
                     setSelectedCluster('aso');
+                    clearSearch();
                   }}
                 >
                   <button className="flex flex-col gap-2 hover:cursor-pointer">
@@ -160,6 +168,7 @@ export default function ClusterModal() {
                     onClick={() => {
                       closeClusterModal();
                       setSelectedCluster('outside cso');
+                      clearSearch();
                     }}
                   >
                     <button className="flex flex-col gap-2 hover:cursor-pointer">
