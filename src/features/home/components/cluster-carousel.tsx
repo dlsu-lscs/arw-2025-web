@@ -11,6 +11,7 @@ import { useSelectClusterStore } from '@/store/useSelectClusterStore';
 import { clusters } from '../data/clusters';
 import { useCallback, useEffect, useRef } from 'react';
 import { returnColorFromCluster } from '@/lib/helpers';
+import { cn } from '@/lib/utils';
 
 export default function ClusterCarousel() {
   const { selectedCluster, setSelectedCluster } = useSelectClusterStore();
@@ -59,7 +60,7 @@ export default function ClusterCarousel() {
                   {acronym}
                 </h2>
 
-                <h4 className="text-center font-space-mono text-xs sm:text-lg">{name}</h4>
+                <h4 className={cn('text-center font-space-mono text-xs sm:text-lg')}>{name}</h4>
               </CarouselItem>
             );
           })}
