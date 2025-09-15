@@ -35,8 +35,8 @@ export const clusters = [
     name: 'Council of Student Organizations',
   },
   {
-    id: 'special',
+    id: 'outside%20cso',
     acronym: 'Special',
-    name: 'Special Organizations',
+    name: 'Organizations outside cso',
   },
 ];
