@@ -104,7 +104,7 @@ export default function OrgsModal({ org, isLoading, isError }: OrgsModalProps) {
                             {org?.tagline}
                           </p>
                           <Button
-                            className="font-tiny5 bg-[#D8E6FF] rounded-none border-black text-xl font-bold self-center mt-4 mb-6 shadow-[4px_4px_0px_rgba(0,0,0,1)] flex items-center"
+                            className="font-tiny5 cursor-pointer bg-[#D8E6FF] rounded-none border-black text-xl font-bold self-center mt-4 mb-6 shadow-[4px_4px_0px_rgba(0,0,0,1)] flex items-center"
                             variant="outline"
                             onClick={() =>
                               window.open(org?.gformsUrl, '_blank', 'noopener,noreferrer')
@@ -229,7 +229,7 @@ export default function OrgsModal({ org, isLoading, isError }: OrgsModalProps) {
                         <h1 className="text-2xl md:text-3xl">{org?.name}</h1>
                         <p className="text-base md:text-lg opacity-50">{org?.tagline}</p>
                         <Button
-                          className="font-tiny5 bg-[#D8E6FF] rounded-none border-black text-xl md:text-3xl font-bold self-center mt-4 mb-6 md:mb-8 shadow-[4px_4px_0px_rgba(0,0,0,1)] flex items-center"
+                          className="font-tiny5 cursor-pointer bg-[#D8E6FF] rounded-none border-black text-xl md:text-3xl font-bold self-center mt-4 mb-6 md:mb-8 shadow-[4px_4px_0px_rgba(0,0,0,1)] flex items-center"
                           variant="outline"
                           onClick={() =>
                             window.open(org?.gformsUrl, '_blank', 'noopener,noreferrer')
