@@ -42,6 +42,8 @@ jobs:
 
       - name: Build project
         run: npm run build
+        env:
+          BASE_URL: https://dlsucso-arw.com
 
       - name: CodeQL Analysis
         uses: github/codeql-action/init@v3
