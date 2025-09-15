@@ -7,6 +7,7 @@ import CloseModal from '@/components/modal/close-modal';
 import { OrganizationType } from '../types/orgs.types';
 import { AiOutlineLoading } from 'react-icons/ai';
 import { DialogTrigger } from '@radix-ui/react-dialog';
+import { useImageFallback } from '@/hooks/useImageFallback';
 
 type OrgsModalProps = {
   org?: OrganizationType;
@@ -16,6 +17,7 @@ type OrgsModalProps = {
 
 export default function OrgsModal({ org, isLoading, isError }: OrgsModalProps) {
   const { isOrgsModalOpen, closeOrgsModal } = useOrgsModalStore();
+  const pubImage = useImageFallback(org?.publications?.mainPubUrl, '/bg/st-lasalle-bg.webp');
 
   if (process.env.NODE_ENV !== 'production') console.log('🔍 Org Modal Debug - org:', org);
 
@@ -64,7 +66,7 @@ export default function OrgsModal({ org, isLoading, isError }: OrgsModalProps) {
                   {/* RIGHT SECTION - shows on top for mobile */}
                   <section className="order-1 md:order-2 flex justify-center items-start md:items-center pixel-right">
                     <img
-                      src={org?.publications?.mainPubUrl}
+                      src={pubImage}
                       alt="org image 1"
                       className="w-full max-h-[90vh] object-contain rounded-lg cursor-pointer"
                       onClick={() => window.open(org?.facebookUrl, '_blank', 'noopener,noreferrer')}
