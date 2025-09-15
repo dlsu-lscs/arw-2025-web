@@ -225,32 +225,15 @@ export default function OrgsModal({ org, isLoading, isError }: OrgsModalProps) {
                     <div className="hidden lg:block mb-4 lg:mb-8">
                       <CloseModal className="text-[#0F0092] text-xl sm:text-2xl md:text-3xl" />
                     </div>
+
                     {/* Logo above name/tagline until lg, side-by-side only at xl */}
-                    <div className="flex flex-col gap-6 items-center">
-                      {/* Name + tagline + join button */}
-                      <div className="order-2 xl:order-1 text-center xl:text-left flex flex-col items-center xl:items-start">
-                        {/* Inline name + logo at xl+ */}
-                        <div className="flex items-center justify-center xl:justify-start gap-4 mb-2">
-                          <h1 className="text-2xl md:text-3xl">{org?.name}</h1>
-                          {org?.publications?.logoUrl && (
-                            <Image
-                              src={org?.publications.logoUrl}
-                              alt="org logo"
-                              width={167}
-                              height={157}
-                              loading="lazy"
-                              unoptimized
-                              className="rounded-lg max-w-full h-auto"
-                            />
-                          )}
-                        </div>
-
+                    <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 xl:items-start">
+                      {/* Name + tagline first only on xl+ */}
+                      <div className="order-2 xl:order-1 text-center xl:text-left">
+                        <h1 className="text-2xl md:text-3xl">{org?.name}</h1>
                         <p className="text-base md:text-lg opacity-50">{org?.tagline}</p>
-
                         <Button
-                          className="font-tiny5 cursor-pointer bg-[#D8E6FF] rounded-none border-black 
-                 text-xl md:text-3xl font-bold self-center xl:self-start
-                 mt-4 mb-6 md:mb-8 shadow-[4px_4px_0px_rgba(0,0,0,1)] flex items-center"
+                          className="font-tiny5 cursor-pointer bg-[#D8E6FF] rounded-none border-black text-xl md:text-3xl font-bold self-center mt-4 mb-6 md:mb-8 shadow-[4px_4px_0px_rgba(0,0,0,1)] flex items-center"
                           variant="outline"
                           onClick={() =>
                             window.open(org?.gformsUrl, '_blank', 'noopener,noreferrer')
@@ -258,9 +241,21 @@ export default function OrgsModal({ org, isLoading, isError }: OrgsModalProps) {
                         >
                           JOIN NOW
                         </Button>
+                        {org?.fee && <p className="font-tiny5 text-black text-lg">{org?.fee}</p>}
+                      </div>
 
-                        {org?.fee && (
-                          <p className="font-tiny5 text-black text-lg max-w-full">{org?.fee}</p>
+                      {/* Logo second on xl+ */}
+                      <div className="order-1 xl:order-2 flex justify-center items-start xl:justify-end">
+                        {org?.publications?.logoUrl && (
+                          <Image
+                            src={org?.publications.logoUrl}
+                            alt="org logo"
+                            width={167}
+                            height={157}
+                            loading="lazy"
+                            unoptimized
+                            className="rounded-lg max-w-full h-auto object-cover"
+                          />
                         )}
                       </div>
                     </div>
