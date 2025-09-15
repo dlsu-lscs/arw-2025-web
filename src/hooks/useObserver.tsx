@@ -1,4 +1,3 @@
-import { on } from 'events';
 import { RefObject, useEffect } from 'react';
 
 interface ObserverProps {

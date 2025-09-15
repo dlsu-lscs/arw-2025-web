@@ -6,13 +6,6 @@ import { useOrgsModalStore } from '../store/useOrgsModalStore';
 import CloseModal from '@/components/modal/close-modal';
 import { OrganizationType } from '../types/orgs.types';
 import { AiOutlineLoading } from 'react-icons/ai';
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNextPixel,
-  CarouselPreviousPixel,
-} from '@/components/ui/carousel';
 import { DialogTrigger } from '@radix-ui/react-dialog';
 
 type OrgsModalProps = {
@@ -71,7 +64,7 @@ export default function OrgsModal({ org, isLoading, isError }: OrgsModalProps) {
                   {/* RIGHT SECTION - shows on top for mobile */}
                   <section className="order-1 md:order-2 flex justify-center items-start md:items-center pixel-right">
                     <img
-                      src={org?.publications.mainPubUrl}
+                      src={org?.publications?.mainPubUrl}
                       alt="org image 1"
                       className="w-full max-h-[90vh] object-contain rounded-lg cursor-pointer"
                       onClick={() => window.open(org?.facebookUrl, '_blank', 'noopener,noreferrer')}
@@ -111,7 +104,7 @@ export default function OrgsModal({ org, isLoading, isError }: OrgsModalProps) {
 
                       {/* Logo second on xl+ */}
                       <div className="order-1 xl:order-2 flex justify-center items-center xl:justify-center">
-                        {org?.publications.logoUrl && (
+                        {org?.publications?.logoUrl && (
                           <Image
                             src={org?.publications.logoUrl}
                             alt="org logo"
@@ -131,7 +124,7 @@ export default function OrgsModal({ org, isLoading, isError }: OrgsModalProps) {
                         <div className="flex flex-col gap-4">
                           <h1 className="text-2xl md:text-3xl">About Us</h1>
                           <div className="flex gap-2 w-full overflow-x-auto ">
-                            {org.publications.mainPubUrl ? (
+                            {org?.publications?.mainPubUrl ? (
                               <>
                                 <Dialog>
                                   <DialogTrigger>
@@ -152,7 +145,7 @@ export default function OrgsModal({ org, isLoading, isError }: OrgsModalProps) {
                                 </Dialog>
                               </>
                             ) : null}
-                            {org.publications.feePubUrl ? (
+                            {org?.publications?.feePubUrl ? (
                               <>
                                 <Dialog>
                                   <DialogTrigger>
@@ -173,7 +166,7 @@ export default function OrgsModal({ org, isLoading, isError }: OrgsModalProps) {
                                 </Dialog>
                               </>
                             ) : null}
-                            {org.publications.orgVidUrl ? (
+                            {org?.publications?.orgVidUrl ? (
                               <>
                                 <Dialog>
                                   <DialogTrigger>

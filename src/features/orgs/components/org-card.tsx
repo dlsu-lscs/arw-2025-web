@@ -13,7 +13,7 @@ interface OrgCardProps {
 }
 
 export default function OrgCard({ className, org, onClick, onMouseEnter }: OrgCardProps) {
-  const backgroundImage = useImageFallback(org.publications.mainPubUrl, '/bg/st-lasalle-bg.webp');
+  const backgroundImage = useImageFallback(org.publications?.mainPubUrl, '/bg/st-lasalle-bg.webp');
   return (
     <>
       <div
@@ -38,7 +38,7 @@ export default function OrgCard({ className, org, onClick, onMouseEnter }: OrgCa
 
         <div className="z-50 text-white flex flex-col gap-2 sm:flex-row items-center">
           <div className="flex items-center gap-2">
-            {org.publications.logoUrl && (
+            {org.publications?.logoUrl && (
               <Image
                 src={org.publications.logoUrl}
                 alt={org.shortName}

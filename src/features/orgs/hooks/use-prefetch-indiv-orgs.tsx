@@ -1,5 +1,4 @@
 import { useQueryClient } from '@tanstack/react-query';
-import { getOrgByID } from '../services/client.orgs.services';
 import { orgByIdQueryOptions } from '../queries/orgs.query.options';
 
 export function usePrefetchIndivOrgs() {
