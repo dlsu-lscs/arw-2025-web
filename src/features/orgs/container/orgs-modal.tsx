@@ -7,7 +7,7 @@ import CloseModal from '@/components/modal/close-modal';
 import { OrganizationType } from '../types/orgs.types';
 import { AiOutlineLoading } from 'react-icons/ai';
 import { DialogTrigger } from '@radix-ui/react-dialog';
-import { useImageFallback } from '@/hooks/useImageFallback';
+import { getYoutubeEmbedUrl } from '@/lib/helpers';
 
 type OrgsModalProps = {
   org?: OrganizationType;
@@ -17,7 +17,6 @@ type OrgsModalProps = {
 
 export default function OrgsModal({ org, isLoading, isError }: OrgsModalProps) {
   const { isOrgsModalOpen, closeOrgsModal } = useOrgsModalStore();
-  const pubImage = useImageFallback(org?.publications?.mainPubUrl, '/bg/st-lasalle-bg.webp');
 
   if (process.env.NODE_ENV !== 'production') console.log('🔍 Org Modal Debug - org:', org);
 
@@ -68,7 +67,11 @@ export default function OrgsModal({ org, isLoading, isError }: OrgsModalProps) {
                     {/* Image section for mobile */}
                     <section className="flex justify-center items-start mb-6">
                       <img
-                        src={pubImage}
+                        src={
+                          org?.publications?.mainPubUrl !== ''
+                            ? org?.publications?.mainPubUrl
+                            : '/bg/st-lasalle-bg.webp'
+                        }
                         alt="org image 1"
                         className="w-full max-h-[50vh] object-contain rounded-lg cursor-pointer"
                         onClick={() =>
@@ -201,7 +204,11 @@ export default function OrgsModal({ org, isLoading, isError }: OrgsModalProps) {
                   {/* RIGHT SECTION - Image */}
                   <section className="hidden md:flex md:order-2 justify-center items-start lg:items-center">
                     <img
-                      src={pubImage}
+                      src={
+                        org?.publications?.mainPubUrl !== ''
+                          ? org?.publications?.mainPubUrl
+                          : '/bg/st-lasalle-bg.webp'
+                      }
                       alt="org image 1"
                       className="w-full max-h-[90vh] object-contain rounded-lg cursor-pointer"
                       onClick={() => window.open(org?.facebookUrl, '_blank', 'noopener,noreferrer')}
@@ -251,7 +258,7 @@ export default function OrgsModal({ org, isLoading, isError }: OrgsModalProps) {
                     {org?.about && (
                       <div className="flex flex-col gap-4">
                         <h1 className="text-2xl md:text-3xl">About Us</h1>
-                        <div className="flex gap-2 w-full overflow-x-auto">
+                        <div className="flex gap-2 w-full overflow-x-auto ">
                           {org.publications?.mainPubUrl && (
                             <Dialog>
                               <DialogTrigger>
@@ -294,18 +301,21 @@ export default function OrgsModal({ org, isLoading, isError }: OrgsModalProps) {
                             <Dialog>
                               <DialogTrigger>
                                 <img
-                                  src={org?.publications.orgVidUrl}
-                                  alt="fee pub"
+                                  src={`https://img.youtube.com/vi/${getYoutubeEmbedUrl(org.publications.orgVidUrl).split('/').pop()}/0.jpg`}
+                                  alt="video thumbnail"
                                   className="w-auto h-[200px] object-contain rounded-lg cursor-pointer flex-shrink-0"
                                 />
                               </DialogTrigger>
                               <DialogTitle></DialogTitle>
-                              <DialogContent className="bg-transparent border-none p-0">
-                                <img
-                                  src={org?.publications.orgVidUrl}
-                                  alt="fee pub"
-                                  className="w-full h-full object-contain rounded-lg cursor-pointer flex-shrink-0"
-                                />
+                              <DialogContent className="bg-transparent border-none p-0 max-w-4xl">
+                                <iframe
+                                  src={getYoutubeEmbedUrl(org.publications.orgVidUrl)}
+                                  title="YouTube video player"
+                                  frameBorder="0"
+                                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                  allowFullScreen
+                                  className="w-full h-full aspect-video"
+                                ></iframe>
                               </DialogContent>
                             </Dialog>
                           )}
