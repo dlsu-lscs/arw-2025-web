@@ -32,18 +32,20 @@ export default function OrgsContainer({ orgs }: OrgsContainerProps) {
     <>
       <div className="overflow-y-auto flex-1 h-full min-h-0 w-full mt-4 overflow-x-hidden shadcn-scrollbar">
         {orgs.map((org, index) => {
-          return (
-            <OrgCard
-              className="mb-4"
-              key={index}
-              org={org}
-              onClick={() => {
-                setSelectedOrgId(org.id);
-                openOrgsModal();
-              }}
-              onMouseEnter={() => prefetchOrgByID(org.id)}
-            />
-          );
+          if (org.publications) {
+            return (
+              <OrgCard
+                className="mb-4"
+                key={index}
+                org={org}
+                onClick={() => {
+                  setSelectedOrgId(org.id);
+                  openOrgsModal();
+                }}
+                onMouseEnter={() => prefetchOrgByID(org.id)}
+              />
+            );
+          }
         })}
       </div>
       <OrgsModal org={orgDetails} isLoading={isLoading} isError={isError} />
