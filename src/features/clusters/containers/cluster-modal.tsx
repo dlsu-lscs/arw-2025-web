@@ -159,7 +159,7 @@ export default function ClusterModal() {
                     className="w-full h-[200px] md:w-[200px] md:h-[400px] hover:cursor-pointer bg-[url('/bg/st-lasalle-bg.webp')] bg-center bg-cover bg-[#0078A3]/62 hover:opacity-90 transition duration-100 bg-blend-multiply flex justify-start p-6 items-center rounded-lg text-white"
                     onClick={() => {
                       closeClusterModal();
-                      setSelectedCluster('outside%20cso');
+                      setSelectedCluster('special');
                     }}
                   >
                     <button className="flex flex-col gap-2 hover:cursor-pointer">
@@ -167,7 +167,7 @@ export default function ClusterModal() {
                         Special
                       </h1>
                       <p className="text-[clamp(0.65rem,1.5vw,1rem)] text-left font-space-mono font-bold">
-                        Organizations outside cso
+                        Special Organizations
                       </p>
                     </button>
                   </div>
