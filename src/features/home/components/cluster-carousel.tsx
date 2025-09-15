@@ -29,6 +29,7 @@ export default function ClusterCarousel() {
         setSelectedCluster(clusters[index].id);
       });
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [selectedCluster]
   );
 

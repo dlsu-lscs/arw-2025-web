@@ -36,5 +36,5 @@ export function usePrefetchOrgClusters(seed: string) {
       if (process.env.NODE_ENV !== 'production')
         console.log('🎉 All cluster prefetching completed!');
     });
-  }, [queryClient]);
+  }, [queryClient, seed]);
 }

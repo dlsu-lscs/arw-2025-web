@@ -6,13 +6,6 @@ import { useOrgsModalStore } from '../store/useOrgsModalStore';
 import CloseModal from '@/components/modal/close-modal';
 import { OrganizationType } from '../types/orgs.types';
 import { AiOutlineLoading } from 'react-icons/ai';
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNextPixel,
-  CarouselPreviousPixel,
-} from '@/components/ui/carousel';
 import { DialogTrigger } from '@radix-ui/react-dialog';
 
 type OrgsModalProps = {
