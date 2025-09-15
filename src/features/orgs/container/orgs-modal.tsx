@@ -123,11 +123,11 @@ export default function OrgsModal({ org, isLoading, isError }: OrgsModalProps) {
                           <div className="flex gap-2 w-full overflow-x-auto">
                             {org.publications?.mainPubUrl && (
                               <Dialog>
-                                <DialogTrigger>
+                                <DialogTrigger className="min-w-28">
                                   <img
                                     src={org?.publications.mainPubUrl}
                                     alt="main pub"
-                                    className="w-auto h-[200px] object-contain rounded-lg cursor-pointer flex-shrink-0"
+                                    className="w-auto object-contain rounded-lg cursor-pointer flex-shrink-0"
                                   />
                                 </DialogTrigger>
                                 <DialogTitle></DialogTitle>
@@ -142,11 +142,11 @@ export default function OrgsModal({ org, isLoading, isError }: OrgsModalProps) {
                             )}
                             {org.publications?.feePubUrl && (
                               <Dialog>
-                                <DialogTrigger>
+                                <DialogTrigger className="min-w-28">
                                   <img
                                     src={org?.publications.feePubUrl}
                                     alt="fee pub"
-                                    className="w-auto h-[200px] object-contain rounded-lg cursor-pointer flex-shrink-0"
+                                    className="w-auto object-contain rounded-lg cursor-pointer flex-shrink-0"
                                   />
                                 </DialogTrigger>
                                 <DialogTitle></DialogTitle>
@@ -161,20 +161,23 @@ export default function OrgsModal({ org, isLoading, isError }: OrgsModalProps) {
                             )}
                             {org.publications?.orgVidUrl && (
                               <Dialog>
-                                <DialogTrigger>
+                                <DialogTrigger className="min-w-36">
                                   <img
-                                    src={org?.publications.orgVidUrl}
-                                    alt="fee pub"
-                                    className="w-auto h-[200px] object-contain rounded-lg cursor-pointer flex-shrink-0"
+                                    src={`https://img.youtube.com/vi/${getYoutubeEmbedUrl(org.publications.orgVidUrl).split('/').pop()}/0.jpg`}
+                                    alt="video thumbnail"
+                                    className="w-auto  object-contain rounded-lg cursor-pointer flex-shrink-0"
                                   />
                                 </DialogTrigger>
                                 <DialogTitle></DialogTitle>
                                 <DialogContent className="bg-transparent border-none p-0">
-                                  <img
-                                    src={org?.publications.orgVidUrl}
-                                    alt="fee pub"
-                                    className="w-full h-full object-contain rounded-lg cursor-pointer flex-shrink-0"
-                                  />
+                                  <iframe
+                                    src={getYoutubeEmbedUrl(org.publications.orgVidUrl)}
+                                    title="YouTube video player"
+                                    frameBorder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowFullScreen
+                                    className="w-full h-full aspect-video"
+                                  ></iframe>
                                 </DialogContent>
                               </Dialog>
                             )}
