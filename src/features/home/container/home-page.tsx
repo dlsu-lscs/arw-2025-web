@@ -20,6 +20,7 @@ import { useSelectClusterStore } from '@/store/useSelectClusterStore';
 import { useMemo, useRef } from 'react';
 import useObserver from '@/hooks/useObserver';
 import { useSearchOrgs } from '@/features/orgs/hooks/useSearchOrgs';
+
 interface HomeProps {
   user: User;
   seed: string;
@@ -78,9 +79,9 @@ export default function HomePage({ user, initialOrgs, seed }: HomeProps) {
   return (
     <>
       <div className="pixel-corners--wrapper mx-auto flex flex-col flex-1">
-        <div className="!max-w-4xl 2xl:!max-w-7xl border-2 flex-1 bg-white border-black p-4 !flex flex-col pixel-corners">
+        <div className="bg-[url('/bg/green-triangle3.png')] bg-repeat !max-w-4xl 2xl:!max-w-7xl border-2 flex-1 bg-white border-black p-4 !flex flex-col pixel-corners">
           <NavBar user={user} />
-          <HighlightCard className="flex gap-4 mt-2">
+          <HighlightCard className="flex gap-4 mt-2 bg-white">
             <Image
               src={'/assets/macky.svg'}
               width={96}

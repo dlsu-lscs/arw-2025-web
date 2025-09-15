@@ -1,5 +1,12 @@
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from '@/components/ui/sheet';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -16,6 +23,7 @@ import LSCSModal from './lscs-modal';
 import CSOModal from './cso-modal';
 import { useLogoutStore } from '@/store/useLogoutStore';
 import FAQModal from './faq-modal';
+import { useSelectClusterStore } from '@/store/useSelectClusterStore';
 
 interface NavProps {
   user: User;
@@ -23,7 +31,8 @@ interface NavProps {
 
 export default function NavBar({ user }: NavProps) {
   const router = useRouter();
-  const { isLoggingOut, setIsLoggingOut } = useLogoutStore();
+  const { setIsLoggingOut } = useLogoutStore();
+  const { setSelectedCluster } = useSelectClusterStore();
 
   const handleLogout = async () => {
     setIsLoggingOut(true);
@@ -45,7 +54,12 @@ export default function NavBar({ user }: NavProps) {
     <header>
       <nav className="relative">
         <li className="hidden sm:flex font-press-start text-sm justify-between items-center">
-          <ul className="hover:text-[#2563EB] transition duration-200">Organizations</ul>
+          <ul
+            className="hover:text-[#2563EB] transition duration-200 cursor-pointer"
+            onClick={() => setSelectedCluster('all')}
+          >
+            Organizations
+          </ul>
           <ul className="hover:text-[#2563EB] transition duration-200 cursor-pointer">
             <CSOModal />
           </ul>
@@ -90,7 +104,9 @@ export default function NavBar({ user }: NavProps) {
               </div>
             </SheetHeader>
             <li className="font-press-start text-sm sm:text-base flex flex-col p-4 gap-4">
-              <ul>Organizations</ul>
+              <ul onClick={() => setSelectedCluster('all')}>
+                <SheetClose>Organizations</SheetClose>
+              </ul>
               <ul>
                 <CSOModal />
               </ul>
