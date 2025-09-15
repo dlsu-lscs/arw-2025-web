@@ -33,6 +33,7 @@ export default function CollapsibleText({ text, maxLines = 3, className }: Colla
     return () => {
       window.removeEventListener('resize', checkClamping);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [text, maxLines]);
 
   return (

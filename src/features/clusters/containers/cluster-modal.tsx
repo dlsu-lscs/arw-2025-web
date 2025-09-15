@@ -5,7 +5,7 @@ import CloseModal from '@/components/modal/close-modal';
 import { useSelectClusterStore } from '@/store/useSelectClusterStore';
 
 export default function ClusterModal() {
-  const { isClusterModalOpen, closeClusterModal, openClusterModal } = useClusterModalStore();
+  const { isClusterModalOpen, closeClusterModal } = useClusterModalStore();
   const { setSelectedCluster } = useSelectClusterStore();
 
   return (

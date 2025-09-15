@@ -1,11 +1,5 @@
-import {
-  infiniteQueryOptions,
-  Query,
-  QueryFunctionContext,
-  queryOptions,
-} from '@tanstack/react-query';
+import { infiniteQueryOptions, QueryFunctionContext, queryOptions } from '@tanstack/react-query';
 import { getAllOrgs, getOrgByID, getSearchOrg } from '../services/client.orgs.services';
-import cluster from 'cluster';
 import { OrgsResponse } from '../types/orgs.types';
 
 export const orgSearchQueryOptions = (search: string) =>

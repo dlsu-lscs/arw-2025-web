@@ -226,6 +226,7 @@ function CarouselPreviousPixel({
   size = 'icon',
   ...props
 }: React.ComponentProps<typeof Button>) {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { orientation, scrollPrev, canScrollPrev } = useCarousel();
 
   return (
@@ -261,6 +262,7 @@ function CarouselNextPixel({
   size = 'icon',
   ...props
 }: React.ComponentProps<typeof Button>) {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { orientation, scrollNext, canScrollNext } = useCarousel();
 
   return (
