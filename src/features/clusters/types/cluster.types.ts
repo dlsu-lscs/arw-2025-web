@@ -7,9 +7,9 @@ export type ClusterTypeConst =
   | 'probe'
   | 'aso'
   | 'aspire'
-  | 'cap%2013'
+  | 'cap 13'
   | 'cso'
-  | 'outside%20cso';
+  | 'outside cso';
 
 /**
  * All available cluster types for prefetching
@@ -20,13 +20,25 @@ export const CLUSTER_TYPES: readonly ClusterTypeConst[] = [
   'probe',
   'aso',
   'aspire',
-  'cap%2013',
+  'cap 13',
   'cso',
-  'outside%20cso',
+  'outside cso',
 ] as const;
 
+/**
+ * Cluster Types
+ */
 export type ClusterType = {
-  id: number;
+  id: ClusterTypeConst;
   name: string;
   description: string;
+};
+
+/**
+ * Cluster Carousel Type
+ */
+export type ClusterCarouselType = {
+  id: ClusterTypeConst;
+  acronym: string;
+  name: string;
 };
