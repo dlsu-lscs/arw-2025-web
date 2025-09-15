@@ -28,7 +28,7 @@ export type OrganizationType = {
   tagline: string;
   cluster: ClusterType;
   college: CollegeType;
-  publications: PublicationsType;
+  publications: PublicationsType | null;
 };
 
 export type OrgsInfiniteData = InfiniteData<OrgsResponse>;
