@@ -124,7 +124,7 @@ export default function OrgsModal({ org, isLoading, isError }: OrgsModalProps) {
                         <div className="flex flex-col gap-4">
                           <h1 className="text-2xl md:text-3xl">About Us</h1>
                           <div className="flex gap-2 w-full overflow-x-auto ">
-                            {org?.publications?.mainPubUrl ? (
+                            {org.publications?.mainPubUrl ? (
                               <>
                                 <Dialog>
                                   <DialogTrigger>
@@ -145,7 +145,7 @@ export default function OrgsModal({ org, isLoading, isError }: OrgsModalProps) {
                                 </Dialog>
                               </>
                             ) : null}
-                            {org?.publications?.feePubUrl ? (
+                            {org.publications?.feePubUrl ? (
                               <>
                                 <Dialog>
                                   <DialogTrigger>
@@ -166,7 +166,7 @@ export default function OrgsModal({ org, isLoading, isError }: OrgsModalProps) {
                                 </Dialog>
                               </>
                             ) : null}
-                            {org?.publications?.orgVidUrl ? (
+                            {org.publications?.orgVidUrl ? (
                               <>
                                 <Dialog>
                                   <DialogTrigger>

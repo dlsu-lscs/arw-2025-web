@@ -40,7 +40,7 @@ export default function OrgCard({ className, org, onClick, onMouseEnter }: OrgCa
           <div className="flex items-center gap-2">
             {org.publications?.logoUrl && (
               <Image
-                src={org.publications.logoUrl}
+                src={org.publications?.logoUrl}
                 alt={org.shortName}
                 width={86}
                 height={86}
