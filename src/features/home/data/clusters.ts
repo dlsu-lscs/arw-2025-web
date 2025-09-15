@@ -1,4 +1,6 @@
-export const clusters = [
+import { ClusterCarouselType } from '@/features/clusters/types/cluster.types';
+
+export const clusters: ClusterCarouselType[] = [
   {
     id: 'all',
     acronym: 'All organizations',
@@ -37,6 +39,6 @@ export const clusters = [
   {
     id: 'outside cso',
     acronym: 'Special',
-    name: 'Organizations outside cso',
+    name: 'Organizations outside CSO',
   },
 ];

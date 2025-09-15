@@ -65,7 +65,7 @@ export default function OrgsModal({ org, isLoading, isError }: OrgsModalProps) {
                   {/* Mobile: Both sections scroll together */}
                   <div className="md:hidden overflow-y-auto shadcn-scrollbar">
                     {/* Image section for mobile */}
-                    <section className="flex justify-center items-start mb-6">
+                    <section className="flex justify-center items-end mb-6">
                       <img
                         src={
                           org?.publications?.mainPubUrl !== ''
