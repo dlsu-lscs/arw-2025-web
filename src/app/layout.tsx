@@ -32,8 +32,8 @@ const tiny5 = Tiny5({
   variable: '--font-tiny5',
 });
 
-const rawBaseUrl = process.env.BASE_URL;
-
+const rawBaseUrl = process.env.BASE_URL || 'https://dlsucso-arw.com';
+        
 if (!rawBaseUrl) {
   throw new Error('BASE_URL is not defined');
 }

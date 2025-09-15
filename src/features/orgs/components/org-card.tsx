@@ -46,7 +46,7 @@ export default function OrgCard({ className, org, onClick, onMouseEnter }: OrgCa
                 height={86}
                 loading="lazy"
                 unoptimized
-                className="z-10"
+                className="z-10 w-auto h-full"
               />
             )}
             <h3 className="sm:hidden block md:text-xl lg:text-2xl font-press-start">{org.name}</h3>
@@ -54,7 +54,7 @@ export default function OrgCard({ className, org, onClick, onMouseEnter }: OrgCa
 
           <span>
             <h3 className="hidden sm:block md:text-xl lg:text-2xl font-press-start">{org.name}</h3>
-            <p className="font-tiny5 lg:text-xl md:text-lg">{org.about}</p>
+            <p className="font-tiny5 lg:text-xl md:text-lg line-clamp-2">{org.about}</p>
           </span>
         </div>
       </div>
