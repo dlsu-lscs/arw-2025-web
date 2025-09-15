@@ -17,8 +17,7 @@ import { useInfiniteQuery } from '@tanstack/react-query';
 import { allOrgsQueryOptions } from '@/features/orgs/queries/orgs.query.options';
 import { usePrefetchOrgClusters } from '@/features/orgs/hooks/use-prefetch-org-clusters';
 import { useSelectClusterStore } from '@/store/useSelectClusterStore';
-import { useMemo, useRef } from 'react';
-import useObserver from '@/hooks/useObserver';
+import { useMemo } from 'react';
 import { useSearchOrgs } from '@/features/orgs/hooks/useSearchOrgs';
 
 interface HomeProps {
@@ -30,18 +29,10 @@ interface HomeProps {
 export default function HomePage({ user, initialOrgs, seed }: HomeProps) {
   const { openClusterModal } = useClusterModalStore();
   const { selectedCluster } = useSelectClusterStore();
-  const ref = useRef<HTMLDivElement>(null);
 
   // Prefetch all cluster types to eliminate loading when switching
   if (process.env.NODE_ENV !== 'production') console.log('Client Seed:', seed);
   usePrefetchOrgClusters(seed);
-
-  useObserver({
-    ref,
-    callback: () => {
-      if (hasNextPage && !isSearchActive) fetchNextPage();
-    },
-  });
 
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage } = useInfiniteQuery(
     allOrgsQueryOptions(
@@ -76,6 +67,8 @@ export default function HomePage({ user, initialOrgs, seed }: HomeProps) {
   } = useSearchOrgs();
   const orgs = isSearchActive ? searchResults : baseOrgs;
 
+  if (process.env.NODE_ENV !== 'production') console.log(selectedCluster);
+
   return (
     <>
       <div className="pixel-corners--wrapper mx-auto flex flex-col flex-1">
@@ -105,10 +98,7 @@ export default function HomePage({ user, initialOrgs, seed }: HomeProps) {
               <CollapsibleText
                 maxLines={3}
                 className="font-space-mono text-xs sm:text-sm text-2xl:text-base"
-                text="Annual Recruitment Week (ARW) is THE event sa DLSU where orgs show
-              what they’re all about. Basically, it’s your chance to vibe with
-              49+ CSO orgs (plus iba pa) para you can find your crowd, explore
-              your interests, and go beyond acads."
+                text="The Annual Recruitment Week 2025 is one of the university’s most anticipated institutional events, showcasing a weeklong celebration of the accredited organizations under the Council of Student Organizations (CSO). This initiative serves as a platform for organizations to highlight their core missions and advocacies to the Lasallian community by connecting students with groups that reflect their passions, values, and aspirations. Organizations and also some other organizations outside of CSO in pursuit of being able to meet people of similar interests and hone their skills outside of academic responsibilities."
               />
             </div>
           </HighlightCard>
@@ -140,17 +130,14 @@ export default function HomePage({ user, initialOrgs, seed }: HomeProps) {
           )}
 
           <ClusterModal />
-          <OrgsContainer orgs={orgs} />
+          <OrgsContainer
+            orgs={orgs}
+            isSearchActive={isSearchActive}
+            hasNextPage={hasNextPage}
+            fetchNextPage={fetchNextPage}
+            isFetchingNextPage={isFetchingNextPage}
+          />
 
-          {/* Only show infinite scroll when not searching */}
-          {!isSearchActive && (
-            <>
-              <div className="w-2" ref={ref} />
-              {isFetchingNextPage && (
-                <AiOutlineLoading className="mx-auto mt-2 text-2xl animate-spin" />
-              )}
-            </>
-          )}
           <footer className="flex justify-center -mb-2 2xl:mt-2 mt-1">
             <h3 className="font-tiny5 sm:text-sm text-xs md:text-base opacity-50">
               Powered by La Salle Computer Society.
