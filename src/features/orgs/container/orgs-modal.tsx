@@ -8,6 +8,7 @@ import { OrganizationType } from '../types/orgs.types';
 import { AiOutlineLoading } from 'react-icons/ai';
 import { DialogTrigger } from '@radix-ui/react-dialog';
 import { useImageFallback } from '@/hooks/useImageFallback';
+import { getYoutubeEmbedUrl } from '@/lib/helpers';
 
 type OrgsModalProps = {
   org?: OrganizationType;
@@ -17,7 +18,6 @@ type OrgsModalProps = {
 
 export default function OrgsModal({ org, isLoading, isError }: OrgsModalProps) {
   const { isOrgsModalOpen, closeOrgsModal } = useOrgsModalStore();
-  const pubImage = useImageFallback(org?.publications?.mainPubUrl, '/bg/st-lasalle-bg.webp');
 
   if (process.env.NODE_ENV !== 'production') console.log('🔍 Org Modal Debug - org:', org);
 
@@ -66,7 +66,11 @@ export default function OrgsModal({ org, isLoading, isError }: OrgsModalProps) {
                   {/* RIGHT SECTION - shows on top for mobile */}
                   <section className="order-1 md:order-2 flex justify-center items-start md:items-center pixel-right">
                     <img
-                      src={pubImage}
+                      src={
+                        org?.publications?.mainPubUrl !== ''
+                          ? org?.publications?.mainPubUrl
+                          : '/bg/st-lasalle-bg.webp'
+                      }
                       alt="org image 1"
                       className="w-full max-h-[90vh] object-contain rounded-lg cursor-pointer"
                       onClick={() => window.open(org?.facebookUrl, '_blank', 'noopener,noreferrer')}
@@ -169,25 +173,26 @@ export default function OrgsModal({ org, isLoading, isError }: OrgsModalProps) {
                               </>
                             ) : null}
                             {org.publications?.orgVidUrl ? (
-                              <>
-                                <Dialog>
-                                  <DialogTrigger>
-                                    <img
-                                      src={org?.publications.orgVidUrl}
-                                      alt="fee pub"
-                                      className="w-auto h-[200px] object-contain rounded-lg cursor-pointer flex-shrink-0"
-                                    />
-                                  </DialogTrigger>
-                                  <DialogTitle></DialogTitle>
-                                  <DialogContent className="bg-transparent border-none p-0">
-                                    <img
-                                      src={org?.publications.orgVidUrl}
-                                      alt="fee pub"
-                                      className="w-full h-full object-contain rounded-lg cursor-pointer flex-shrink-0"
-                                    />
-                                  </DialogContent>
-                                </Dialog>
-                              </>
+                              <Dialog>
+                                <DialogTrigger>
+                                  <img
+                                    src={`https://img.youtube.com/vi/${getYoutubeEmbedUrl(org.publications.orgVidUrl).split('/').pop()}/0.jpg`}
+                                    alt="fee pub thumbnail"
+                                    className="w-auto h-[200px] object-contain rounded-lg cursor-pointer flex-shrink-0"
+                                  />
+                                </DialogTrigger>
+                                <DialogTitle></DialogTitle>
+                                <DialogContent className="bg-transparent border-none p-0 max-w-4xl">
+                                  <iframe
+                                    src={getYoutubeEmbedUrl(org.publications.orgVidUrl)}
+                                    title="YouTube video player"
+                                    frameBorder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowFullScreen
+                                    className="w-full h-full aspect-video"
+                                  ></iframe>
+                                </DialogContent>
+                              </Dialog>
                             ) : null}
                           </div>
                           <p className="font-space-mono text-sm md:text-md w-full">{org?.about}</p>
