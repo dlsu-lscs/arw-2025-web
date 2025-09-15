@@ -1,31 +1,12 @@
 import { create } from 'zustand';
+import { ClusterTypeConst } from '@/features/clusters/types/cluster.types';
 
 interface ClusterState {
-  selectedCluster:
-    | string
-    | 'engage'
-    | 'probe'
-    | 'aso'
-    | 'aspire'
-    | 'cap%2013'
-    | 'all'
-    | 'cso'
-    | 'outside%20cso';
+  selectedCluster: ClusterTypeConst;
 }
 
 interface ClusterAction {
-  setSelectedCluster: (
-    cluster:
-      | string
-      | 'engage'
-      | 'probe'
-      | 'aso'
-      | 'aspire'
-      | 'cap%2013'
-      | 'all'
-      | 'cso'
-      | 'outside%20cso'
-  ) => void;
+  setSelectedCluster: (cluster: ClusterTypeConst) => void;
 }
 
 export const useSelectClusterStore = create<ClusterState & ClusterAction>((set) => ({

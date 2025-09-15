@@ -3,8 +3,7 @@
 import { useQueryClient } from '@tanstack/react-query';
 import { useEffect } from 'react';
 import { allOrgsQueryOptions } from '../queries/orgs.query.options';
-
-const CLUSTER_TYPES = ['all', 'engage', 'cap13', 'aspire', 'probe', 'aso'] as const;
+import { CLUSTER_TYPES } from '@/features/clusters/types/cluster.types';
 
 /**
  * Hook to prefetch organizations for all cluster types

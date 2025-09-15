@@ -38,18 +38,22 @@ export default function OrgCard({ className, org, onClick, onMouseEnter }: OrgCa
 
         <div className="z-50 text-white flex flex-col gap-2 sm:flex-row items-center">
           <div className="flex items-center gap-2">
-            {org.publications?.logoUrl && (
-              <Image
-                src={org.publications?.logoUrl}
-                alt={org.shortName}
-                width={86}
-                height={86}
-                loading="lazy"
-                unoptimized
-                className="z-10 w-auto h-auto max-w-full sm:w-20 sm:h-20"
-              />
-            )}
-            <h3 className="sm:hidden block md:text-xl lg:text-2xl font-press-start">{org.name}</h3>
+            <div className="sm:w-20 sm:h-20 h-10 w-10 relative shrink-0">
+              {org.publications?.logoUrl && (
+                <Image
+                  src={org.publications?.logoUrl}
+                  alt={org.shortName}
+                  fill={true}
+                  loading="lazy"
+                  unoptimized
+                  className=""
+                />
+              )}
+            </div>
+
+            <h3 className="sm:hidden block text-xs md:text-xl lg:text-2xl font-press-start">
+              {org.name}
+            </h3>
           </div>
 
           <span>

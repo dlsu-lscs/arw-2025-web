@@ -17,8 +17,7 @@ import { useInfiniteQuery } from '@tanstack/react-query';
 import { allOrgsQueryOptions } from '@/features/orgs/queries/orgs.query.options';
 import { usePrefetchOrgClusters } from '@/features/orgs/hooks/use-prefetch-org-clusters';
 import { useSelectClusterStore } from '@/store/useSelectClusterStore';
-import { useMemo, useRef } from 'react';
-import useObserver from '@/hooks/useObserver';
+import { useMemo } from 'react';
 import { useSearchOrgs } from '@/features/orgs/hooks/useSearchOrgs';
 
 interface HomeProps {
@@ -30,18 +29,10 @@ interface HomeProps {
 export default function HomePage({ user, initialOrgs, seed }: HomeProps) {
   const { openClusterModal } = useClusterModalStore();
   const { selectedCluster } = useSelectClusterStore();
-  const ref = useRef<HTMLDivElement>(null);
 
   // Prefetch all cluster types to eliminate loading when switching
   if (process.env.NODE_ENV !== 'production') console.log('Client Seed:', seed);
   usePrefetchOrgClusters(seed);
-
-  useObserver({
-    ref,
-    callback: () => {
-      if (hasNextPage && !isSearchActive) fetchNextPage();
-    },
-  });
 
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage } = useInfiniteQuery(
     allOrgsQueryOptions(
@@ -139,17 +130,14 @@ export default function HomePage({ user, initialOrgs, seed }: HomeProps) {
           )}
 
           <ClusterModal />
-          <OrgsContainer orgs={orgs} />
+          <OrgsContainer
+            orgs={orgs}
+            isSearchActive={isSearchActive}
+            hasNextPage={hasNextPage}
+            fetchNextPage={fetchNextPage}
+            isFetchingNextPage={isFetchingNextPage}
+          />
 
-          {/* Only show infinite scroll when not searching */}
-          {!isSearchActive && (
-            <>
-              <div className="w-2" ref={ref} />
-              {isFetchingNextPage && (
-                <AiOutlineLoading className="mx-auto mt-2 text-2xl animate-spin" />
-              )}
-            </>
-          )}
           <footer className="flex justify-center -mb-2 2xl:mt-2 mt-1">
             <h3 className="font-tiny5 sm:text-sm text-xs md:text-base opacity-50">
               Powered by La Salle Computer Society.

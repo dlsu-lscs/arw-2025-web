@@ -7,7 +7,6 @@ import CloseModal from '@/components/modal/close-modal';
 import { OrganizationType } from '../types/orgs.types';
 import { AiOutlineLoading } from 'react-icons/ai';
 import { DialogTrigger } from '@radix-ui/react-dialog';
-import { useImageFallback } from '@/hooks/useImageFallback';
 import { getYoutubeEmbedUrl } from '@/lib/helpers';
 
 type OrgsModalProps = {
@@ -63,8 +62,147 @@ export default function OrgsModal({ org, isLoading, isError }: OrgsModalProps) {
             ) : (
               <>
                 <main className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10 flex-1 overflow-hidden">
-                  {/* RIGHT SECTION - shows on top for mobile */}
-                  <section className="order-1 md:order-2 flex justify-center items-start md:items-center pixel-right">
+                  {/* Mobile: Both sections scroll together */}
+                  <div className="md:hidden overflow-y-auto shadcn-scrollbar">
+                    {/* Image section for mobile */}
+                    <section className="flex justify-center items-start mb-6">
+                      <img
+                        src={
+                          org?.publications?.mainPubUrl !== ''
+                            ? org?.publications?.mainPubUrl
+                            : '/bg/st-lasalle-bg.webp'
+                        }
+                        alt="org image 1"
+                        className="w-full max-h-[50vh] object-contain rounded-lg cursor-pointer"
+                        onClick={() =>
+                          window.open(org?.facebookUrl, '_blank', 'noopener,noreferrer')
+                        }
+                      />
+                    </section>
+
+                    {/* Content section for mobile */}
+                    <section className="flex flex-col gap-8 pb-6">
+                      {/* Logo above name/tagline */}
+                      <div className="flex flex-col gap-6 items-center text-center">
+                        {/* Logo */}
+                        {org?.publications?.logoUrl && (
+                          <Image
+                            src={org?.publications.logoUrl}
+                            alt="org logo"
+                            width={167}
+                            height={157}
+                            loading="lazy"
+                            unoptimized
+                            className="rounded-lg max-w-full h-auto"
+                          />
+                        )}
+
+                        {/* Name + tagline */}
+                        <div>
+                          <h1 className="text-2xl">{org?.name}</h1>
+                          <p className="text-base opacity-50">{org?.tagline}</p>
+                          <Button
+                            className="font-tiny5 bg-[#D8E6FF] rounded-none border-black text-xl font-bold self-center mt-4 mb-6 shadow-[4px_4px_0px_rgba(0,0,0,1)] flex items-center"
+                            variant="outline"
+                            onClick={() =>
+                              window.open(org?.gformsUrl, '_blank', 'noopener,noreferrer')
+                            }
+                          >
+                            JOIN NOW
+                          </Button>
+                          {org?.fee && <p className="font-tiny5 text-black text-lg">{org?.fee}</p>}
+                        </div>
+                      </div>
+
+                      {/* About, Mission, Vision */}
+                      {org?.about && (
+                        <div className="flex flex-col gap-4">
+                          <h1 className="text-2xl">About Us</h1>
+                          <div className="flex gap-2 w-full overflow-x-auto">
+                            {org.publications?.mainPubUrl && (
+                              <Dialog>
+                                <DialogTrigger>
+                                  <img
+                                    src={org?.publications.mainPubUrl}
+                                    alt="main pub"
+                                    className="w-auto h-[200px] object-contain rounded-lg cursor-pointer flex-shrink-0"
+                                  />
+                                </DialogTrigger>
+                                <DialogTitle></DialogTitle>
+                                <DialogContent className="bg-transparent border-none p-0">
+                                  <img
+                                    src={org?.publications.mainPubUrl}
+                                    alt="main pub"
+                                    className="w-full h-full object-contain rounded-lg cursor-pointer flex-shrink-0"
+                                  />
+                                </DialogContent>
+                              </Dialog>
+                            )}
+                            {org.publications?.feePubUrl && (
+                              <Dialog>
+                                <DialogTrigger>
+                                  <img
+                                    src={org?.publications.feePubUrl}
+                                    alt="fee pub"
+                                    className="w-auto h-[200px] object-contain rounded-lg cursor-pointer flex-shrink-0"
+                                  />
+                                </DialogTrigger>
+                                <DialogTitle></DialogTitle>
+                                <DialogContent className="bg-transparent border-none p-0">
+                                  <img
+                                    src={org?.publications.feePubUrl}
+                                    alt="fee pub"
+                                    className="w-full h-full object-contain rounded-lg cursor-pointer flex-shrink-0"
+                                  />
+                                </DialogContent>
+                              </Dialog>
+                            )}
+                            {org.publications?.orgVidUrl && (
+                              <Dialog>
+                                <DialogTrigger>
+                                  <img
+                                    src={org?.publications.orgVidUrl}
+                                    alt="fee pub"
+                                    className="w-auto h-[200px] object-contain rounded-lg cursor-pointer flex-shrink-0"
+                                  />
+                                </DialogTrigger>
+                                <DialogTitle></DialogTitle>
+                                <DialogContent className="bg-transparent border-none p-0">
+                                  <img
+                                    src={org?.publications.orgVidUrl}
+                                    alt="fee pub"
+                                    className="w-full h-full object-contain rounded-lg cursor-pointer flex-shrink-0"
+                                  />
+                                </DialogContent>
+                              </Dialog>
+                            )}
+                          </div>
+                          <p className="font-space-mono text-sm w-full">{org?.about}</p>
+                        </div>
+                      )}
+                      {org?.mission && (
+                        <div className="flex flex-col gap-4">
+                          <h1 className="text-2xl">Mission</h1>
+                          <p className="font-space-mono text-sm w-full">{org?.mission}</p>
+                        </div>
+                      )}
+                      {org?.vision && (
+                        <div className="flex flex-col gap-4">
+                          <h1 className="text-2xl">Vision</h1>
+                          <p className="font-space-mono text-sm w-full">{org?.vision}</p>
+                        </div>
+                      )}
+                      <footer className="flex justify-center mt-8">
+                        <h3 className="font-tiny5 text-sm opacity-50">
+                          Powered by La Salle Computer Society.
+                        </h3>
+                      </footer>
+                    </section>
+                  </div>
+
+                  {/* Desktop: Original two-column layout */}
+                  {/* RIGHT SECTION - Image */}
+                  <section className="hidden md:flex md:order-2 justify-center items-start lg:items-center">
                     <img
                       src={
                         org?.publications?.mainPubUrl !== ''
@@ -77,9 +215,9 @@ export default function OrgsModal({ org, isLoading, isError }: OrgsModalProps) {
                     />
                   </section>
 
-                  {/* LEFT SECTION */}
-                  <section className="order-2 md:order-1 flex flex-col gap-8 md:gap-10 pixel-left pb-6 shadcn-scrollbar">
-                    <div className="hidden lg:block mb-4 md:mb-8">
+                  {/* LEFT SECTION - Content */}
+                  <section className="hidden md:flex md:order-1 flex-col gap-8 lg:gap-10 pb-6 shadcn-scrollbar overflow-y-auto">
+                    <div className="hidden lg:block mb-4 lg:mb-8">
                       <CloseModal className="text-[#0F0092] text-xl sm:text-2xl md:text-3xl" />
                     </div>
                     {/* Logo above name/tagline until lg, side-by-side only at xl */}
@@ -97,15 +235,7 @@ export default function OrgsModal({ org, isLoading, isError }: OrgsModalProps) {
                         >
                           JOIN NOW
                         </Button>
-                        {org?.fee ? (
-                          <>
-                            {org?.fee ? (
-                              <>
-                                <p className="font-tiny5 text-black text-lg">{org?.fee}</p>
-                              </>
-                            ) : null}
-                          </>
-                        ) : null}
+                        {org?.fee && <p className="font-tiny5 text-black text-lg">{org?.fee}</p>}
                       </div>
 
                       {/* Logo second on xl+ */}
@@ -125,98 +255,86 @@ export default function OrgsModal({ org, isLoading, isError }: OrgsModalProps) {
                     </div>
 
                     {/* About, Mission, Vision */}
-                    {org?.about ? (
-                      <>
-                        <div className="flex flex-col gap-4">
-                          <h1 className="text-2xl md:text-3xl">About Us</h1>
-                          <div className="flex gap-2 w-full overflow-x-auto ">
-                            {org.publications?.mainPubUrl ? (
-                              <>
-                                <Dialog>
-                                  <DialogTrigger>
-                                    <img
-                                      src={org?.publications.mainPubUrl}
-                                      alt="main pub"
-                                      className="w-auto h-[200px] object-contain rounded-lg cursor-pointer flex-shrink-0"
-                                    />
-                                  </DialogTrigger>
-                                  <DialogTitle></DialogTitle>
-                                  <DialogContent className="bg-transparent border-none p-0">
-                                    <img
-                                      src={org?.publications.mainPubUrl}
-                                      alt="main pub"
-                                      className="w-full h-full object-contain rounded-lg cursor-pointer flex-shrink-0"
-                                    />
-                                  </DialogContent>
-                                </Dialog>
-                              </>
-                            ) : null}
-                            {org.publications?.feePubUrl ? (
-                              <>
-                                <Dialog>
-                                  <DialogTrigger>
-                                    <img
-                                      src={org?.publications.feePubUrl}
-                                      alt="fee pub"
-                                      className="w-auto h-[200px] object-contain rounded-lg cursor-pointer flex-shrink-0"
-                                    />
-                                  </DialogTrigger>
-                                  <DialogTitle></DialogTitle>
-                                  <DialogContent className="bg-transparent border-none p-0">
-                                    <img
-                                      src={org?.publications.feePubUrl}
-                                      alt="fee pub"
-                                      className="w-full h-full object-contain rounded-lg cursor-pointer flex-shrink-0"
-                                    />
-                                  </DialogContent>
-                                </Dialog>
-                              </>
-                            ) : null}
-                            {org.publications?.orgVidUrl ? (
-                              <Dialog>
-                                <DialogTrigger>
-                                  <img
-                                    src={`https://img.youtube.com/vi/${getYoutubeEmbedUrl(org.publications.orgVidUrl).split('/').pop()}/0.jpg`}
-                                    alt="fee pub thumbnail"
-                                    className="w-auto h-[200px] object-contain rounded-lg cursor-pointer flex-shrink-0"
-                                  />
-                                </DialogTrigger>
-                                <DialogTitle></DialogTitle>
-                                <DialogContent className="bg-transparent border-none p-0 max-w-4xl">
-                                  <iframe
-                                    src={getYoutubeEmbedUrl(org.publications.orgVidUrl)}
-                                    title="YouTube video player"
-                                    frameBorder="0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                    allowFullScreen
-                                    className="w-full h-full aspect-video"
-                                  ></iframe>
-                                </DialogContent>
-                              </Dialog>
-                            ) : null}
-                          </div>
-                          <p className="font-space-mono text-sm md:text-md w-full">{org?.about}</p>
+                    {org?.about && (
+                      <div className="flex flex-col gap-4">
+                        <h1 className="text-2xl md:text-3xl">About Us</h1>
+                        <div className="flex gap-2 w-full overflow-x-auto ">
+                          {org.publications?.mainPubUrl && (
+                            <Dialog>
+                              <DialogTrigger>
+                                <img
+                                  src={org?.publications.mainPubUrl}
+                                  alt="main pub"
+                                  className="w-auto h-[200px] object-contain rounded-lg cursor-pointer flex-shrink-0"
+                                />
+                              </DialogTrigger>
+                              <DialogTitle></DialogTitle>
+                              <DialogContent className="bg-transparent border-none p-0">
+                                <img
+                                  src={org?.publications.mainPubUrl}
+                                  alt="main pub"
+                                  className="w-full h-full object-contain rounded-lg cursor-pointer flex-shrink-0"
+                                />
+                              </DialogContent>
+                            </Dialog>
+                          )}
+                          {org.publications?.feePubUrl && (
+                            <Dialog>
+                              <DialogTrigger>
+                                <img
+                                  src={org?.publications.feePubUrl}
+                                  alt="fee pub"
+                                  className="w-auto h-[200px] object-contain rounded-lg cursor-pointer flex-shrink-0"
+                                />
+                              </DialogTrigger>
+                              <DialogTitle></DialogTitle>
+                              <DialogContent className="bg-transparent border-none p-0">
+                                <img
+                                  src={org?.publications.feePubUrl}
+                                  alt="fee pub"
+                                  className="w-full h-full object-contain rounded-lg cursor-pointer flex-shrink-0"
+                                />
+                              </DialogContent>
+                            </Dialog>
+                          )}
+                          {org.publications?.orgVidUrl && (
+                            <Dialog>
+                              <DialogTrigger>
+                                <img
+                                  src={`https://img.youtube.com/vi/${getYoutubeEmbedUrl(org.publications.orgVidUrl).split('/').pop()}/0.jpg`}
+                                  alt="video thumbnail"
+                                  className="w-auto h-[200px] object-contain rounded-lg cursor-pointer flex-shrink-0"
+                                />
+                              </DialogTrigger>
+                              <DialogTitle></DialogTitle>
+                              <DialogContent className="bg-transparent border-none p-0 max-w-4xl">
+                                <iframe
+                                  src={getYoutubeEmbedUrl(org.publications.orgVidUrl)}
+                                  title="YouTube video player"
+                                  frameBorder="0"
+                                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                  allowFullScreen
+                                  className="w-full h-full aspect-video"
+                                ></iframe>
+                              </DialogContent>
+                            </Dialog>
+                          )}
                         </div>
-                      </>
-                    ) : null}
-                    {org?.mission ? (
-                      <>
-                        <div className="flex flex-col gap-4">
-                          <h1 className="text-2xl md:text-3xl">Mission</h1>
-                          <p className="font-space-mono text-sm md:text-md w-full">
-                            {org?.mission}
-                          </p>
-                        </div>
-                      </>
-                    ) : null}
-                    {org?.vision ? (
-                      <>
-                        <div className="flex flex-col gap-4">
-                          <h1 className="text-2xl md:text-3xl">Vision</h1>
-                          <p className="font-space-mono text-sm md:text-md w-full">{org?.vision}</p>
-                        </div>
-                      </>
-                    ) : null}
+                        <p className="font-space-mono text-sm md:text-md w-full">{org?.about}</p>
+                      </div>
+                    )}
+                    {org?.mission && (
+                      <div className="flex flex-col gap-4">
+                        <h1 className="text-2xl md:text-3xl">Mission</h1>
+                        <p className="font-space-mono text-sm md:text-md w-full">{org?.mission}</p>
+                      </div>
+                    )}
+                    {org?.vision && (
+                      <div className="flex flex-col gap-4">
+                        <h1 className="text-2xl md:text-3xl">Vision</h1>
+                        <p className="font-space-mono text-sm md:text-md w-full">{org?.vision}</p>
+                      </div>
+                    )}
                     <footer className="flex justify-center mt-8 md:mt-12">
                       <h3 className="font-tiny5 text-sm md:text-base opacity-50">
                         Powered by La Salle Computer Society.
