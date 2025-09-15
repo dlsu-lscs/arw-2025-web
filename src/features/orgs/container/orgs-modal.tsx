@@ -99,8 +99,10 @@ export default function OrgsModal({ org, isLoading, isError }: OrgsModalProps) {
 
                         {/* Name + tagline */}
                         <div>
-                          <h1 className="text-2xl">{org?.name}</h1>
-                          <p className="text-base opacity-50">{org?.tagline}</p>
+                          <h1 className="sm:text-2xl text-base text-start">{org?.name}</h1>
+                          <p className="sm:text-base text-xs opacity-50 text-start">
+                            {org?.tagline}
+                          </p>
                           <Button
                             className="font-tiny5 bg-[#D8E6FF] rounded-none border-black text-xl font-bold self-center mt-4 mb-6 shadow-[4px_4px_0px_rgba(0,0,0,1)] flex items-center"
                             variant="outline"
@@ -117,7 +119,7 @@ export default function OrgsModal({ org, isLoading, isError }: OrgsModalProps) {
                       {/* About, Mission, Vision */}
                       {org?.about && (
                         <div className="flex flex-col gap-4">
-                          <h1 className="text-2xl">About Us</h1>
+                          <h1 className="sm:text-2xl text-base">About Us</h1>
                           <div className="flex gap-2 w-full overflow-x-auto">
                             {org.publications?.mainPubUrl && (
                               <Dialog>
@@ -182,13 +184,13 @@ export default function OrgsModal({ org, isLoading, isError }: OrgsModalProps) {
                       )}
                       {org?.mission && (
                         <div className="flex flex-col gap-4">
-                          <h1 className="text-2xl">Mission</h1>
+                          <h1 className="sm:text-2xl text-base">Mission</h1>
                           <p className="font-space-mono text-sm w-full">{org?.mission}</p>
                         </div>
                       )}
                       {org?.vision && (
                         <div className="flex flex-col gap-4">
-                          <h1 className="text-2xl">Vision</h1>
+                          <h1 className="sm:text-2xl text-base">Vision</h1>
                           <p className="font-space-mono text-sm w-full">{org?.vision}</p>
                         </div>
                       )}
