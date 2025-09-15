@@ -8,7 +8,7 @@ import {
   type CarouselApi,
 } from '@/components/ui/carousel';
 import { useSelectClusterStore } from '@/store/useSelectClusterStore';
-import { clusters } from '../data/clusters';
+import { clusters } from '../../home/data/clusters';
 import { useCallback, useEffect, useRef } from 'react';
 import { returnColorFromCluster } from '@/lib/helpers';
 import { cn } from '@/lib/utils';
