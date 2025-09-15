@@ -58,7 +58,7 @@ export default function ClusterModal() {
                     className="w-full h-[200px] md:w-[200px] md:h-[400px] bg-[url('/bg/st-lasalle-bg.webp')] hover:cursor-pointer bg-center bg-cover bg-[#564C01]/62 hover:opacity-90 transition duration-100 bg-blend-multiply flex justify-start p-6 items-center rounded-lg text-white"
                     onClick={() => {
                       closeClusterModal();
-                      setSelectedCluster('cap13');
+                      setSelectedCluster('cap 13');
                     }}
                   >
                     <button className="w-full hover:cursor-pointer mx-auto flex flex-col gap-2">
@@ -159,7 +159,7 @@ export default function ClusterModal() {
                     className="w-full h-[200px] md:w-[200px] md:h-[400px] hover:cursor-pointer bg-[url('/bg/st-lasalle-bg.webp')] bg-center bg-cover bg-[#0078A3]/62 hover:opacity-90 transition duration-100 bg-blend-multiply flex justify-start p-6 items-center rounded-lg text-white"
                     onClick={() => {
                       closeClusterModal();
-                      setSelectedCluster('outside%20cso');
+                      setSelectedCluster('outside cso');
                     }}
                   >
                     <button className="flex flex-col gap-2 hover:cursor-pointer">

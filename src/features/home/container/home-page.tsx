@@ -76,6 +76,8 @@ export default function HomePage({ user, initialOrgs, seed }: HomeProps) {
   } = useSearchOrgs();
   const orgs = isSearchActive ? searchResults : baseOrgs;
 
+  if (process.env.NODE_ENV !== 'production') console.log(selectedCluster);
+
   return (
     <>
       <div className="pixel-corners--wrapper mx-auto flex flex-col flex-1">
