@@ -225,7 +225,7 @@ export default function OrgsModal({ org, isLoading, isError }: OrgsModalProps) {
                           : '/bg/st-lasalle-bg.webp'
                       }
                       alt="org image 1"
-                      className="w-full max-h-[90vh] object-contain rounded-lg cursor-pointer"
+                      className="rounded-lg cursor-pointer w-full max-h-[80vh] object-contain"
                       onClick={() => window.open(org?.facebookUrl, '_blank', 'noopener,noreferrer')}
                     />
                   </section>
