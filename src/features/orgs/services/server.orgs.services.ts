@@ -3,8 +3,19 @@ import axios from 'axios';
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://api.dlsucso-arw.com';
 
-export async function serverGetAllOrgs(seed: string, cluster?: string, page = 0, pageSize = 10) {
-  const params: Record<string, string | number> = { page, pageSize, seed };
+export async function serverGetAllOrgs(
+  seed: string,
+  cluster?: string,
+  page = 0,
+  pageSize = 10,
+  prioritized: string | string[] = 'CSO'
+) {
+  const params: Record<string, string | number> = {
+    page,
+    pageSize,
+    seed,
+    prioritized: Array.isArray(prioritized) ? prioritized.join(',') : prioritized,
+  };
 
   if (cluster) params.cluster = cluster;
   const cookieHeader = await getCookieHeader();

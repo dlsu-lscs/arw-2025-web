@@ -5,9 +5,16 @@ export async function getAllOrgs(
   seed: string,
   cluster?: string,
   page = 0,
-  pageSize = 10
+  pageSize = 10,
+  prioritized: string | string[] = 'CSO'
 ): Promise<OrgsResponse> {
-  const params: Record<string, string | number> = { page, pageSize, seed };
+  const params: Record<string, string | number> = {
+    page,
+    pageSize,
+    seed,
+    prioritized: Array.isArray(prioritized) ? prioritized.join(',') : prioritized,
+  };
+
   if (cluster && cluster !== 'all') params.cluster = cluster;
 
   if (process.env.NODE_ENV !== 'production') console.log('📋 getAllOrgs params:', params);
