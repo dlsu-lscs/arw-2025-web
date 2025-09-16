@@ -17,8 +17,8 @@ export default async function Home() {
   return (
     <>
       <div className="max-h-screen min-h-screen flex flex-col sm:p-8 p-4">
-        {/* <HomePage user={user} initialOrgs={initialOrgs} seed={seed} /> */}
-        <Maintenance />
+        <HomePage user={user} initialOrgs={initialOrgs} seed={seed} />
+        {/* <Maintenance /> */}
       </div>
     </>
   );
