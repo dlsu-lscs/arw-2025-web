@@ -231,7 +231,7 @@ export default function OrgsModal({ org, isLoading, isError }: OrgsModalProps) {
                   </section>
 
                   {/* LEFT SECTION - Content */}
-                  <section className="hidden md:flex md:order-1 flex-col gap-8 lg:gap-10 pb-6 shadcn-scrollbar overflow-y-auto">
+                  <section className="hidden md:flex md:order-1 flex-col pb-6 shadcn-scrollbar overflow-y-auto">
                     <div className="hidden lg:block mb-4 lg:mb-8">
                       <CloseModal className="text-[#0F0092] text-xl sm:text-2xl md:text-3xl" />
                     </div>
@@ -251,11 +251,6 @@ export default function OrgsModal({ org, isLoading, isError }: OrgsModalProps) {
                         >
                           JOIN NOW
                         </Button>
-                        {org?.fee && (
-                          <p className="font-space-mono text-black  sm:text-base text-sm text-start whitespace-pre-wrap">
-                            {org?.fee}
-                          </p>
-                        )}
                       </div>
 
                       {/* Logo second on xl+ */}
@@ -277,6 +272,11 @@ export default function OrgsModal({ org, isLoading, isError }: OrgsModalProps) {
                     {/* About, Mission, Vision */}
                     {org?.about && (
                       <div className="flex flex-col gap-4">
+                        {org?.fee && (
+                          <p className="font-space-mono text-black  sm:text-base text-sm text-start whitespace-pre-wrap">
+                            {org?.fee}
+                          </p>
+                        )}
                         <h1 className="text-2xl md:text-3xl">About Us</h1>
                         <div className="flex gap-2 w-full overflow-x-auto ">
                           {org.publications?.mainPubUrl && (
