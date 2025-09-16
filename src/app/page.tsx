@@ -5,6 +5,7 @@ import { requireAuth } from '@/features/auth/services/server-auth';
 import { OrgsResponse } from '@/features/orgs/types/orgs.types';
 import { serverGetAllOrgs } from '@/features/orgs/services/server.orgs.services';
 import { v4 as uuidv4 } from 'uuid';
+import Maintenance from '@/features/home/container/maintenance-page';
 
 export default async function Home() {
   const user = await requireAuth();
@@ -16,7 +17,8 @@ export default async function Home() {
   return (
     <>
       <div className="max-h-screen min-h-screen flex flex-col sm:p-8 p-4">
-        <HomePage user={user} initialOrgs={initialOrgs} seed={seed} />
+        {/* <HomePage user={user} initialOrgs={initialOrgs} seed={seed} /> */}
+        <Maintenance />
       </div>
     </>
   );
