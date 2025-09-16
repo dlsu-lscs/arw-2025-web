@@ -55,20 +55,18 @@ export default function OrgsContainer({
     <>
       <div className="overflow-y-auto flex-1 h-full min-h-0 w-full mt-4 overflow-x-hidden shadcn-scrollbar">
         {orgs.map((org, index) => {
-          if (org.publications) {
-            return (
-              <OrgCard
-                className="mb-4"
-                key={index}
-                org={org}
-                onClick={() => {
-                  setSelectedOrgId(org.id);
-                  openOrgsModal();
-                }}
-                onMouseEnter={() => prefetchOrgByID(org.id)}
-              />
-            );
-          }
+          return (
+            <OrgCard
+              className="mb-4"
+              key={index}
+              org={org}
+              onClick={() => {
+                setSelectedOrgId(org.id);
+                openOrgsModal();
+              }}
+              onMouseEnter={() => prefetchOrgByID(org.id)}
+            />
+          );
         })}
         {/* Only show infinite scroll when not searching */}
         {!isSearchActive && (

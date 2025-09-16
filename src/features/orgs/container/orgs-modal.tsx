@@ -68,7 +68,7 @@ export default function OrgsModal({ org, isLoading, isError }: OrgsModalProps) {
                     <section className="flex justify-center items-end mb-6">
                       <img
                         src={
-                          org?.publications?.mainPubUrl !== ''
+                          org?.publications?.mainPubUrl !== '' && org?.publications !== null
                             ? org?.publications?.mainPubUrl
                             : '/bg/st-lasalle-bg.webp'
                         }
@@ -220,7 +220,7 @@ export default function OrgsModal({ org, isLoading, isError }: OrgsModalProps) {
                   <section className="hidden md:flex md:order-2 justify-center items-start lg:items-center">
                     <img
                       src={
-                        org?.publications?.mainPubUrl !== ''
+                        org?.publications?.mainPubUrl !== '' && org?.publications !== null
                           ? org?.publications?.mainPubUrl
                           : '/bg/st-lasalle-bg.webp'
                       }
