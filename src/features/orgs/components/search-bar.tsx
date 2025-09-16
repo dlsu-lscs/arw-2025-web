@@ -39,6 +39,13 @@ export function SearchBar() {
     setDebouncedSearchTerm(debouncedInputValue);
   }, [debouncedInputValue, setDebouncedSearchTerm]);
 
+  // Sync form with external store changes (like when clearSearch is called from other components)
+  useEffect(() => {
+    if (inputValue === '' && form.getValues('search') !== '') {
+      form.reset({ search: '' });
+    }
+  }, [inputValue, form]);
+
   function onSubmit(data: z.infer<typeof FormSchema>) {
     const trimmedSearch = data.search.trim();
 

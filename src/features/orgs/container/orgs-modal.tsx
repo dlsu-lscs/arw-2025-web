@@ -99,10 +99,12 @@ export default function OrgsModal({ org, isLoading, isError }: OrgsModalProps) {
 
                         {/* Name + tagline */}
                         <div>
-                          <h1 className="text-2xl">{org?.name}</h1>
-                          <p className="text-base opacity-50">{org?.tagline}</p>
+                          <h1 className="sm:text-2xl text-base text-start">{org?.name}</h1>
+                          <p className="sm:text-base text-xs opacity-50 text-start">
+                            {org?.tagline}
+                          </p>
                           <Button
-                            className="font-tiny5 bg-[#D8E6FF] rounded-none border-black text-xl font-bold self-center mt-4 mb-6 shadow-[4px_4px_0px_rgba(0,0,0,1)] flex items-center"
+                            className="font-tiny5 cursor-pointer bg-[#D8E6FF] rounded-none border-black text-xl font-bold self-center mt-4 mb-6 shadow-[4px_4px_0px_rgba(0,0,0,1)] flex items-center"
                             variant="outline"
                             onClick={() =>
                               window.open(org?.gformsUrl, '_blank', 'noopener,noreferrer')
@@ -110,22 +112,26 @@ export default function OrgsModal({ org, isLoading, isError }: OrgsModalProps) {
                           >
                             JOIN NOW
                           </Button>
-                          {org?.fee && <p className="font-tiny5 text-black text-lg">{org?.fee}</p>}
+                          {org?.fee && (
+                            <p className="font-space-mono text-black sm:text-base text-sm text-start whitespace-pre-wrap">
+                              {org?.fee}
+                            </p>
+                          )}
                         </div>
                       </div>
 
                       {/* About, Mission, Vision */}
                       {org?.about && (
                         <div className="flex flex-col gap-4">
-                          <h1 className="text-2xl">About Us</h1>
+                          <h1 className="sm:text-2xl text-base">About Us</h1>
                           <div className="flex gap-2 w-full overflow-x-auto">
                             {org.publications?.mainPubUrl && (
                               <Dialog>
-                                <DialogTrigger>
+                                <DialogTrigger className="min-w-28">
                                   <img
                                     src={org?.publications.mainPubUrl}
                                     alt="main pub"
-                                    className="w-auto h-[200px] object-contain rounded-lg cursor-pointer flex-shrink-0"
+                                    className="w-auto object-contain rounded-lg cursor-pointer flex-shrink-0"
                                   />
                                 </DialogTrigger>
                                 <DialogTitle></DialogTitle>
@@ -140,11 +146,11 @@ export default function OrgsModal({ org, isLoading, isError }: OrgsModalProps) {
                             )}
                             {org.publications?.feePubUrl && (
                               <Dialog>
-                                <DialogTrigger>
+                                <DialogTrigger className="min-w-28">
                                   <img
                                     src={org?.publications.feePubUrl}
                                     alt="fee pub"
-                                    className="w-auto h-[200px] object-contain rounded-lg cursor-pointer flex-shrink-0"
+                                    className="w-auto object-contain rounded-lg cursor-pointer flex-shrink-0"
                                   />
                                 </DialogTrigger>
                                 <DialogTitle></DialogTitle>
@@ -159,37 +165,46 @@ export default function OrgsModal({ org, isLoading, isError }: OrgsModalProps) {
                             )}
                             {org.publications?.orgVidUrl && (
                               <Dialog>
-                                <DialogTrigger>
+                                <DialogTrigger className="min-w-36">
                                   <img
-                                    src={org?.publications.orgVidUrl}
-                                    alt="fee pub"
-                                    className="w-auto h-[200px] object-contain rounded-lg cursor-pointer flex-shrink-0"
+                                    src={`https://img.youtube.com/vi/${getYoutubeEmbedUrl(org.publications.orgVidUrl).split('/').pop()}/0.jpg`}
+                                    alt="video thumbnail"
+                                    className="w-auto  object-contain rounded-lg cursor-pointer flex-shrink-0"
                                   />
                                 </DialogTrigger>
                                 <DialogTitle></DialogTitle>
                                 <DialogContent className="bg-transparent border-none p-0">
-                                  <img
-                                    src={org?.publications.orgVidUrl}
-                                    alt="fee pub"
-                                    className="w-full h-full object-contain rounded-lg cursor-pointer flex-shrink-0"
-                                  />
+                                  <iframe
+                                    src={getYoutubeEmbedUrl(org.publications.orgVidUrl)}
+                                    title="YouTube video player"
+                                    frameBorder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowFullScreen
+                                    className="w-full h-full aspect-video"
+                                  ></iframe>
                                 </DialogContent>
                               </Dialog>
                             )}
                           </div>
-                          <p className="font-space-mono text-sm w-full">{org?.about}</p>
+                          <p className="font-space-mono text-sm w-full whitespace-pre-wrap">
+                            {org?.about}
+                          </p>
                         </div>
                       )}
                       {org?.mission && (
                         <div className="flex flex-col gap-4">
-                          <h1 className="text-2xl">Mission</h1>
-                          <p className="font-space-mono text-sm w-full">{org?.mission}</p>
+                          <h1 className="sm:text-2xl text-base">Mission</h1>
+                          <p className="font-space-mono text-sm w-full whitespace-pre-wrap">
+                            {org?.mission}
+                          </p>
                         </div>
                       )}
                       {org?.vision && (
                         <div className="flex flex-col gap-4">
-                          <h1 className="text-2xl">Vision</h1>
-                          <p className="font-space-mono text-sm w-full">{org?.vision}</p>
+                          <h1 className="sm:text-2xl text-base">Vision</h1>
+                          <p className="font-space-mono text-sm w-full whitespace-pre-wrap">
+                            {org?.vision}
+                          </p>
                         </div>
                       )}
                       <footer className="flex justify-center mt-8">
@@ -210,24 +225,25 @@ export default function OrgsModal({ org, isLoading, isError }: OrgsModalProps) {
                           : '/bg/st-lasalle-bg.webp'
                       }
                       alt="org image 1"
-                      className="w-full max-h-[90vh] object-contain rounded-lg cursor-pointer"
+                      className="rounded-lg cursor-pointer w-full max-h-[80vh] object-contain"
                       onClick={() => window.open(org?.facebookUrl, '_blank', 'noopener,noreferrer')}
                     />
                   </section>
 
                   {/* LEFT SECTION - Content */}
-                  <section className="hidden md:flex md:order-1 flex-col gap-8 lg:gap-10 pb-6 shadcn-scrollbar overflow-y-auto">
+                  <section className="hidden md:flex md:order-1 flex-col pb-6 shadcn-scrollbar overflow-y-auto">
                     <div className="hidden lg:block mb-4 lg:mb-8">
                       <CloseModal className="text-[#0F0092] text-xl sm:text-2xl md:text-3xl" />
                     </div>
+
                     {/* Logo above name/tagline until lg, side-by-side only at xl */}
-                    <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 items-center">
+                    <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 xl:items-start">
                       {/* Name + tagline first only on xl+ */}
                       <div className="order-2 xl:order-1 text-center xl:text-left">
                         <h1 className="text-2xl md:text-3xl">{org?.name}</h1>
                         <p className="text-base md:text-lg opacity-50">{org?.tagline}</p>
                         <Button
-                          className="font-tiny5 bg-[#D8E6FF] rounded-none border-black text-xl md:text-3xl font-bold self-center mt-4 mb-6 md:mb-8 shadow-[4px_4px_0px_rgba(0,0,0,1)] flex items-center"
+                          className="font-tiny5 cursor-pointer bg-[#D8E6FF] rounded-none border-black text-xl md:text-3xl font-bold self-center mt-4 mb-6 md:mb-8 shadow-[4px_4px_0px_rgba(0,0,0,1)] flex items-center"
                           variant="outline"
                           onClick={() =>
                             window.open(org?.gformsUrl, '_blank', 'noopener,noreferrer')
@@ -235,11 +251,10 @@ export default function OrgsModal({ org, isLoading, isError }: OrgsModalProps) {
                         >
                           JOIN NOW
                         </Button>
-                        {org?.fee && <p className="font-tiny5 text-black text-lg">{org?.fee}</p>}
                       </div>
 
                       {/* Logo second on xl+ */}
-                      <div className="order-1 xl:order-2 flex justify-center items-center xl:justify-center">
+                      <div className="order-1 xl:order-2 flex justify-center items-start xl:justify-end">
                         {org?.publications?.logoUrl && (
                           <Image
                             src={org?.publications.logoUrl}
@@ -248,7 +263,7 @@ export default function OrgsModal({ org, isLoading, isError }: OrgsModalProps) {
                             height={157}
                             loading="lazy"
                             unoptimized
-                            className="rounded-lg max-w-full h-auto xl:ml-8"
+                            className="rounded-lg max-w-full h-auto object-cover"
                           />
                         )}
                       </div>
@@ -257,6 +272,11 @@ export default function OrgsModal({ org, isLoading, isError }: OrgsModalProps) {
                     {/* About, Mission, Vision */}
                     {org?.about && (
                       <div className="flex flex-col gap-4">
+                        {org?.fee && (
+                          <p className="font-space-mono text-black  sm:text-base text-sm text-start whitespace-pre-wrap">
+                            {org?.fee}
+                          </p>
+                        )}
                         <h1 className="text-2xl md:text-3xl">About Us</h1>
                         <div className="flex gap-2 w-full overflow-x-auto ">
                           {org.publications?.mainPubUrl && (
@@ -320,19 +340,25 @@ export default function OrgsModal({ org, isLoading, isError }: OrgsModalProps) {
                             </Dialog>
                           )}
                         </div>
-                        <p className="font-space-mono text-sm md:text-md w-full">{org?.about}</p>
+                        <p className="font-space-mono text-sm md:text-base w-full whitespace-pre-wrap">
+                          {org?.about}
+                        </p>
                       </div>
                     )}
                     {org?.mission && (
                       <div className="flex flex-col gap-4">
-                        <h1 className="text-2xl md:text-3xl">Mission</h1>
-                        <p className="font-space-mono text-sm md:text-md w-full">{org?.mission}</p>
+                        <h1 className="text-2xl md:text-3xl mt-6">Mission</h1>
+                        <p className="font-space-mono text-sm md:text-base w-full whitespace-pre-wrap">
+                          {org?.mission}
+                        </p>
                       </div>
                     )}
                     {org?.vision && (
                       <div className="flex flex-col gap-4">
-                        <h1 className="text-2xl md:text-3xl">Vision</h1>
-                        <p className="font-space-mono text-sm md:text-md w-full">{org?.vision}</p>
+                        <h1 className="text-2xl md:text-3xl mt-6">Vision</h1>
+                        <p className="font-space-mono text-sm md:text-base w-full whitespace-pre-wrap">
+                          {org?.vision}
+                        </p>
                       </div>
                     )}
                     <footer className="flex justify-center mt-8 md:mt-12">

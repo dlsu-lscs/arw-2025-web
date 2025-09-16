@@ -2,7 +2,7 @@
 import HighlightCard from '@/components/highlight-card';
 import NavBar from '../components/navbar';
 import Image from 'next/image';
-import ClusterCarousel from '../components/cluster-carousel';
+import ClusterCarousel from '../../clusters/components/cluster-carousel';
 import { AiOutlineLoading } from 'react-icons/ai';
 import { Button } from '@/components/ui/button';
 import CollapsibleText from '@/components/collapsible-text';
@@ -19,6 +19,7 @@ import { usePrefetchOrgClusters } from '@/features/orgs/hooks/use-prefetch-org-c
 import { useSelectClusterStore } from '@/store/useSelectClusterStore';
 import { useMemo } from 'react';
 import { useSearchOrgs } from '@/features/orgs/hooks/useSearchOrgs';
+import { cn } from '@/lib/utils';
 
 interface HomeProps {
   user: User;
@@ -106,7 +107,10 @@ export default function HomePage({ user, initialOrgs, seed }: HomeProps) {
           <ClusterCarousel />
 
           <Button
-            className="font-space-mono hover:cursor-pointer bg-[#D8E6FF] rounded-none border-black text-xm sm:text-base font-bold self-center mt-1 md:-mt-4 2xl:mt-2 mb-4"
+            className={cn(
+              'font-space-mono hover:cursor-pointer bg-[#D8E6FF] rounded-none border-black text-xm sm:text-base font-bold self-center mt-1 2xl:mt-2 mb-4',
+              selectedCluster === 'aspire' ? 'md:mt-0' : 'md:-mt-4'
+            )}
             variant="outline"
             onClick={openClusterModal}
           >

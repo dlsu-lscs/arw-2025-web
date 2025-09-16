@@ -10,7 +10,7 @@ export async function getAllOrgs(
   const params: Record<string, string | number> = { page, pageSize, seed };
   if (cluster && cluster !== 'all') params.cluster = cluster;
 
-  console.log(params);
+  if (process.env.NODE_ENV !== 'production') console.log('📋 getAllOrgs params:', params);
 
   try {
     const { data } = await api.get('/api/orgs', { params });
@@ -28,7 +28,7 @@ export async function getSearchOrg(q: string, page = 0, pageSize = 10) {
     const { data } = await api.get('/api/orgs/search', {
       params,
     });
-    console.log(data);
+    if (process.env.NODE_ENV !== 'production') console.log('🔍 Search result:', data);
     return data;
   } catch (error) {
     console.error('Error in getSearchOrg:', error);

@@ -30,11 +30,14 @@ export function clearAuthCookies(response: NextResponse) {
       response.headers.append('Set-Cookie', `${cookieName}=; ${cookieOptions}`);
     });
 
-    console.log(
-      `🧹 Strategy ${index + 1} - Domain: ${strategy.domain || 'none'}, Options: ${cookieOptions}`
-    );
+    if (process.env.NODE_ENV !== 'production') {
+      console.log(
+        `🧹 Strategy ${index + 1} - Domain: ${strategy.domain || 'none'}, Options: ${cookieOptions}`
+      );
+    }
   });
 
+  // Keep this log for production debugging of cookie clearing
   console.log('✅ Applied multiple cookie clearing strategies for production compatibility');
 
   return response;
@@ -51,7 +54,9 @@ export async function clearAuthCookiesServer() {
   try {
     cookieStore.delete('access_token');
     cookieStore.delete('refresh_token');
-    console.log('🧹 Cleared cookies from server-side store (client cookies still exist)');
+    if (process.env.NODE_ENV !== 'production') {
+      console.log('🧹 Cleared cookies from server-side store (client cookies still exist)');
+    }
     return true;
   } catch (error) {
     console.warn('⚠️ Failed to clear server-side cookies:', error);
@@ -70,6 +75,7 @@ export async function clearAuthCookiesComplete(response: NextResponse) {
   // 2. Clear on client-side (browser)
   clearAuthCookies(response);
 
+  // Keep this log for production debugging of authentication issues
   console.log('🧹 Cleared cookies on both server and client');
   return response;
 }

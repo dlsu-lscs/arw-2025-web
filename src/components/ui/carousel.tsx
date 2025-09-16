@@ -6,6 +6,7 @@ import { ArrowLeft, ArrowRight } from 'lucide-react';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
+import { useSearchStore } from '@/features/orgs/store/useSearchStore';
 
 type CarouselApi = UseEmblaCarouselType[1];
 type UseCarouselParameters = Parameters<typeof useEmblaCarousel>;
@@ -228,6 +229,7 @@ function CarouselPreviousPixel({
 }: React.ComponentProps<typeof Button>) {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { orientation, scrollPrev, canScrollPrev } = useCarousel();
+  const { clearSearch } = useSearchStore();
 
   return (
     <Button
@@ -241,7 +243,10 @@ function CarouselPreviousPixel({
           : '-top-12 left-1/2 -translate-x-1/2 rotate-90',
         className
       )}
-      onClick={scrollPrev}
+      onClick={() => {
+        scrollPrev();
+        clearSearch();
+      }}
       {...props}
     >
       <Image
@@ -264,6 +269,7 @@ function CarouselNextPixel({
 }: React.ComponentProps<typeof Button>) {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { orientation, scrollNext, canScrollNext } = useCarousel();
+  const { setInputValue, clearSearch } = useSearchStore();
 
   return (
     <Button
@@ -277,7 +283,11 @@ function CarouselNextPixel({
           : '-bottom-12 left-1/2 -translate-x-1/2 rotate-90',
         className
       )}
-      onClick={scrollNext}
+      onClick={() => {
+        scrollNext();
+        clearSearch();
+        setInputValue('');
+      }}
       {...props}
     >
       <Image alt="next" width={14} height={14} src={'/assets/next.svg'}></Image>

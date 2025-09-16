@@ -30,11 +30,15 @@ export const useSearchStore = create<SearchState & SearchActions>((set) => ({
       isTyping: false,
     }),
   setIsTyping: (typing: boolean) => set({ isTyping: typing }),
-  clearSearch: () =>
+  clearSearch: () => {
+    if (process.env.NODE_ENV !== 'production') {
+      console.log('🧹 clearSearch called - resetting all search state');
+    }
     set({
       inputValue: '',
       debouncedSearchTerm: '',
       isSearchActive: false,
       isTyping: false,
-    }),
+    });
+  },
 }));

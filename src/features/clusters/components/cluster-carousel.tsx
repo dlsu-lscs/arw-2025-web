@@ -8,15 +8,17 @@ import {
   type CarouselApi,
 } from '@/components/ui/carousel';
 import { useSelectClusterStore } from '@/store/useSelectClusterStore';
-import { clusters } from '../data/clusters';
+import { clusters } from '../../home/data/clusters';
 import { useCallback, useEffect, useRef } from 'react';
 import { returnColorFromCluster } from '@/lib/helpers';
 import { cn } from '@/lib/utils';
 import { ClusterTypeConst } from '@/features/clusters/types/cluster.types';
+import { useSearchStore } from '@/features/orgs/store/useSearchStore';
 
 export default function ClusterCarousel() {
   const { selectedCluster, setSelectedCluster } = useSelectClusterStore();
   const apiRef = useRef<CarouselApi | null>(null);
+  const { clearSearch } = useSearchStore();
 
   const handleApi = useCallback(
     (api: CarouselApi) => {
@@ -44,8 +46,12 @@ export default function ClusterCarousel() {
 
     if (index >= 0 && index != api.selectedScrollSnap()) {
       api.scrollTo(index);
+      if (process.env.NODE_ENV !== 'production') {
+        console.log('🧹 Cluster changed, clearing search');
+      }
+      clearSearch();
     }
-  }, [selectedCluster]);
+  }, [selectedCluster, clearSearch]);
 
   return (
     <>

@@ -9,21 +9,23 @@ async function verifyAndDecodeJWT(token: string) {
   try {
     // Check if token exists and is not empty
     if (!token || token.trim() === '') {
-      console.log('Token is empty or null');
+      if (process.env.NODE_ENV !== 'production') console.log('Token is empty or null');
       return null;
     }
 
     // Basic JWT format check (must have 3 parts)
     const parts = token.split('.');
     if (parts.length !== 3) {
-      console.log('Invalid JWT format: token has', parts.length, 'parts instead of 3');
-      console.log('Token value:', token);
+      if (process.env.NODE_ENV !== 'production') {
+        console.log('Invalid JWT format: token has', parts.length, 'parts instead of 3');
+        console.log('Token value:', token);
+      }
       return null;
     }
 
     // Check if any part is empty
     if (parts.some((part) => !part || part.trim() === '')) {
-      console.log('JWT has empty parts');
+      if (process.env.NODE_ENV !== 'production') console.log('JWT has empty parts');
       return null;
     }
 
@@ -37,12 +39,14 @@ async function verifyAndDecodeJWT(token: string) {
     // Verify signature and decode payload
     const { payload } = await jose.jwtVerify(token, secret);
     if (process.env.NODE_ENV !== 'production') {
-      console.log(payload);
+      console.log('🔓 JWT payload verified:', payload);
     }
     return payload;
   } catch (error) {
-    console.log('JWT verification failed:', (error as Error).message || error);
-    console.log('Problematic token:', token.substring(0, 100) + '...');
+    if (process.env.NODE_ENV !== 'production') {
+      console.log('JWT verification failed:', (error as Error).message || error);
+      console.log('Problematic token:', token.substring(0, 100) + '...');
+    }
     return null;
   }
 }
@@ -90,7 +94,7 @@ export async function getServerUser(): Promise<AuthUser> {
 
     // If no tokens at all, user needs to login
     if (!accessToken && !refreshToken) {
-      console.log('No tokens found');
+      if (process.env.NODE_ENV !== 'production') console.log('No tokens found');
       return null;
     }
 
@@ -100,24 +104,26 @@ export async function getServerUser(): Promise<AuthUser> {
 
       // If token is valid and not expired, return user data
       if (payload && !isPayloadExpired(payload)) {
-        console.log('Access token is valid');
+        if (process.env.NODE_ENV !== 'production') console.log('Access token is valid');
         return {
           sub: payload.sub as string,
           name: payload.name as string,
           picture: payload.picture as string,
         };
       } else {
-        console.log('Access token is expired or invalid');
+        if (process.env.NODE_ENV !== 'production')
+          console.log('Access token is expired or invalid');
       }
     } else {
-      console.log('Access token is empty or malformed');
+      if (process.env.NODE_ENV !== 'production') console.log('Access token is empty or malformed');
     }
 
     // If access token is expired/invalid but we have refresh token
     if (refreshToken && refreshToken.value && refreshToken.value.trim() !== '') {
       // Check if refresh token is a UUID (opaque token) or JWT
       if (isUUIDFormat(refreshToken.value)) {
-        console.log('Refresh token is UUID format - valid for refresh');
+        if (process.env.NODE_ENV !== 'production')
+          console.log('Refresh token is UUID format - valid for refresh');
         return {
           sub: '',
           name: '',
@@ -125,10 +131,12 @@ export async function getServerUser(): Promise<AuthUser> {
           needsRefresh: true,
         };
       } else if (isJWTFormat(refreshToken.value)) {
-        console.log('Refresh token is JWT format - verifying');
+        if (process.env.NODE_ENV !== 'production')
+          console.log('Refresh token is JWT format - verifying');
         const refreshPayload = await verifyAndDecodeJWT(refreshToken.value);
         if (refreshPayload && !isPayloadExpired(refreshPayload)) {
-          console.log('Refresh token JWT is valid - needs refresh');
+          if (process.env.NODE_ENV !== 'production')
+            console.log('Refresh token JWT is valid - needs refresh');
           return {
             sub: '',
             name: '',
@@ -136,17 +144,19 @@ export async function getServerUser(): Promise<AuthUser> {
             needsRefresh: true,
           };
         } else {
-          console.log('Refresh token JWT is expired or invalid');
+          if (process.env.NODE_ENV !== 'production')
+            console.log('Refresh token JWT is expired or invalid');
         }
       } else {
-        console.log('Refresh token has unknown format');
+        if (process.env.NODE_ENV !== 'production') console.log('Refresh token has unknown format');
       }
     } else {
-      console.log('Refresh token is empty or malformed');
+      if (process.env.NODE_ENV !== 'production') console.log('Refresh token is empty or malformed');
     }
 
     // Both tokens are invalid/expired
-    console.log('Both tokens are invalid - redirecting to login');
+    if (process.env.NODE_ENV !== 'production')
+      console.log('Both tokens are invalid - redirecting to login');
     return null;
   } catch (error) {
     console.error('Error in getServerUser:', error);

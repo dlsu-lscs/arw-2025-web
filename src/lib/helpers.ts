@@ -4,7 +4,7 @@ export const returnColorFromCluster = (cluster: string) => {
       return '#2563EB';
     case 'engage':
       return '#010F56';
-    case 'cap13':
+    case 'cap 13':
       return '#564C01';
     case 'aspire':
       return '#8D0094';
@@ -14,7 +14,7 @@ export const returnColorFromCluster = (cluster: string) => {
       return '#3FA300';
     case 'cso':
       return '#004B02';
-    case 'special':
+    case 'outside cso':
       return '#0078A3';
   }
 };
@@ -25,7 +25,7 @@ export const returnColorFromCluster62 = (cluster: string) => {
       return '#2563EB9E';
     case 'engage':
       return '#010F569E';
-    case 'cap13':
+    case 'cap 13':
       return '#564C019E';
     case 'aspire':
       return '#8D00949E';
@@ -35,7 +35,7 @@ export const returnColorFromCluster62 = (cluster: string) => {
       return '#3FA3009E';
     case 'cso':
       return '#004B029E';
-    case 'special':
+    case 'outside cso':
       return '#0078A39E';
   }
 };

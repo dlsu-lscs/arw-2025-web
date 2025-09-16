@@ -14,7 +14,9 @@ api.interceptors.response.use(
       originalRequest._retry = true;
 
       try {
-        console.log('🔄 401 detected, attempting token refresh...');
+        if (process.env.NODE_ENV !== 'production') {
+          console.log('🔄 401 detected, attempting token refresh...');
+        }
 
         // Use your Next.js API route for refresh
         const refreshResponse = await fetch('/api/auth/refresh', {
@@ -23,14 +25,19 @@ api.interceptors.response.use(
         });
 
         if (refreshResponse.ok) {
-          console.log('✅ Token refresh successful, retrying original request');
+          if (process.env.NODE_ENV !== 'production') {
+            console.log('✅ Token refresh successful, retrying original request');
+          }
           // Retry the original request with new tokens
           return api(originalRequest);
         } else {
-          console.log('❌ Token refresh failed:', refreshResponse.status);
+          if (process.env.NODE_ENV !== 'production') {
+            console.log('❌ Token refresh failed:', refreshResponse.status);
+          }
           throw new Error('Refresh failed');
         }
       } catch (refreshError) {
+        // Keep this error log for production to track authentication issues
         console.error('💥 Session expired, redirecting to login...', refreshError);
 
         // Use router in client-side, fallback to window.location
