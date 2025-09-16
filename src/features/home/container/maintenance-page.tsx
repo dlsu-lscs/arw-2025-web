@@ -14,8 +14,8 @@ export default function Maintenance() {
             </h1>
             <h2 className="font-press-start text-lg sm:text-xl mb-6"> We’ll be back shortly!</h2>
             <p className="font-space-mono text-sm sm:text-base mb-6 text-gray-700">
-              The Annual Recruitment Week 2025 Website is currently under scheduled maintenance. Our
-              dev team is patching things up to serve you better. 🚧
+              The Annual Recruitment Week 2025 Website is currently under maintenance. Our dev team
+              is patching things up to serve you better. 🚧
             </p>
           </div>
         </div>
