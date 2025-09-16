@@ -347,7 +347,7 @@ export default function OrgsModal({ org, isLoading, isError }: OrgsModalProps) {
                     )}
                     {org?.mission && (
                       <div className="flex flex-col gap-4">
-                        <h1 className="text-2xl md:text-3xl">Mission</h1>
+                        <h1 className="text-2xl md:text-3xl mt-6">Mission</h1>
                         <p className="font-space-mono text-sm md:text-base w-full whitespace-pre-wrap">
                           {org?.mission}
                         </p>
@@ -355,7 +355,7 @@ export default function OrgsModal({ org, isLoading, isError }: OrgsModalProps) {
                     )}
                     {org?.vision && (
                       <div className="flex flex-col gap-4">
-                        <h1 className="text-2xl md:text-3xl">Vision</h1>
+                        <h1 className="text-2xl md:text-3xl mt-6">Vision</h1>
                         <p className="font-space-mono text-sm md:text-base w-full whitespace-pre-wrap">
                           {org?.vision}
                         </p>
