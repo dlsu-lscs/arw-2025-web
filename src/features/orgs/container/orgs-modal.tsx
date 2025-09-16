@@ -113,9 +113,9 @@ export default function OrgsModal({ org, isLoading, isError }: OrgsModalProps) {
                             JOIN NOW
                           </Button>
                           {org?.fee && (
-                            <pre className="font-space-mono text-black sm:text-base text-sm text-start">
+                            <p className="font-space-mono text-black sm:text-base text-sm text-start whitespace-pre-wrap">
                               {org?.fee}
-                            </pre>
+                            </p>
                           )}
                         </div>
                       </div>
@@ -186,19 +186,25 @@ export default function OrgsModal({ org, isLoading, isError }: OrgsModalProps) {
                               </Dialog>
                             )}
                           </div>
-                          <p className="font-space-mono text-sm w-full">{org?.about}</p>
+                          <p className="font-space-mono text-sm w-full whitespace-pre-wrap">
+                            {org?.about}
+                          </p>
                         </div>
                       )}
                       {org?.mission && (
                         <div className="flex flex-col gap-4">
                           <h1 className="sm:text-2xl text-base">Mission</h1>
-                          <p className="font-space-mono text-sm w-full">{org?.mission}</p>
+                          <p className="font-space-mono text-sm w-full whitespace-pre-wrap">
+                            {org?.mission}
+                          </p>
                         </div>
                       )}
                       {org?.vision && (
                         <div className="flex flex-col gap-4">
                           <h1 className="sm:text-2xl text-base">Vision</h1>
-                          <p className="font-space-mono text-sm w-full">{org?.vision}</p>
+                          <p className="font-space-mono text-sm w-full whitespace-pre-wrap">
+                            {org?.vision}
+                          </p>
                         </div>
                       )}
                       <footer className="flex justify-center mt-8">
@@ -246,9 +252,9 @@ export default function OrgsModal({ org, isLoading, isError }: OrgsModalProps) {
                           JOIN NOW
                         </Button>
                         {org?.fee && (
-                          <pre className="font-space-mono text-black sm:text-base text-sm text-start">
+                          <p className="font-space-mono text-black  sm:text-base text-sm text-start whitespace-pre-wrap">
                             {org?.fee}
-                          </pre>
+                          </p>
                         )}
                       </div>
 
@@ -334,13 +340,15 @@ export default function OrgsModal({ org, isLoading, isError }: OrgsModalProps) {
                             </Dialog>
                           )}
                         </div>
-                        <p className="font-space-mono text-sm md:text-base w-full">{org?.about}</p>
+                        <p className="font-space-mono text-sm md:text-base w-full whitespace-pre-wrap">
+                          {org?.about}
+                        </p>
                       </div>
                     )}
                     {org?.mission && (
                       <div className="flex flex-col gap-4">
                         <h1 className="text-2xl md:text-3xl">Mission</h1>
-                        <p className="font-space-mono text-sm md:text-base w-full">
+                        <p className="font-space-mono text-sm md:text-base w-full whitespace-pre-wrap">
                           {org?.mission}
                         </p>
                       </div>
@@ -348,7 +356,9 @@ export default function OrgsModal({ org, isLoading, isError }: OrgsModalProps) {
                     {org?.vision && (
                       <div className="flex flex-col gap-4">
                         <h1 className="text-2xl md:text-3xl">Vision</h1>
-                        <p className="font-space-mono text-sm md:text-base w-full">{org?.vision}</p>
+                        <p className="font-space-mono text-sm md:text-base w-full whitespace-pre-wrap">
+                          {org?.vision}
+                        </p>
                       </div>
                     )}
                     <footer className="flex justify-center mt-8 md:mt-12">
