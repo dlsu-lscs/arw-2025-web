@@ -51,6 +51,8 @@ export default function OrgsContainer({
     staleTime: 10 * 60 * 1000,
   });
 
+  if (process.env.NODE_ENV !== 'production') console.log('Orgs in org container', orgs);
+
   return (
     <>
       <div className="overflow-y-auto flex-1 h-full min-h-0 w-full mt-4 overflow-x-hidden shadcn-scrollbar">
