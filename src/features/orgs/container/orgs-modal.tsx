@@ -127,7 +127,7 @@ export default function OrgsModal({ org, isLoading, isError }: OrgsModalProps) {
                           <div className="flex gap-2 w-full overflow-x-auto">
                             {org.publications?.mainPubUrl && (
                               <Dialog>
-                                <DialogTrigger className="min-w-28">
+                                <DialogTrigger className="min-w-28 max-w-32">
                                   <img
                                     src={org?.publications.mainPubUrl}
                                     alt="main pub"
@@ -146,7 +146,7 @@ export default function OrgsModal({ org, isLoading, isError }: OrgsModalProps) {
                             )}
                             {org.publications?.feePubUrl && (
                               <Dialog>
-                                <DialogTrigger className="min-w-28">
+                                <DialogTrigger className="min-w-28 max-w-32">
                                   <img
                                     src={org?.publications.feePubUrl}
                                     alt="fee pub"
@@ -165,7 +165,7 @@ export default function OrgsModal({ org, isLoading, isError }: OrgsModalProps) {
                             )}
                             {org.publications?.orgVidUrl && (
                               <Dialog>
-                                <DialogTrigger className="min-w-36">
+                                <DialogTrigger className="min-w-36 max-w-38">
                                   <img
                                     src={`https://img.youtube.com/vi/${getYoutubeEmbedUrl(org.publications.orgVidUrl).split('/').pop()}/0.jpg`}
                                     alt="video thumbnail"
