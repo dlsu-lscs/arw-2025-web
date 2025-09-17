@@ -6,8 +6,10 @@ export const useImageFallback = (imageUrl?: string | null, fallbackUrl?: string)
   const [currentImageUrl, setCurrentImageUrl] = useState<string>(initialUrl || '');
 
   useEffect(() => {
-    // Only proceed if a valid imageUrl is provided
+    // Reset to the new imageUrl immediately when it changes
     if (imageUrl && typeof imageUrl === 'string') {
+      setCurrentImageUrl(imageUrl);
+
       const img = new window.Image();
       img.src = imageUrl;
       img.onerror = () => {
@@ -15,6 +17,9 @@ export const useImageFallback = (imageUrl?: string | null, fallbackUrl?: string)
           setCurrentImageUrl(fallbackUrl);
         }
       };
+    } else if (fallbackUrl) {
+      // If no imageUrl provided, use fallback
+      setCurrentImageUrl(fallbackUrl);
     }
   }, [imageUrl, fallbackUrl]);
 
