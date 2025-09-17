@@ -3,7 +3,6 @@ import { OrganizationType } from '../types/orgs.types';
 import { returnColorFromCluster } from '@/lib/helpers';
 import Image from 'next/image';
 import { returnColorFromCluster62 } from '@/lib/helpers';
-import { useImageFallback } from '@/hooks/useImageFallback';
 
 interface OrgCardProps {
   className?: string;
@@ -13,7 +12,6 @@ interface OrgCardProps {
 }
 
 export default function OrgCard({ className, org, onClick, onMouseEnter }: OrgCardProps) {
-  const backgroundImage = useImageFallback(org.publications?.mainPubUrl, '/bg/st-lasalle-bg.webp');
   return (
     <>
       <div
@@ -23,7 +21,9 @@ export default function OrgCard({ className, org, onClick, onMouseEnter }: OrgCa
         )}
         style={{
           backgroundColor: returnColorFromCluster62(org.cluster.name.toLowerCase()),
-          backgroundImage: `url('${backgroundImage}')`,
+          backgroundImage: org.publications?.mainPubUrl
+            ? `url('${org.publications.mainPubUrl}')`
+            : `url('/bg/st-lasalle-bg.webp')`,
           backgroundBlendMode: 'multiply',
         }}
         onClick={onClick}
